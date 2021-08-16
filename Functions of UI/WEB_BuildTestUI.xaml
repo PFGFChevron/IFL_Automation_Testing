@@ -1,0 +1,307 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="WEB_BuildTestUI" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1480,4726" sap2010:WorkflowViewState.IdRef="WEB_CreateTestUI_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="22">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="22">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="WEB_BuildTestUI" sap:VirtualizedContainerService.HintSize="755,4561" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="HTMLCode" />
+      <Variable x:TypeArguments="x:String" Name="ReadTextFile" />
+      <Variable x:TypeArguments="x:Boolean" Name="CTempExists" />
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_tableExecution" />
+      <Variable x:TypeArguments="x:String" Name="Directory_TableRow" />
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_TableRow" />
+      <Variable x:TypeArguments="x:Boolean" Name="CTempTestUIExists" />
+      <Variable x:TypeArguments="x:Boolean" Name="CTempImagesIconsExists" />
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_Images" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_1" Path="HTML_Opening.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_2" Path="Head.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_3" Path="Body_Opening.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_4" Path="Header.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_5" Path="Section_Opening.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_6" Path="Navigation.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_7" Path="Article_Opening.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ListStorageFiles Filter="{x:Null}" TimeoutMS="{x:Null}" Directory="tableExecution" DisplayName="List Storage Files" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ListStorageFiles_1" Recursive="True" Result="[ListStorageFiles_tableExecution]" StorageBucketName=".html" />
+    <ui:ForEach x:TypeArguments="ucas:StorageFileInfo" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="713,1307" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[ListStorageFiles_tableExecution]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="ucas:StorageFileInfo">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ucas:StorageFileInfo" Name="item" />
+          </ActivityAction.Argument>
+          <If Condition="[item.FileFullPath.Contains(&quot;Table_Opening.txt&quot;)]" sap:VirtualizedContainerService.HintSize="527,1173" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="382,1025" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="Directory_Table" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="340,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_8" Path="[item.FileFullPath]" Result="[ReadTextFile]" StorageBucketName=".html" />
+                <Assign sap:VirtualizedContainerService.HintSize="340,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:Replace sap:VirtualizedContainerService.HintSize="340,59" sap2010:WorkflowViewState.IdRef="Replace_1" Input="[item.FileFullPath]" IsBuilderTabModified="False" Pattern="\\Table_Opening.txt" RegexOption="IgnoreCase, Compiled" Result="[Directory_Table]">
+                  <ui:Replace.Replacement>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ui:Replace.Replacement>
+                </ui:Replace>
+                <Assign sap:VirtualizedContainerService.HintSize="340,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Directory_TableRow]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[Directory_Table+"\Table Row"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ucas:ListStorageFiles Filter="{x:Null}" TimeoutMS="{x:Null}" Directory="[Directory_TableRow]" DisplayName="List Storage Files" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="340,22" sap2010:WorkflowViewState.IdRef="ListStorageFiles_2" Recursive="False" Result="[ListStorageFiles_TableRow]" StorageBucketName=".html" />
+                <ui:ForEach x:TypeArguments="ucas:StorageFileInfo" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="340,348" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[ListStorageFiles_TableRow]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="ucas:StorageFileInfo">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ucas:StorageFileInfo" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,214" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_9" Path="[item.FileFullPath]" Result="[ReadTextFile]" StorageBucketName=".html" />
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+                <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="340,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_10" Path="[Directory_Table+&quot;\Table_Closing.txt&quot;]" Result="[ReadTextFile]" StorageBucketName=".html" />
+                <Assign sap:VirtualizedContainerService.HintSize="340,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_11" Path="Article_Closing.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_12" Path="Aside.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_13" Path="Section_Closing.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_14" Path="Footer.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_15" Path="Script.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_16" Path="Body_Closing.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_17" Path="HTML_Closing.txt" Result="[ReadTextFile]" StorageBucketName=".html" />
+    <Assign sap:VirtualizedContainerService.HintSize="713,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:WriteStorageText TimeoutMS="{x:Null}" DisplayName="Write Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="WriteStorageText_1" Path="TestUI.html" StorageBucketName=".html" Text="[HTMLCode]" />
+    <ui:PathExists DisplayName="Path Exists" Exists="[CTempExists]" sap:VirtualizedContainerService.HintSize="713,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="C:\temp" PathType="Folder" />
+    <If Condition="[CTempExists]" sap:VirtualizedContainerService.HintSize="713,237" sap2010:WorkflowViewState.IdRef="If_4">
+      <If.Then>
+        <ui:PathExists DisplayName="Path Exists" Exists="[CTempTestUIExists]" sap:VirtualizedContainerService.HintSize="334,89" sap2010:WorkflowViewState.IdRef="PathExists_2" Path="C:\temp\TestUI.html" PathType="File" />
+      </If.Then>
+      <If.Else>
+        <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_4" Path="C:\temp" />
+      </If.Else>
+    </If>
+    <If Condition="[CTempTestUIExists]" sap:VirtualizedContainerService.HintSize="713,324" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Sequence 'If TestUIExists'" sap:VirtualizedContainerService.HintSize="242,176" sap2010:WorkflowViewState.IdRef="Sequence_15">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="C:\temp\TestUI.html" />
+          <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="C:\temp\TestUI.html" DisplayName="Download Storage File" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_5" Path="TestUI.html" StorageBucketName=".html" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="C:\temp\TestUI.html" DisplayName="Download Storage File" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_3" Path="TestUI.html" StorageBucketName=".html" />
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

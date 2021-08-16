@@ -1,0 +1,204 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="AddTest" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="972,3000" sap2010:WorkflowViewState.IdRef="AddTest_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="42">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="AddTest" sap:VirtualizedContainerService.HintSize="526,2935" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="TestName" />
+      <Variable x:TypeArguments="x:String" Name="TestDescription" />
+      <Variable x:TypeArguments="x:String" Name="ModuleName" />
+      <Variable x:TypeArguments="x:String" Name="TestSteps" />
+      <Variable x:TypeArguments="x:String" Name="TestFilePath" />
+      <Variable x:TypeArguments="x:String" Name="FileContent" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'INPUT  textboxTestName'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
+      <ui:GetAttribute.Result>
+        <OutArgument x:TypeArguments="x:String">[TestName]</OutArgument>
+      </ui:GetAttribute.Result>
+      <ui:GetAttribute.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="39ca52a0-62f7-4606-a2d5-b213be1a58fd" InformativeScreenshot="94ec73b41b593d1e508e6242edafeb0e" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;&lt;webctrl id='textboxTestName' tag='INPUT' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:GetAttribute.Target>
+    </ui:GetAttribute>
+    <If Condition="[TestName = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_5" Reason="Test name is empty" />
+      </If.Then>
+    </If>
+    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'INPUT  textboxTestDescr...'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
+      <ui:GetAttribute.Result>
+        <OutArgument x:TypeArguments="x:String">[TestDescription]</OutArgument>
+      </ui:GetAttribute.Result>
+      <ui:GetAttribute.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="eee6eb3f-df97-4794-9a78-12b8e96a608a" InformativeScreenshot="bfdc20fdc501ed3415e790048d51cafb" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;&lt;webctrl id='textboxTestDescription' tag='INPUT' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:GetAttribute.Target>
+    </ui:GetAttribute>
+    <If Condition="[TestDescription = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_6" Reason="Test name is empty" />
+      </If.Then>
+    </If>
+    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'INPUT  textboxTestModule'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_3">
+      <ui:GetAttribute.Result>
+        <OutArgument x:TypeArguments="x:String">[ModuleName]</OutArgument>
+      </ui:GetAttribute.Result>
+      <ui:GetAttribute.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b5cc97a3-5b00-4b0a-a7a0-17a532828833" InformativeScreenshot="3fb93a3f453f7487f7db3603729ae1a9" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;&lt;webctrl id='textboxTestModule' tag='INPUT' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:GetAttribute.Target>
+    </ui:GetAttribute>
+    <If Condition="[ModuleName = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_7" Reason="Test name is empty" />
+      </If.Then>
+    </If>
+    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'TEXTAREA textareaTestStep'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_4">
+      <ui:GetAttribute.Result>
+        <OutArgument x:TypeArguments="x:String">[TestSteps]</OutArgument>
+      </ui:GetAttribute.Result>
+      <ui:GetAttribute.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5503c27b-1156-46f9-8036-164b11d78d49" InformativeScreenshot="6a608e68073ab48c82e6f34760b2e5f4" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;&lt;webctrl id='textareaTestSteps' tag='TEXTAREA' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:GetAttribute.Target>
+    </ui:GetAttribute>
+    <If Condition="[TestSteps = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_4">
+      <If.Then>
+        <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_8" Reason="Test name is empty" />
+      </If.Then>
+    </If>
+    <ui:ReadTextFile Content="[FileContent]" DisplayName="Read Text File" FileName=".html\Baseline_tableExecution.txt" sap:VirtualizedContainerService.HintSize="484,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    <ui:Replace sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="Replace_1" Input="[FileContent]" IsBuilderTabModified="False" Pattern="ForReplacement_TestName" RegexOption="IgnoreCase, Compiled" Replacement="[TestName]" Result="[FileContent]" />
+    <ui:Replace sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="Replace_2" Input="[FileContent]" IsBuilderTabModified="False" Pattern="ForReplacement_TestDescription" RegexOption="IgnoreCase, Compiled" Replacement="[TestDescription]" Result="[FileContent]" />
+    <ui:Replace sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="Replace_3" Input="[FileContent]" IsBuilderTabModified="False" Pattern="ForReplacement_ModuleName" RegexOption="IgnoreCase, Compiled" Replacement="[ModuleName]" Result="[FileContent]" />
+    <ui:Replace sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="Replace_4" Input="[FileContent]" IsBuilderTabModified="False" Pattern="ForReplacement_TestSteps" RegexOption="IgnoreCase, Compiled" Replacement="[TestSteps]" Result="[FileContent]" />
+    <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[TestFilePath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[".html\tableExecution\Table"+ModuleName+"\Table Row\"+TestName+".txt"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:WriteTextFile DisplayName="Write Text File" FileName="[TestFilePath]" sap:VirtualizedContainerService.HintSize="484,132" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[FileContent]" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WEB_BuildTestUI_Local workflow" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Functions of UI/WEB_BuildTestUI_Local.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Refresh Browser'" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="BrowserScope_2" InformativeScreenshot="d57c91a09dedebc70cfa4932482aa074" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <ui:RefreshBrowser Browser="{x:Null}" DisplayName="Refresh Browser" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="RefreshBrowser_1" />
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BrowserScope>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Close IFL Tester Bot'" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="cc194ca41a8ccad2e30dccdff966d7f6" Selector="&lt;html app='msedge.exe' title='IFL Tester Bot' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BrowserScope>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Adding test completed&quot;]" />
+  </Sequence>
+</Activity>

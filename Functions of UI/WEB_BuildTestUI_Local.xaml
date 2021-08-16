@@ -1,0 +1,289 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="WEB_BuildTestUI" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1488,4911" sap2010:WorkflowViewState.IdRef="WEB_CreateTestUI_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="22">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="24">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="WEB_BuildTestUI" sap:VirtualizedContainerService.HintSize="727,4846" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="HTMLCode" />
+      <Variable x:TypeArguments="x:String" Name="ReadTextFile" />
+      <Variable x:TypeArguments="x:Boolean" Name="CTempExists" />
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_tableExecution" />
+      <Variable x:TypeArguments="x:String" Name="Directory_TableRow" />
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_TableRow" />
+      <Variable x:TypeArguments="x:Boolean" Name="CTempTestUIExists" />
+      <Variable x:TypeArguments="x:Boolean" Name="CTempImagesIconsExists" />
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_Images" />
+      <Variable x:TypeArguments="x:String" Name="ProjectDirectory" />
+      <Variable x:TypeArguments="x:String" Name="Directory_Table" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\HTML_Opening.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Head.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_2" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Body_Opening.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_3" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Header.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_4" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Section_Opening.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_5" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Navigation.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_6" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Article_Opening.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_7" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ProjectDirectory]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[IO.Directory.GetCurrentDirectory]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="685,1416" sap2010:WorkflowViewState.IdRef="ForEach`1_10" Values="[Directory.GetFiles(ProjectDirectory+&quot;\.html\tableExecution&quot;,&quot;*.txt&quot;,SearchOption.AllDirectories)]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <If Condition="[item.Contains(&quot;Table_Opening.txt&quot;)]" sap:VirtualizedContainerService.HintSize="649,1282" sap2010:WorkflowViewState.IdRef="If_5">
+            <If.Then>
+              <Sequence DisplayName="If item.Contains(&quot;Table_Opening.txt&quot;)" sap:VirtualizedContainerService.HintSize="504,1134" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName="[item]" sap:VirtualizedContainerService.HintSize="462,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_8" />
+                <Assign sap:VirtualizedContainerService.HintSize="462,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:Replace sap:VirtualizedContainerService.HintSize="462,59" sap2010:WorkflowViewState.IdRef="Replace_2" Input="[item]" IsBuilderTabModified="False" Pattern="\\Table_Opening.txt" RegexOption="IgnoreCase, Compiled" Result="[Directory_Table]">
+                  <ui:Replace.Replacement>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ui:Replace.Replacement>
+                </ui:Replace>
+                <Assign sap:VirtualizedContainerService.HintSize="462,60" sap2010:WorkflowViewState.IdRef="Assign_27">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Directory_TableRow]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[Directory_Table+"\Table Row"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="462,405" sap2010:WorkflowViewState.IdRef="ForEach`1_11" Values="[Directory.GetFiles(Directory_TableRow,&quot;*.txt&quot;,SearchOption.AllDirectories)]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="For Each item in Directory.GetFiles(Directory_TableRow,&quot;*.txt&quot;,SearchOption.AllDirectories)" sap:VirtualizedContainerService.HintSize="426,271" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName="[item]" sap:VirtualizedContainerService.HintSize="384,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_9" />
+                        <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+                <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName="[Directory_Table+&quot;\Table_Closing.txt&quot;]" sap:VirtualizedContainerService.HintSize="462,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_10" />
+                <Assign sap:VirtualizedContainerService.HintSize="462,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+          </If>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Article_Closing.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_11" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Aside.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_12" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Section_Closing.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_13" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Footer.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_14" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Script.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_15" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\Body_Closing.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_16" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ReadTextFile Content="[ReadTextFile]" DisplayName="Read Text File" FileName=".html\HTML_Closing.txt" sap:VirtualizedContainerService.HintSize="685,79" sap2010:WorkflowViewState.IdRef="ReadTextFile_17" />
+    <Assign sap:VirtualizedContainerService.HintSize="685,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[HTMLCode]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[HTMLCode+ReadTextFile]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:WriteTextFile DisplayName="Write Text File" FileName="TestUI.html" sap:VirtualizedContainerService.HintSize="685,132" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[HTMLCode]" />
+  </Sequence>
+</Activity>

@@ -1,0 +1,767 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_CC_ReprintOnReceipt_UpArrow" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1010,1009" sap2010:WorkflowViewState.IdRef="NAMOS_ReprintOnReceipt_UpArrow_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.CV</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="NAMOS_CC_ReprintOnReceipt_UpArrow" sap:VirtualizedContainerService.HintSize="514,944" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" DisplayName="Computer Vision" sap:VirtualizedContainerService.HintSize="472,852" sap2010:WorkflowViewState.IdRef="CVScope_1" Version="V1">
+      <p:CVScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">
+                  <Literal x:TypeArguments="x:String">Clicking Receipt Up Arrow</Literal>
+                </InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="438,106" sap2010:WorkflowViewState.IdRef="CVRefresh_1" InformativeScreenshot="aff0e95c46d908a06e8683d4d5025a13" Version="V1">
+              <p:CVRefresh.DesignTimeCache>
+                <uc:CVCache InformativeScreenshot="dd394689d18d18cfc5d5a89b56d09b5b" LogicalPosition="0, 108" OcrText="Q Gur-rent Session: PH000000020P1 1 session&#xA;SCREEN SHARING v 36B .00&#xA;36B .00&#xA;32B .57&#xA;39.43&#xA;0.00&#xA;0.00 Total&#xA;Date 368.00&#xA;Reprint On Receipt&#xA;Time Emergency&#xA;Day More&#xA;Functions&#xA;Reprint&#xA;Receipt&#xA;Query&#xA;Override&#xA;Receipt Technician&#xA;03/26/21 13:21&#xA;COOLANT IL&#xA;Total&#xA;Cash&#xA;Vatable Sales&#xA;VAT mnount&#xA;VAT Exempt Sales&#xA;VAT Zero Rated Sales 36B&#xA;Reprint&#xA;Regeipt_ Recall&#xA;Layaway&#xA;discount More&#xA;Mops&#xA;7&#xA;Local&#xA;Account Item Keys&#xA;o&#xA;5&#xA;2&#xA;Space Num&#xA;9&#xA;6&#xA;3&#xA;space 03/26/21&#xA;Quantity&#xA;Void Item&#xA;Yes&#xA;Repeat&#xA;NO&#xA;Total Desktop Console&#xA;Everyone&#xA;(13:38:37) Patricio Calacasan can now Mtew&#xA;and control the customers screen.&#xA;Type your message&#xA;Pump&#xA;Control Credit /&#xA;Bank Card" Position="0, 108" ScreenshotGuid="bd9caed3-2b42-41f0-96cd-8887f1e57f11" ServerVersion="1">
+                  <uc:CVCache.CvUiElements>
+                    <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="191">
+                      <uc:CvElementInfo x:Name="__ReferenceID0" Category="Icon" Region="1841, 6, 24, 25" />
+                      <uc:CvElementInfo x:Name="__ReferenceID1" Category="Icon" Region="480, 45, 34, 32" />
+                      <uc:CvElementInfo x:Name="__ReferenceID2" Category="Icon" Region="1604, 5, 34, 28" />
+                      <uc:CvElementInfo x:Name="__ReferenceID3" Category="Icon" Region="1790, 46, 30, 28" />
+                      <uc:CvElementInfo x:Name="__ReferenceID4" Category="Icon" Region="385, 43, 32, 32" />
+                      <uc:CvElementInfo x:Name="__ReferenceID5" Category="Icon" Region="1712, 45, 30, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID6" Category="Icon" Region="1676, 45, 30, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID7" Category="Icon" Region="1320, 45, 26, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID8" Category="Icon" Region="430, 46, 37, 28" />
+                      <uc:CvElementInfo x:Name="__ReferenceID9" Category="Icon" Region="1507, 43, 36, 31" />
+                      <uc:CvElementInfo x:Name="__ReferenceID10" Category="Icon" Region="333, 45, 39, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID11" Category="Icon" Region="1409, 47, 39, 25" />
+                      <uc:CvElementInfo x:Name="__ReferenceID12" Category="Icon" Region="1641, 46, 30, 29" />
+                      <uc:CvElementInfo x:Name="__ReferenceID13" Category="Icon" Region="237, 45, 40, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID14" Category="Button" Region="721, 216, 162, 43" />
+                      <uc:CvElementInfo x:Name="__ReferenceID15" Category="Icon" Region="291, 45, 30, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID16" Category="ArrowButton" Region="154, 49, 26, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID17" Category="Icon" Region="57, 5, 30, 27" />
+                      <uc:CvElementInfo x:Name="__ReferenceID18" Category="Icon" Region="8, 5, 31, 29" />
+                      <uc:CvElementInfo x:Name="__ReferenceID19" Category="Icon" Region="1459, 47, 36, 26" />
+                      <uc:CvElementInfo x:Name="__ReferenceID20" Category="Button" Region="1714, 868, 91, 39" />
+                      <uc:CvElementInfo x:Name="__ReferenceID21" Category="Icon" Region="1556, 46, 31, 29" />
+                      <uc:CvElementInfo x:Name="__ReferenceID22" Category="Icon" Region="1361, 48, 38, 25" />
+                      <uc:CvElementInfo x:Name="__ReferenceID23" Category="ArrowButton" Region="1884, 752, 18, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID24" Category="Icon" Region="890, 123, 25, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID25" Category="InputBox" Region="992, 126, 315, 41" />
+                      <uc:CvElementInfo x:Name="__ReferenceID26" Category="Icon" Region="1215, 615, 97, 96" />
+                      <uc:CvElementInfo x:Name="__ReferenceID27" Category="Icon" Region="1164, 468, 30, 36" />
+                      <uc:CvElementInfo x:Name="__ReferenceID28" Category="ArrowButton" Region="1902, 692, 17, 18" />
+                      <uc:CvElementInfo x:Name="__ReferenceID29" Category="Icon" Region="1164, 554, 29, 38" />
+                      <uc:CvElementInfo x:Name="__ReferenceID30" Category="Button" Region="719, 537, 77, 79" />
+                      <uc:CvElementInfo x:Name="__ReferenceID31" Category="Icon" Region="740, 561, 36, 27" />
+                      <uc:CvElementInfo x:Name="__ReferenceID32" Category="ArrowButton" Region="1884, 815, 17, 18" />
+                      <uc:CvElementInfo x:Name="__ReferenceID33" Category="ArrowButton" Region="1900, 137, 20, 24" />
+                      <uc:CvElementInfo x:Name="__ReferenceID34" Category="Icon" Region="991, 741, 41, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID35" Category="Icon" Region="1080, 645, 28, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID36" Category="Icon" Region="1081, 379, 27, 36" />
+                      <uc:CvElementInfo x:Name="__ReferenceID37" Category="Icon" Region="1220, 796, 85, 85" />
+                      <uc:CvElementInfo x:Name="__ReferenceID38" Category="Button" Region="1221, 797, 85, 85" />
+                      <uc:CvElementInfo x:Name="__ReferenceID39" Category="Button" Region="47, 0, 49, 36" />
+                      <uc:CvElementInfo x:Name="__ReferenceID40" Category="Button" Region="1139, 327, 80, 23" />
+                      <uc:CvElementInfo x:Name="__ReferenceID41" Category="Icon" Region="1620, 97, 20, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID42" Category="Icon" Region="287, 525, 88, 96" />
+                      <uc:CvElementInfo x:Name="__ReferenceID43" Category="CloseButton" Region="1862, 42, 40, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID44" Category="Button" Region="1838, 3, 81, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID45" Category="Icon" Region="996, 378, 27, 38" />
+                      <uc:CvElementInfo x:Name="__ReferenceID46" Category="Icon" Region="369, 619, 89, 91" />
+                      <uc:CvElementInfo x:Name="__ReferenceID47" Category="Cell" Region="606, 432, 0, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID48" Category="Cell" Region="606, 374, 0, 58" />
+                      <uc:CvElementInfo x:Name="__ReferenceID49" Category="Cell" Region="606, 452, 0, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID50" Category="Cell" Region="606, 432, 115, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID51" Category="Cell" Region="1048, 455, 88, 82" />
+                      <uc:CvElementInfo x:Name="__ReferenceID52" Category="Cell" Region="1048, 286, 88, 41" />
+                      <uc:CvElementInfo x:Name="__ReferenceID53" Category="Cell" Region="606, 452, 115, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID54" Category="Cell" Region="606, 332, 0, 42" />
+                      <uc:CvElementInfo x:Name="__ReferenceID55" Category="Cell" Region="1208, 448, 98, 75" />
+                      <uc:CvElementInfo x:Name="__ReferenceID56" Category="Cell" Region="1215, 621, 87, 76" />
+                      <uc:CvElementInfo x:Name="__ReferenceID57" Category="Cell" Region="721, 349, 71, 37" />
+                      <uc:CvElementInfo x:Name="__ReferenceID58" Category="Cell" Region="289, 374, 317, 58" />
+                      <uc:CvElementInfo x:Name="__ReferenceID59" Category="Cell" Region="1212, 547, 96, 74" />
+                      <uc:CvElementInfo x:Name="__ReferenceID60" Category="Cell" Region="606, 332, 115, 42" />
+                      <uc:CvElementInfo x:Name="__ReferenceID61" Category="Cell" Region="1048, 368, 88, 87" />
+                      <uc:CvElementInfo x:Name="__ReferenceID62" Category="Cell" Region="289, 432, 317, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID63" Category="Cell" Region="606, 473, 0, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID64" Category="Cell" Region="1302, 621, 6, 76" />
+                      <uc:CvElementInfo x:Name="__ReferenceID65" Category="Icon" Confidence="Runtime" Region="1164, 379, 28, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID66" Category="Button" Confidence="Runtime" Region="93, 1, 257, 34" />
+                      <uc:CvElementInfo x:Name="__ReferenceID67" Category="Button" Confidence="Runtime" Region="722, 126, 163, 71" />
+                      <uc:CvElementInfo x:Name="__ReferenceID68" Category="Button" Confidence="Runtime" Region="0, 1, 47, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID69" Category="Icon" Confidence="Runtime" Region="1079, 468, 31, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID70" Category="InputBox" Confidence="Runtime" Region="272, 124, 455, 74" />
+                      <uc:CvElementInfo x:Name="__ReferenceID71" Category="ArrowButton" Confidence="Runtime" Region="1620, 97, 21, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID72" Category="Button" Confidence="Runtime" Region="1221, 627, 84, 80" />
+                      <uc:CvElementInfo x:Name="__ReferenceID73" Category="Button" Confidence="Runtime" Region="4, 38, 193, 43" />
+                      <uc:CvElementInfo x:Name="__ReferenceID74" Category="Icon" Confidence="Runtime" Region="1866, 44, 32, 32" />
+                      <uc:CvElementInfo x:Name="__ReferenceID75" Category="Button" Confidence="Runtime" Region="1600, 1, 231, 36" />
+                      <uc:CvElementInfo x:Name="__ReferenceID76" Category="Icon" Confidence="Runtime" Region="741, 293, 34, 26" />
+                      <uc:CvElementInfo x:Name="__ReferenceID77" Category="Icon" Confidence="Runtime" Region="998, 555, 23, 37" />
+                      <uc:CvElementInfo x:Name="__ReferenceID78" Category="Button" Confidence="Runtime" Region="626, 531, 84, 86" />
+                      <uc:CvElementInfo x:Name="__ReferenceID79" Category="Button" Confidence="Runtime" Region="288, 536, 85, 75" />
+                      <uc:CvElementInfo x:Name="__ReferenceID80" Category="Button" Confidence="Runtime" Region="1615, 138, 269, 46" />
+                      <uc:CvElementInfo x:Name="__ReferenceID81" Category="Icon" Confidence="Runtime" Region="1077, 554, 35, 38" />
+                      <uc:CvElementInfo x:Name="__ReferenceID82" Category="Icon" Confidence="Runtime" Region="1270, 169, 34, 36" />
+                      <uc:CvElementInfo x:Name="__ReferenceID83" Category="Icon" Confidence="Runtime" Region="287, 619, 86, 90" />
+                      <uc:CvElementInfo x:Name="__ReferenceID84" Category="InputBox" Confidence="Runtime" Region="294, 272, 419, 26" />
+                      <uc:CvElementInfo x:Name="__ReferenceID85" Category="Icon" Confidence="Runtime" Region="724, 271, 68, 63" />
+                      <uc:CvElementInfo x:Name="__ReferenceID86" Category="Button" Confidence="Runtime" Region="993, 742, 38, 18" />
+                      <uc:CvElementInfo x:Name="__ReferenceID87" Category="InputBox" Confidence="Runtime" Region="1618, 740, 275, 102" />
+                      <uc:CvElementInfo x:Name="__ReferenceID88" Category="Icon" Confidence="Runtime" Region="291, 624, 31, 33" />
+                      <uc:CvElementInfo x:Name="__ReferenceID89" Category="Icon" Confidence="Runtime" Region="401, 560, 26, 26" />
+                      <uc:CvElementInfo x:Name="__ReferenceID90" Category="Button" Confidence="Runtime" Region="285, 617, 89, 88" />
+                      <uc:CvElementInfo x:Name="__ReferenceID91" Category="InputBox" Confidence="Runtime" Region="1598, 1, 237, 34" />
+                      <uc:CvElementInfo x:Name="__ReferenceID92" Category="InputBox" Confidence="Runtime" Region="1716, 867, 90, 39" />
+                      <uc:CvElementInfo x:Name="__ReferenceID93" Category="InputBox" Confidence="Runtime" Region="90, 2, 252, 33" />
+                      <uc:CvElementInfo x:Name="__ReferenceID94" Category="Button" Confidence="Runtime" Region="285, 124, 442, 73" />
+                      <uc:CvElementInfo x:Name="__ReferenceID95" Category="Button" Confidence="Runtime" Region="1770, 37, 71, 43" />
+                      <uc:CvElementInfo x:Name="__ReferenceID96" Category="Icon" Confidence="Runtime" Region="995, 467, 30, 38" />
+                      <uc:CvElementInfo x:Name="__ReferenceID97" Category="Icon" Confidence="Runtime" Region="1139, 151, 162, 135" />
+                      <uc:CvElementInfo x:Name="__ReferenceID98" Category="Button" Confidence="Runtime" Region="1320, 47, 24, 27" />
+                      <uc:CvElementInfo x:Name="__ReferenceID99" Category="Icon" Confidence="Runtime" Region="354, 8, 17, 18" />
+                      <uc:CvElementInfo x:Name="__ReferenceID100" Category="InputBox" Confidence="Runtime" Region="1362, 49, 37, 22" />
+                      <uc:CvElementInfo x:Name="__ReferenceID101" Category="InputBox" Confidence="Runtime" Region="1621, 140, 263, 42" />
+                      <uc:CvElementInfo x:Name="__ReferenceID102" Category="Button" Confidence="Runtime" Region="993, 126, 313, 40" />
+                      <uc:CvElementInfo x:Name="__ReferenceID103" Category="Button" Confidence="Runtime" Region="1460, 47, 34, 24" />
+                      <uc:CvElementInfo x:Name="__ReferenceID104" Category="Button" Confidence="Runtime" Region="735, 289, 51, 32" />
+                      <uc:CvElementInfo x:Name="__ReferenceID105" Category="Button" Confidence="Runtime" Region="722, 273, 70, 58" />
+                      <uc:CvElementInfo x:Name="__ReferenceID106" Category="Button" Confidence="Runtime" Region="1362, 49, 37, 24" />
+                      <uc:CvElementInfo x:Name="__ReferenceID107" Category="ArrowButton" Confidence="Runtime" Region="739, 290, 36, 30" />
+                      <uc:CvElementInfo x:Name="__ReferenceID108" Category="Button" Confidence="Runtime" Region="371, 620, 88, 86" />
+                      <uc:CvElementInfo x:Name="__ReferenceID109" Category="Button" Confidence="Runtime" Region="1845, 37, 71, 47" />
+                      <uc:CvElementInfo x:Name="__ReferenceID110" Category="Icon" Confidence="Runtime" Region="989, 642, 47, 39" />
+                      <uc:CvElementInfo x:Name="__ReferenceID111" Category="Icon" Confidence="Runtime" Region="1165, 271, 29, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID112" Category="Icon" Confidence="Runtime" Region="722, 124, 165, 78" />
+                      <uc:CvElementInfo x:Name="__ReferenceID113" Category="Icon" Confidence="Runtime" Region="922, 134, 18, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID114" Category="Icon" Confidence="Runtime" Region="625, 530, 86, 88" />
+                      <uc:CvElementInfo x:Name="__ReferenceID115" Category="Cell" Confidence="Runtime" Region="606, 386, 115, 46" />
+                      <uc:CvElementInfo x:Name="__ReferenceID116" Category="Cell" Confidence="Runtime" Region="1136, 630, 82, 95" />
+                      <uc:CvElementInfo x:Name="__ReferenceID117" Category="Cell" Confidence="Runtime" Region="1048, 327, 88, 41" />
+                      <uc:CvElementInfo x:Name="__ReferenceID118" Category="Cell" Confidence="Runtime" Region="289, 276, 317, 56" />
+                      <uc:CvElementInfo x:Name="__ReferenceID119" Category="Cell" Confidence="Runtime" Region="606, 276, 0, 98" />
+                      <uc:CvElementInfo x:Name="__ReferenceID120" Category="Cell" Confidence="Runtime" Region="1136, 368, 82, 87" />
+                      <uc:CvElementInfo x:Name="__ReferenceID121" Category="Cell" Confidence="Runtime" Region="721, 432, 71, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID122" Category="Cell" Confidence="Runtime" Region="1150, 459, 62, 88" />
+                      <uc:CvElementInfo x:Name="__ReferenceID123" Category="Cell" Confidence="Runtime" Region="606, 493, 0, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID124" Category="Cell" Confidence="Runtime" Region="289, 332, 317, 42" />
+                      <uc:CvElementInfo x:Name="__ReferenceID125" Category="Cell" Confidence="Runtime" Region="287, 268, 422, 24" />
+                      <uc:CvElementInfo x:Name="__ReferenceID126" Category="Cell" Confidence="Runtime" Region="289, 493, 317, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID127" Category="Cell" Confidence="Runtime" Region="1037, 630, 113, 96" />
+                      <uc:CvElementInfo x:Name="__ReferenceID128" Category="Cell" Confidence="Runtime" Region="1211, 367, 90, 79" />
+                      <uc:CvElementInfo x:Name="__ReferenceID129" Category="Cell" Confidence="Runtime" Region="1048, 537, 88, 93" />
+                      <uc:CvElementInfo x:Name="__ReferenceID130" Category="Cell" Confidence="Runtime" Region="606, 493, 115, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID131" Category="Cell" Confidence="Runtime" Region="289, 452, 317, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID132" Category="Cell" Confidence="Runtime" Region="721, 452, 71, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID133" Category="Cell" Confidence="Runtime" Region="721, 256, 73, 32" />
+                      <uc:CvElementInfo x:Name="__ReferenceID134" Category="Cell" Confidence="Runtime" Region="983, 705, 82, 96" />
+                      <uc:CvElementInfo x:Name="__ReferenceID135" Category="Cell" Confidence="Runtime" Region="721, 473, 71, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID136" Category="Cell" Confidence="Runtime" Region="1150, 547, 65, 74" />
+                      <uc:CvElementInfo x:Name="__ReferenceID137" Category="Cell" Confidence="Runtime" Region="721, 332, 71, 17" />
+                      <uc:CvElementInfo x:Name="__ReferenceID138" Category="Cell" Confidence="Runtime" Region="721, 421, 71, 52" />
+                      <uc:CvElementInfo x:Name="__ReferenceID139" Category="Cell" Confidence="Runtime" Region="721, 386, 71, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID140" Category="Cell" Confidence="Runtime" Region="1136, 327, 82, 41" />
+                      <uc:CvElementInfo x:Name="__ReferenceID141" Category="Cell" Confidence="Runtime" Region="967, 378, 85, 82" />
+                      <uc:CvElementInfo x:Name="__ReferenceID142" Category="Cell" Confidence="Runtime" Region="721, 493, 71, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID143" Category="Cell" Confidence="Runtime" Region="606, 473, 115, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID144" Category="Cell" Confidence="Runtime" Region="794, 458, 91, 77" />
+                      <uc:CvElementInfo x:Name="__ReferenceID145" Category="Cell" Confidence="Runtime" Region="289, 473, 317, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID146" Category="Cell" Confidence="Runtime" Region="606, 374, 0, 12" />
+                      <uc:CvElementInfo x:Name="__ReferenceID147" Category="Cell" Confidence="Runtime" Region="814, 802, 158, 86" />
+                      <uc:CvElementInfo x:Name="__ReferenceID148" Category="Cell" Confidence="Runtime" Region="719, 541, 76, 68" />
+                      <uc:CvElementInfo x:Name="__ReferenceID149" Category="Cell" Confidence="Runtime" Region="971, 802, 105, 88" />
+                      <uc:CvElementInfo x:Name="__ReferenceID150" Category="Cell" Confidence="Runtime" Region="606, 276, 115, 56" />
+                      <uc:CvElementInfo x:Name="__ReferenceID151" Category="Cell" Confidence="Runtime" Region="286, 678, 83, 27" />
+                      <uc:CvElementInfo x:Name="__ReferenceID152" Category="Cell" Confidence="Runtime" Region="792, 349, 0, 37" />
+                      <uc:CvElementInfo x:Name="__ReferenceID153" Category="Cell" Confidence="Runtime" Region="606, 276, 0, 56" />
+                      <uc:CvElementInfo x:Name="__ReferenceID154" Category="Cell" Confidence="Runtime" Region="287, 620, 82, 80" />
+                      <uc:CvElementInfo x:Name="__ReferenceID155" Category="Cell" Confidence="Runtime" Region="947, 451, 112, 87" />
+                      <uc:CvElementInfo x:Name="__ReferenceID156" Category="Cell" Confidence="Runtime" Region="606, 374, 115, 12" />
+                      <uc:CvElementInfo x:Name="__ReferenceID157" Category="Cell" Confidence="Runtime" Region="721, 421, 71, 11" />
+                      <uc:CvElementInfo x:Name="__ReferenceID158" Category="Cell" Confidence="Runtime" Region="798, 364, 87, 95" />
+                      <uc:CvElementInfo x:Name="__ReferenceID159" Category="Cell" Confidence="Runtime" Region="632, 803, 169, 59" />
+                      <uc:CvElementInfo x:Name="__ReferenceID160" Category="Cell" Confidence="Runtime" Region="314, 234, 376, 35" />
+                      <uc:CvElementInfo x:Name="__ReferenceID161" Category="Cell" Confidence="Runtime" Region="944, 541, 117, 88" />
+                      <uc:CvElementInfo x:Name="__ReferenceID162" Category="Cell" Confidence="Runtime" Region="882, 622, 175, 93" />
+                      <uc:CvElementInfo x:Name="__ReferenceID163" Category="Cell" Confidence="Runtime" Region="606, 473, 0, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID164" Category="Cell" Confidence="Runtime" Region="606, 432, 0, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID165" Category="Cell" Confidence="Runtime" Region="467, 812, 333, 75" />
+                      <uc:CvElementInfo x:Name="__ReferenceID166" Category="Cell" Confidence="Runtime" Region="798, 278, 89, 68" />
+                      <uc:CvElementInfo x:Name="__ReferenceID167" Category="Cell" Confidence="Runtime" Region="606, 452, 0, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID168" Category="Cell" Confidence="Runtime" Region="985, 289, 72, 60" />
+                      <uc:CvElementInfo x:Name="__ReferenceID169" Category="Cell" Confidence="Runtime" Region="431, 268, 106, 24" />
+                      <uc:CvElementInfo x:Name="__ReferenceID170" Category="Cell" Confidence="Runtime" Region="605, 268, 112, 25" />
+                      <uc:CvElementInfo x:Name="__ReferenceID171" Category="Cell" Confidence="Runtime" Region="823, 726, 195, 73" />
+                      <uc:CvElementInfo x:Name="__ReferenceID172" Category="Cell" Confidence="Runtime" Region="1064, 676, 72, 61" />
+                      <uc:CvElementInfo x:Name="__ReferenceID173" Category="Cell" Confidence="Runtime" Region="717, 120, 167, 79" />
+                      <uc:CvElementInfo x:Name="__ReferenceID174" Category="Cell" Confidence="Runtime" Region="879, 703, 106, 39" />
+                      <uc:CvElementInfo x:Name="__ReferenceID175" Category="Cell" Confidence="Runtime" Region="625, 535, 84, 72" />
+                      <uc:CvElementInfo x:Name="__ReferenceID176" Category="Cell" Confidence="Runtime" Region="757, 352, 304, 109" />
+                      <uc:CvElementInfo x:Name="__ReferenceID177" Category="Cell" Confidence="Runtime" Region="606, 421, 115, 11" />
+                      <uc:CvElementInfo x:Name="__ReferenceID178" Category="Cell" Confidence="Runtime" Region="721, 502, 71, 28" />
+                      <uc:CvElementInfo x:Name="__ReferenceID179" Category="Cell" Confidence="Runtime" Region="289, 683, 161, 22" />
+                      <uc:CvElementInfo x:Name="__ReferenceID180" Category="Cell" Confidence="Runtime" Region="719, 530, 72, 21" />
+                      <uc:CvElementInfo x:Name="__ReferenceID181" Category="Cell" Confidence="Runtime" Region="1136, 455, 82, 0" />
+                      <uc:CvElementInfo x:Name="__ReferenceID182" Category="Cell" Confidence="Runtime" Region="289, 530, 80, 20" />
+                      <uc:CvElementInfo x:Name="__ReferenceID183" Category="Cell" Confidence="Runtime" Region="1135, 279, 86, 47" />
+                      <uc:CvElementInfo x:Name="__ReferenceID184" Category="Cell" Confidence="Runtime" Region="984, 308, 72, 68" />
+                      <uc:CvElementInfo x:Name="__ReferenceID185" Category="Cell" Confidence="Runtime" Region="606, 421, 0, 11" />
+                      <uc:CvElementInfo x:Name="__ReferenceID186" Category="Cell" Confidence="Runtime" Region="497, 267, 191, 26" />
+                      <uc:CvElementInfo x:Name="__ReferenceID187" Category="Cell" Confidence="Runtime" Region="290, 268, 92, 24" />
+                      <uc:CvElementInfo x:Name="__ReferenceID188" Category="Cell" Confidence="Runtime" Region="1048, 327, 88, 0" />
+                      <uc:CvElementInfo x:Name="__ReferenceID189" Category="Cell" Confidence="Runtime" Region="1136, 455, 0, 82" />
+                      <uc:CvElementInfo x:Name="__ReferenceID190" Category="Cell" Confidence="Runtime" Region="603, 507, 109, 29" />
+                    </scg:List>
+                  </uc:CVCache.CvUiElements>
+                  <uc:CVCache.OcrTexts>
+                    <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="105">
+                      <uc:OcrTextInfo x:Name="__ReferenceID191" Region="62, 9, 20, 20" Text="Q" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID192" Region="110, 12, 51, 12" Text="Gur-rent" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID193" Region="165, 12, 54, 12" Text="Session:" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID194" Region="224, 12, 105, 12" Text="PH000000020P1" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID195" Region="361, 13, 4, 10" Text="1" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID196" Region="372, 12, 49, 12" Text="session" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID197" Region="34, 54, 51, 12" Text="SCREEN" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID198" Region="90, 54, 60, 12" Text="SHARING" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID199" Region="160, 57, 16, 8" Text="v" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID200" Region="617, 378, 27, 11" Text="36B" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID201" Region="650, 378, 24, 11" Text=".00" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID202" Region="617, 398, 27, 11" Text="36B" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID203" Region="650, 398, 24, 11" Text=".00" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID204" Region="617, 438, 27, 11" Text="32B" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID205" Region="650, 438, 24, 11" Text=".57" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID206" Region="627, 458, 47, 11" Text="39.43" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID207" Region="638, 478, 36, 11" Text="0.00" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID208" Region="638, 498, 36, 11" Text="0.00" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID209" Region="297, 147, 84, 30" Text="Total" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID210" Region="297, 279, 38, 10" Text="Date" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID211" Region="592, 147, 122, 30" Text="368.00" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID212" Region="415, 240, 70, 19" Text="Reprint" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID213" Region="493, 240, 27, 15" Text="On" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID214" Region="529, 240, 73, 19" Text="Receipt" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID215" Region="387, 277, 38, 12" Text="Time" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID216" Region="732, 135, 144, 27" Text="Emergency" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID217" Region="754, 229, 37, 21" Text="Day" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID218" Region="824, 297, 35, 10" Text="More" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID219" Region="808, 313, 68, 10" Text="Functions" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID220" Region="817, 378, 51, 13" Text="Reprint" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID221" Region="816, 410, 53, 13" Text="Receipt" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID222" Region="822, 490, 41, 13" Text="Query" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID223" Region="811, 578, 61, 10" Text="Override" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID224" Region="816, 650, 53, 13" Text="Receipt" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID225" Region="1001, 139, 106, 15" Text="Technician" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID226" Region="298, 297, 77, 13" Text="03/26/21" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID227" Region="388, 298, 47, 11" Text="13:21" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID228" Region="297, 339, 69, 10" Text="COOLANT" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID229" Region="378, 338, 17, 11" Text="IL" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID230" Region="297, 378, 48, 11" Text="Total" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID231" Region="297, 398, 38, 11" Text="Cash" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID232" Region="296, 438, 69, 11" Text="Vatable" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID233" Region="378, 438, 46, 11" Text="Sales" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID234" Region="296, 459, 30, 10" Text="VAT" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID235" Region="336, 459, 59, 10" Text="mnount" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID236" Region="296, 479, 30, 10" Text="VAT" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID237" Region="337, 479, 58, 13" Text="Exempt" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID238" Region="408, 478, 46, 11" Text="Sales" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID239" Region="296, 499, 30, 10" Text="VAT" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID240" Region="337, 499, 38, 10" Text="Zero" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID241" Region="387, 498, 48, 11" Text="Rated" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID242" Region="448, 498, 46, 11" Text="Sales" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID243" Region="617, 338, 27, 11" Text="36B" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID244" Region="644, 553, 51, 13" Text="Reprint" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID245" Region="643, 585, 56, 13" Text="Regeipt_" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID246" Region="905, 394, 41, 10" Text="Recall" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID247" Region="898, 410, 56, 13" Text="Layaway" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID248" Region="896, 570, 60, 10" Text="discount" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID249" Region="993, 297, 35, 10" Text="More" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID250" Region="991, 313, 39, 10" Text="Mops" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID251" Region="1001, 383, 19, 30" Text="7" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID252" Region="993, 827, 35, 10" Text="Local" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID253" Region="982, 843, 57, 10" Text="Account" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID254" Region="1062, 305, 28, 10" Text="Item" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID255" Region="1096, 305, 32, 13" Text="Keys" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID256" Region="1085, 396, 19, 17" Text="o" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID257" Region="1085, 471, 19, 30" Text="5" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID258" Region="1084, 559, 20, 30" Text="2" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID259" Region="1074, 747, 41, 13" Text="Space" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID260" Region="1166, 334, 29, 10" Text="Num" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID261" Region="1170, 383, 19, 30" Text="9" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID262" Region="1169, 471, 20, 30" Text="6" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID263" Region="1170, 559, 19, 30" Text="3" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID264" Region="1160, 757, 40, 11" Text="space" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID265" Region="1216, 139, 80, 15" Text="03/26/21" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID266" Region="1236, 305, 57, 13" Text="Quantity" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID267" Region="1232, 482, 29, 10" Text="Void" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID268" Region="1267, 482, 28, 10" Text="Item" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID269" Region="1252, 562, 24, 10" Text="Yes" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID270" Region="1240, 578, 49, 13" Text="Repeat" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID271" Region="1255, 659, 17, 10" Text="NO" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID272" Region="1247, 747, 32, 10" Text="Total" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID273" Region="1642, 14, 46, 12" Text="Desktop" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID274" Region="1781, 14, 45, 9" Text="Console" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID275" Region="1803, 99, 93, 19" Text="Everyone" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID276" Region="1632, 150, 53, 11" Text="(13:38:37)" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID277" Region="1690, 150, 39, 9" Text="Patricio" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID278" Region="1733, 150, 56, 9" Text="Calacasan" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID279" Region="1793, 152, 18, 7" Text="can" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID280" Region="1815, 152, 22, 7" Text="now" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID281" Region="1840, 150, 25, 9" Text="Mtew" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID282" Region="1631, 164, 20, 9" Text="and" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID283" Region="1655, 164, 35, 9" Text="control" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID284" Region="1694, 164, 16, 9" Text="the" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID285" Region="1714, 164, 57, 9" Text="customers" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID286" Region="1775, 166, 38, 7" Text="screen." />
+                      <uc:OcrTextInfo x:Name="__ReferenceID287" Region="1637, 760, 27, 12" Text="Type" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID288" Region="1667, 762, 26, 10" Text="your" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID289" Region="1697, 762, 48, 10" Text="message" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID290" Region="675, 813, 73, 27" Text="Pump" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID291" Region="665, 846, 91, 21" Text="Control" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID292" Region="838, 813, 76, 21" Text="Credit" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID293" Region="923, 813, 8, 21" Text="/" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID294" Region="818, 846, 63, 21" Text="Bank" />
+                      <uc:OcrTextInfo x:Name="__ReferenceID295" Region="890, 846, 60, 21" Text="Card" />
+                    </scg:List>
+                  </uc:CVCache.OcrTexts>
+                </uc:CVCache>
+              </p:CVRefresh.DesignTimeCache>
+            </p:CVRefresh>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Try>
+                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Functions' (808,313,68,10) OffsetPoint: (-58,5)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_1" InformativeScreenshot="6bf3a1ee2945a0e67ef962135862f101" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
+                  <p:CvClickWithDescriptor.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </p:CvClickWithDescriptor.CursorPosition>
+                  <p:CvClickWithDescriptor.DesignTimeDescriptor>
+                    <uc:CvDescriptor InformativeScreenshot="6bf3a1ee2945a0e67ef962135862f101" TargetPointOffset="-58, 5">
+                      <uc:CvDescriptor.Target>
+                        <uc:CvElementDescriptor DesignTimeArea="808, 313, 68, 10" ElementType="Text" Text="Functions" />
+                      </uc:CvDescriptor.Target>
+                    </uc:CvDescriptor>
+                  </p:CvClickWithDescriptor.DesignTimeDescriptor>
+                  <p:CvClickWithDescriptor.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="d60bb357-e1c5-451a-a1f4-6bfb5e4cfb35">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </p:CvClickWithDescriptor.Target>
+                </p:CvClickWithDescriptor>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </ActivityAction>
+      </p:CVScope.Body>
+      <p:CVScope.DesignTimeCache>
+        <uc:CVCache InformativeScreenshot="dd394689d18d18cfc5d5a89b56d09b5b" LogicalPosition="0, 108" OcrText="Q Gur-rent Session: PH000000020P1 1 session&#xA;SCREEN SHARING v 36B .00&#xA;36B .00&#xA;32B .57&#xA;39.43&#xA;0.00&#xA;0.00 Total&#xA;Date 368.00&#xA;Reprint On Receipt&#xA;Time Emergency&#xA;Day More&#xA;Functions&#xA;Reprint&#xA;Receipt&#xA;Query&#xA;Override&#xA;Receipt Technician&#xA;03/26/21 13:21&#xA;COOLANT IL&#xA;Total&#xA;Cash&#xA;Vatable Sales&#xA;VAT mnount&#xA;VAT Exempt Sales&#xA;VAT Zero Rated Sales 36B&#xA;Reprint&#xA;Regeipt_ Recall&#xA;Layaway&#xA;discount More&#xA;Mops&#xA;7&#xA;Local&#xA;Account Item Keys&#xA;o&#xA;5&#xA;2&#xA;Space Num&#xA;9&#xA;6&#xA;3&#xA;space 03/26/21&#xA;Quantity&#xA;Void Item&#xA;Yes&#xA;Repeat&#xA;NO&#xA;Total Desktop Console&#xA;Everyone&#xA;(13:38:37) Patricio Calacasan can now Mtew&#xA;and control the customers screen.&#xA;Type your message&#xA;Pump&#xA;Control Credit /&#xA;Bank Card" Position="0, 108" ScreenshotGuid="bd9caed3-2b42-41f0-96cd-8887f1e57f11" ServerVersion="1">
+          <uc:CVCache.CvUiElements>
+            <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="191">
+              <x:Reference>__ReferenceID0</x:Reference>
+              <x:Reference>__ReferenceID1</x:Reference>
+              <x:Reference>__ReferenceID2</x:Reference>
+              <x:Reference>__ReferenceID3</x:Reference>
+              <x:Reference>__ReferenceID4</x:Reference>
+              <x:Reference>__ReferenceID5</x:Reference>
+              <x:Reference>__ReferenceID6</x:Reference>
+              <x:Reference>__ReferenceID7</x:Reference>
+              <x:Reference>__ReferenceID8</x:Reference>
+              <x:Reference>__ReferenceID9</x:Reference>
+              <x:Reference>__ReferenceID10</x:Reference>
+              <x:Reference>__ReferenceID11</x:Reference>
+              <x:Reference>__ReferenceID12</x:Reference>
+              <x:Reference>__ReferenceID13</x:Reference>
+              <x:Reference>__ReferenceID14</x:Reference>
+              <x:Reference>__ReferenceID15</x:Reference>
+              <x:Reference>__ReferenceID16</x:Reference>
+              <x:Reference>__ReferenceID17</x:Reference>
+              <x:Reference>__ReferenceID18</x:Reference>
+              <x:Reference>__ReferenceID19</x:Reference>
+              <x:Reference>__ReferenceID20</x:Reference>
+              <x:Reference>__ReferenceID21</x:Reference>
+              <x:Reference>__ReferenceID22</x:Reference>
+              <x:Reference>__ReferenceID23</x:Reference>
+              <x:Reference>__ReferenceID24</x:Reference>
+              <x:Reference>__ReferenceID25</x:Reference>
+              <x:Reference>__ReferenceID26</x:Reference>
+              <x:Reference>__ReferenceID27</x:Reference>
+              <x:Reference>__ReferenceID28</x:Reference>
+              <x:Reference>__ReferenceID29</x:Reference>
+              <x:Reference>__ReferenceID30</x:Reference>
+              <x:Reference>__ReferenceID31</x:Reference>
+              <x:Reference>__ReferenceID32</x:Reference>
+              <x:Reference>__ReferenceID33</x:Reference>
+              <x:Reference>__ReferenceID34</x:Reference>
+              <x:Reference>__ReferenceID35</x:Reference>
+              <x:Reference>__ReferenceID36</x:Reference>
+              <x:Reference>__ReferenceID37</x:Reference>
+              <x:Reference>__ReferenceID38</x:Reference>
+              <x:Reference>__ReferenceID39</x:Reference>
+              <x:Reference>__ReferenceID40</x:Reference>
+              <x:Reference>__ReferenceID41</x:Reference>
+              <x:Reference>__ReferenceID42</x:Reference>
+              <x:Reference>__ReferenceID43</x:Reference>
+              <x:Reference>__ReferenceID44</x:Reference>
+              <x:Reference>__ReferenceID45</x:Reference>
+              <x:Reference>__ReferenceID46</x:Reference>
+              <x:Reference>__ReferenceID47</x:Reference>
+              <x:Reference>__ReferenceID48</x:Reference>
+              <x:Reference>__ReferenceID49</x:Reference>
+              <x:Reference>__ReferenceID50</x:Reference>
+              <x:Reference>__ReferenceID51</x:Reference>
+              <x:Reference>__ReferenceID52</x:Reference>
+              <x:Reference>__ReferenceID53</x:Reference>
+              <x:Reference>__ReferenceID54</x:Reference>
+              <x:Reference>__ReferenceID55</x:Reference>
+              <x:Reference>__ReferenceID56</x:Reference>
+              <x:Reference>__ReferenceID57</x:Reference>
+              <x:Reference>__ReferenceID58</x:Reference>
+              <x:Reference>__ReferenceID59</x:Reference>
+              <x:Reference>__ReferenceID60</x:Reference>
+              <x:Reference>__ReferenceID61</x:Reference>
+              <x:Reference>__ReferenceID62</x:Reference>
+              <x:Reference>__ReferenceID63</x:Reference>
+              <x:Reference>__ReferenceID64</x:Reference>
+              <x:Reference>__ReferenceID65</x:Reference>
+              <x:Reference>__ReferenceID66</x:Reference>
+              <x:Reference>__ReferenceID67</x:Reference>
+              <x:Reference>__ReferenceID68</x:Reference>
+              <x:Reference>__ReferenceID69</x:Reference>
+              <x:Reference>__ReferenceID70</x:Reference>
+              <x:Reference>__ReferenceID71</x:Reference>
+              <x:Reference>__ReferenceID72</x:Reference>
+              <x:Reference>__ReferenceID73</x:Reference>
+              <x:Reference>__ReferenceID74</x:Reference>
+              <x:Reference>__ReferenceID75</x:Reference>
+              <x:Reference>__ReferenceID76</x:Reference>
+              <x:Reference>__ReferenceID77</x:Reference>
+              <x:Reference>__ReferenceID78</x:Reference>
+              <x:Reference>__ReferenceID79</x:Reference>
+              <x:Reference>__ReferenceID80</x:Reference>
+              <x:Reference>__ReferenceID81</x:Reference>
+              <x:Reference>__ReferenceID82</x:Reference>
+              <x:Reference>__ReferenceID83</x:Reference>
+              <x:Reference>__ReferenceID84</x:Reference>
+              <x:Reference>__ReferenceID85</x:Reference>
+              <x:Reference>__ReferenceID86</x:Reference>
+              <x:Reference>__ReferenceID87</x:Reference>
+              <x:Reference>__ReferenceID88</x:Reference>
+              <x:Reference>__ReferenceID89</x:Reference>
+              <x:Reference>__ReferenceID90</x:Reference>
+              <x:Reference>__ReferenceID91</x:Reference>
+              <x:Reference>__ReferenceID92</x:Reference>
+              <x:Reference>__ReferenceID93</x:Reference>
+              <x:Reference>__ReferenceID94</x:Reference>
+              <x:Reference>__ReferenceID95</x:Reference>
+              <x:Reference>__ReferenceID96</x:Reference>
+              <x:Reference>__ReferenceID97</x:Reference>
+              <x:Reference>__ReferenceID98</x:Reference>
+              <x:Reference>__ReferenceID99</x:Reference>
+              <x:Reference>__ReferenceID100</x:Reference>
+              <x:Reference>__ReferenceID101</x:Reference>
+              <x:Reference>__ReferenceID102</x:Reference>
+              <x:Reference>__ReferenceID103</x:Reference>
+              <x:Reference>__ReferenceID104</x:Reference>
+              <x:Reference>__ReferenceID105</x:Reference>
+              <x:Reference>__ReferenceID106</x:Reference>
+              <x:Reference>__ReferenceID107</x:Reference>
+              <x:Reference>__ReferenceID108</x:Reference>
+              <x:Reference>__ReferenceID109</x:Reference>
+              <x:Reference>__ReferenceID110</x:Reference>
+              <x:Reference>__ReferenceID111</x:Reference>
+              <x:Reference>__ReferenceID112</x:Reference>
+              <x:Reference>__ReferenceID113</x:Reference>
+              <x:Reference>__ReferenceID114</x:Reference>
+              <x:Reference>__ReferenceID115</x:Reference>
+              <x:Reference>__ReferenceID116</x:Reference>
+              <x:Reference>__ReferenceID117</x:Reference>
+              <x:Reference>__ReferenceID118</x:Reference>
+              <x:Reference>__ReferenceID119</x:Reference>
+              <x:Reference>__ReferenceID120</x:Reference>
+              <x:Reference>__ReferenceID121</x:Reference>
+              <x:Reference>__ReferenceID122</x:Reference>
+              <x:Reference>__ReferenceID123</x:Reference>
+              <x:Reference>__ReferenceID124</x:Reference>
+              <x:Reference>__ReferenceID125</x:Reference>
+              <x:Reference>__ReferenceID126</x:Reference>
+              <x:Reference>__ReferenceID127</x:Reference>
+              <x:Reference>__ReferenceID128</x:Reference>
+              <x:Reference>__ReferenceID129</x:Reference>
+              <x:Reference>__ReferenceID130</x:Reference>
+              <x:Reference>__ReferenceID131</x:Reference>
+              <x:Reference>__ReferenceID132</x:Reference>
+              <x:Reference>__ReferenceID133</x:Reference>
+              <x:Reference>__ReferenceID134</x:Reference>
+              <x:Reference>__ReferenceID135</x:Reference>
+              <x:Reference>__ReferenceID136</x:Reference>
+              <x:Reference>__ReferenceID137</x:Reference>
+              <x:Reference>__ReferenceID138</x:Reference>
+              <x:Reference>__ReferenceID139</x:Reference>
+              <x:Reference>__ReferenceID140</x:Reference>
+              <x:Reference>__ReferenceID141</x:Reference>
+              <x:Reference>__ReferenceID142</x:Reference>
+              <x:Reference>__ReferenceID143</x:Reference>
+              <x:Reference>__ReferenceID144</x:Reference>
+              <x:Reference>__ReferenceID145</x:Reference>
+              <x:Reference>__ReferenceID146</x:Reference>
+              <x:Reference>__ReferenceID147</x:Reference>
+              <x:Reference>__ReferenceID148</x:Reference>
+              <x:Reference>__ReferenceID149</x:Reference>
+              <x:Reference>__ReferenceID150</x:Reference>
+              <x:Reference>__ReferenceID151</x:Reference>
+              <x:Reference>__ReferenceID152</x:Reference>
+              <x:Reference>__ReferenceID153</x:Reference>
+              <x:Reference>__ReferenceID154</x:Reference>
+              <x:Reference>__ReferenceID155</x:Reference>
+              <x:Reference>__ReferenceID156</x:Reference>
+              <x:Reference>__ReferenceID157</x:Reference>
+              <x:Reference>__ReferenceID158</x:Reference>
+              <x:Reference>__ReferenceID159</x:Reference>
+              <x:Reference>__ReferenceID160</x:Reference>
+              <x:Reference>__ReferenceID161</x:Reference>
+              <x:Reference>__ReferenceID162</x:Reference>
+              <x:Reference>__ReferenceID163</x:Reference>
+              <x:Reference>__ReferenceID164</x:Reference>
+              <x:Reference>__ReferenceID165</x:Reference>
+              <x:Reference>__ReferenceID166</x:Reference>
+              <x:Reference>__ReferenceID167</x:Reference>
+              <x:Reference>__ReferenceID168</x:Reference>
+              <x:Reference>__ReferenceID169</x:Reference>
+              <x:Reference>__ReferenceID170</x:Reference>
+              <x:Reference>__ReferenceID171</x:Reference>
+              <x:Reference>__ReferenceID172</x:Reference>
+              <x:Reference>__ReferenceID173</x:Reference>
+              <x:Reference>__ReferenceID174</x:Reference>
+              <x:Reference>__ReferenceID175</x:Reference>
+              <x:Reference>__ReferenceID176</x:Reference>
+              <x:Reference>__ReferenceID177</x:Reference>
+              <x:Reference>__ReferenceID178</x:Reference>
+              <x:Reference>__ReferenceID179</x:Reference>
+              <x:Reference>__ReferenceID180</x:Reference>
+              <x:Reference>__ReferenceID181</x:Reference>
+              <x:Reference>__ReferenceID182</x:Reference>
+              <x:Reference>__ReferenceID183</x:Reference>
+              <x:Reference>__ReferenceID184</x:Reference>
+              <x:Reference>__ReferenceID185</x:Reference>
+              <x:Reference>__ReferenceID186</x:Reference>
+              <x:Reference>__ReferenceID187</x:Reference>
+              <x:Reference>__ReferenceID188</x:Reference>
+              <x:Reference>__ReferenceID189</x:Reference>
+              <x:Reference>__ReferenceID190</x:Reference>
+            </scg:List>
+          </uc:CVCache.CvUiElements>
+          <uc:CVCache.OcrTexts>
+            <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="105">
+              <x:Reference>__ReferenceID191</x:Reference>
+              <x:Reference>__ReferenceID192</x:Reference>
+              <x:Reference>__ReferenceID193</x:Reference>
+              <x:Reference>__ReferenceID194</x:Reference>
+              <x:Reference>__ReferenceID195</x:Reference>
+              <x:Reference>__ReferenceID196</x:Reference>
+              <x:Reference>__ReferenceID197</x:Reference>
+              <x:Reference>__ReferenceID198</x:Reference>
+              <x:Reference>__ReferenceID199</x:Reference>
+              <x:Reference>__ReferenceID200</x:Reference>
+              <x:Reference>__ReferenceID201</x:Reference>
+              <x:Reference>__ReferenceID202</x:Reference>
+              <x:Reference>__ReferenceID203</x:Reference>
+              <x:Reference>__ReferenceID204</x:Reference>
+              <x:Reference>__ReferenceID205</x:Reference>
+              <x:Reference>__ReferenceID206</x:Reference>
+              <x:Reference>__ReferenceID207</x:Reference>
+              <x:Reference>__ReferenceID208</x:Reference>
+              <x:Reference>__ReferenceID209</x:Reference>
+              <x:Reference>__ReferenceID210</x:Reference>
+              <x:Reference>__ReferenceID211</x:Reference>
+              <x:Reference>__ReferenceID212</x:Reference>
+              <x:Reference>__ReferenceID213</x:Reference>
+              <x:Reference>__ReferenceID214</x:Reference>
+              <x:Reference>__ReferenceID215</x:Reference>
+              <x:Reference>__ReferenceID216</x:Reference>
+              <x:Reference>__ReferenceID217</x:Reference>
+              <x:Reference>__ReferenceID218</x:Reference>
+              <x:Reference>__ReferenceID219</x:Reference>
+              <x:Reference>__ReferenceID220</x:Reference>
+              <x:Reference>__ReferenceID221</x:Reference>
+              <x:Reference>__ReferenceID222</x:Reference>
+              <x:Reference>__ReferenceID223</x:Reference>
+              <x:Reference>__ReferenceID224</x:Reference>
+              <x:Reference>__ReferenceID225</x:Reference>
+              <x:Reference>__ReferenceID226</x:Reference>
+              <x:Reference>__ReferenceID227</x:Reference>
+              <x:Reference>__ReferenceID228</x:Reference>
+              <x:Reference>__ReferenceID229</x:Reference>
+              <x:Reference>__ReferenceID230</x:Reference>
+              <x:Reference>__ReferenceID231</x:Reference>
+              <x:Reference>__ReferenceID232</x:Reference>
+              <x:Reference>__ReferenceID233</x:Reference>
+              <x:Reference>__ReferenceID234</x:Reference>
+              <x:Reference>__ReferenceID235</x:Reference>
+              <x:Reference>__ReferenceID236</x:Reference>
+              <x:Reference>__ReferenceID237</x:Reference>
+              <x:Reference>__ReferenceID238</x:Reference>
+              <x:Reference>__ReferenceID239</x:Reference>
+              <x:Reference>__ReferenceID240</x:Reference>
+              <x:Reference>__ReferenceID241</x:Reference>
+              <x:Reference>__ReferenceID242</x:Reference>
+              <x:Reference>__ReferenceID243</x:Reference>
+              <x:Reference>__ReferenceID244</x:Reference>
+              <x:Reference>__ReferenceID245</x:Reference>
+              <x:Reference>__ReferenceID246</x:Reference>
+              <x:Reference>__ReferenceID247</x:Reference>
+              <x:Reference>__ReferenceID248</x:Reference>
+              <x:Reference>__ReferenceID249</x:Reference>
+              <x:Reference>__ReferenceID250</x:Reference>
+              <x:Reference>__ReferenceID251</x:Reference>
+              <x:Reference>__ReferenceID252</x:Reference>
+              <x:Reference>__ReferenceID253</x:Reference>
+              <x:Reference>__ReferenceID254</x:Reference>
+              <x:Reference>__ReferenceID255</x:Reference>
+              <x:Reference>__ReferenceID256</x:Reference>
+              <x:Reference>__ReferenceID257</x:Reference>
+              <x:Reference>__ReferenceID258</x:Reference>
+              <x:Reference>__ReferenceID259</x:Reference>
+              <x:Reference>__ReferenceID260</x:Reference>
+              <x:Reference>__ReferenceID261</x:Reference>
+              <x:Reference>__ReferenceID262</x:Reference>
+              <x:Reference>__ReferenceID263</x:Reference>
+              <x:Reference>__ReferenceID264</x:Reference>
+              <x:Reference>__ReferenceID265</x:Reference>
+              <x:Reference>__ReferenceID266</x:Reference>
+              <x:Reference>__ReferenceID267</x:Reference>
+              <x:Reference>__ReferenceID268</x:Reference>
+              <x:Reference>__ReferenceID269</x:Reference>
+              <x:Reference>__ReferenceID270</x:Reference>
+              <x:Reference>__ReferenceID271</x:Reference>
+              <x:Reference>__ReferenceID272</x:Reference>
+              <x:Reference>__ReferenceID273</x:Reference>
+              <x:Reference>__ReferenceID274</x:Reference>
+              <x:Reference>__ReferenceID275</x:Reference>
+              <x:Reference>__ReferenceID276</x:Reference>
+              <x:Reference>__ReferenceID277</x:Reference>
+              <x:Reference>__ReferenceID278</x:Reference>
+              <x:Reference>__ReferenceID279</x:Reference>
+              <x:Reference>__ReferenceID280</x:Reference>
+              <x:Reference>__ReferenceID281</x:Reference>
+              <x:Reference>__ReferenceID282</x:Reference>
+              <x:Reference>__ReferenceID283</x:Reference>
+              <x:Reference>__ReferenceID284</x:Reference>
+              <x:Reference>__ReferenceID285</x:Reference>
+              <x:Reference>__ReferenceID286</x:Reference>
+              <x:Reference>__ReferenceID287</x:Reference>
+              <x:Reference>__ReferenceID288</x:Reference>
+              <x:Reference>__ReferenceID289</x:Reference>
+              <x:Reference>__ReferenceID290</x:Reference>
+              <x:Reference>__ReferenceID291</x:Reference>
+              <x:Reference>__ReferenceID292</x:Reference>
+              <x:Reference>__ReferenceID293</x:Reference>
+              <x:Reference>__ReferenceID294</x:Reference>
+              <x:Reference>__ReferenceID295</x:Reference>
+            </scg:List>
+          </uc:CVCache.OcrTexts>
+        </uc:CVCache>
+      </p:CVScope.DesignTimeCache>
+      <p:CVScope.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+          <ui:MicrosoftOCR FilterRegion="{x:Null}" Output="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_1" Image="[Image]" Language="en" Profile="Screen" Scale="1" />
+        </ActivityFunc>
+      </p:CVScope.OCREngine>
+      <p:CVScope.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f54691e5-31a2-46cb-b6c4-eea4a31ffafd" InformativeScreenshot="aff0e95c46d908a06e8683d4d5025a13" Selector="&lt;wnd app='msedge.exe' omit:cls='Chrome_WidgetWin_1' title='Web Rep Console*' /&gt;&lt;wnd omit:cls='Intermediate D3D Window' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </p:CVScope.Target>
+    </p:CVScope>
+  </Sequence>
+</Activity>

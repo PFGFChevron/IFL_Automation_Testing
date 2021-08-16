@@ -1,0 +1,158 @@
+
+
+  <script>
+    var toggler = document.getElementsByClassName("caret");
+    var i;  
+    for (i = 0; i < toggler.length; i++) {
+      toggler[i].addEventListener("click", function() {
+        this.parentElement.querySelector(".nested").classList.toggle("active");
+        this.classList.toggle("caret-down");
+      });
+    }
+
+    function show(nr) {
+      var toggler = document.getElementsByClassName("tableExecution");
+      var i;
+      for (i = 0; i < toggler.length; i++) {
+        toggler[i].style.display="none";
+        toggler[i].setAttribute("name", "tableExecutionHidden");
+      }
+      document.getElementById("table"+nr).style.display="block";
+      document.getElementById("table"+nr).setAttribute("name", "tableExecutionShown");
+    }
+
+    function displayMiniBot() {
+      var myWindow = window.open("",'NewWin', 'toolbar=no,status=no,width=250,height=100,titlebar=no,top=50,left=1600,location=no');
+      myWindow.document.write("<html>");
+      myWindow.document.write("<head>");
+      myWindow.document.write("<title>IFL Tester Bot</title>");
+      myWindow.document.write("<style>");
+      myWindow.document.write("body {background-size: 250px 100px; background-image: url('.images/Monitor.png');}");
+      myWindow.document.write("</style>");
+      myWindow.document.write("</head>");
+      myWindow.document.write("<body><img src='.images/click.gif' width='250' height='100'></body>");
+      myWindow.document.write("</html>");
+
+      var pendingHTML = "<br>";
+        $('input[class="checkboxTestScript"]').each(function() { 
+          if(this.checked==true){
+            pendingHTML += this.value+"<br>";
+            document.getElementById("pendingTest").innerHTML = pendingHTML;
+          }
+        });
+    } 
+
+    function displayLoading() {
+      var myWindow = window.open("",'NewWin', 'toolbar=no,status=no,width=250,height=150,titlebar=no,top=50,left=1600,location=no');
+      myWindow.document.write("<html>");
+      myWindow.document.write("<head>");
+      myWindow.document.write("<title>IFL Tester Bot</title>");
+      myWindow.document.write("</head>");
+      myWindow.document.write("<body><img src='.images/Loading.gif' width='250' height='150'></body>");
+      myWindow.document.write("</html>");
+
+      var pendingHTML = "<br>";
+        $('input[class="checkboxTestScript"]').each(function() { 
+          if(this.checked==true){
+            pendingHTML += this.value+"<br>";
+            document.getElementById("pendingTest").innerHTML = pendingHTML;
+          }
+        });
+    } 
+
+    function showModal(nr) {
+      var toggler = document.getElementsByClassName("modal");
+      var i;
+  
+      for (i = 0; i < toggler.length; i++) {
+         toggler[i].style.display="none";
+         toggler[i].setAttribute("class", "modalHidden");
+      }
+      document.getElementById("divModal_"+nr).style.display="block";
+      document.getElementById("divModal_"+nr).setAttribute("class", "modal");
+    }
+
+    function showModalRobotTrigger(nr) {
+      showModal(nr);
+
+      var toggler = document.getElementsByClassName("robotTriggerButton");  
+      var i;
+
+      for (i = 0; i < toggler.length; i++) {
+        document.getElementById("button_"+nr).setAttribute("class", "robotTriggerButton");
+      }
+      document.getElementById("button_"+nr).setAttribute("class", "activeRobotTriggerButton");
+    }
+
+    function closeModal(nr) {
+      document.getElementById("divModal_"+nr).style.display="none";
+    }
+
+    function check_uncheck_checkbox() {
+      var module = arguments[1]
+      if(arguments[0]) {
+        $('input[class="checkboxTestScript"]').each(function() { 
+          if(this.name=="checkboxTestScript_"+module){
+            this.checked = true;
+          }
+        });
+      } else {
+        $('input[class="checkboxTestScript"]').each(function() {
+          if(this.name=="checkboxTestScript_"+module){
+            this.checked = false;
+          }
+        });
+      }
+      countSelectedTests();
+    }
+
+    function countSelectedTests() {
+      var toggler = document.getElementsByClassName("checkboxTestScript");
+      var i;
+      var count=0;
+
+      for (i = 0; i < toggler.length; i++) {
+        if(toggler[i].checked==true) {
+          count+=1;
+        }
+      }
+      document.getElementById("aNumberOfSelectedTests").innerHTML=count; 
+    }
+    
+    function ResetTestCycle() {
+      var message = prompt("Please enter password", "");
+      if (message == "admin") {
+        showModalRobotTrigger("ResetTestCycle");
+      }
+      else {
+        alert("You entered a wrong password");
+      }
+    }
+    
+    function showFooter () {
+      if(document.getElementById("footerElement").style.display=="flex") {
+        document.getElementById("footerElement").style.display="none";
+        document.getElementById("clickMore").innerHTML="CLICK FOR MORE"; 
+      } else {
+        document.getElementById("footerElement").style.display="flex";
+        document.getElementById("clickMore").innerHTML="CLICK TO HIDE"; 
+      }
+    }
+
+    function showModalLogFile(InArg) {
+      var str = document.getElementById("logFile_"+InArg).innerHTML;
+      var res = str.replace("Execution ID: ", "");
+      document.getElementById("executionID").innerHTML = res;
+      document.getElementById("logFileTestName").innerHTML = InArg;
+      showModal("logFile");
+
+      var toggler = document.getElementsByClassName("robotTriggerButton");  
+      var i;
+      var nr = "DownloadLogFile";
+
+      for (i = 0; i < toggler.length; i++) {
+        document.getElementById("button_"+nr).setAttribute("class", "robotTriggerButton");
+      }
+      document.getElementById("button_"+nr).setAttribute("class", "activeRobotTriggerButton");
+    }
+  </script>

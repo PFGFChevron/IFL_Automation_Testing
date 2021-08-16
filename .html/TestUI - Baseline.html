@@ -1,0 +1,3302 @@
+<!DOCTYPE html>
+
+<html>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+<head>
+  <title>IFL Testing Bot</title>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #F2F2F2;
+      font-size: 20px;
+    }
+    
+    .layoutElement {
+      border:#F2F2F2; 
+      border-width:7px; 
+      border-style:solid;
+    }
+
+    header {
+      background-color: #4472C4;
+      text-align: left;
+      color: white;
+      height: 60px;
+      font-size: 50px;
+      font-weight: bold;
+      display:flex; 
+      align-items:center;
+      padding: 15px;
+    }
+
+    nav {
+      float: left;
+      width: 15%;
+      background: #FFFFFF;
+      height: 750px;
+      font-weight: bold;
+    }
+
+    article {
+      float: left;
+      width: 67%;
+      background-color: #FFFFFF;
+      height: 750px;
+      overflow: auto;
+    }
+
+    aside {
+      float: left;
+      width: 15.7%;
+      background-color: #FFFFFF;
+    }
+
+    #asideSelectedTests {
+      height: 200px;
+      text-align: center;
+    }
+
+    #asidePending {
+      height: 452px;
+      text-align: center;
+    }
+
+    #clickMore {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      width: 70px;
+      word-wrap: break-word;
+      font-size: 12px;
+      text-align: right;
+      padding-left: 10px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      padding-right: 0px;
+    }
+
+    footer {
+      background-color: #F2F2F2; 
+      align-items:center;
+      width: 100%;
+      font-size: 15px;
+      padding: 10px;
+      display: none; 
+      position: absolute; 
+      top: 870px; 
+      width: auto;
+    }
+
+    ul, #myUL {
+      list-style-type: none;
+      font-size: 22px;
+    }
+ 
+    #myUL {
+      margin: 40px 25px 15px;
+      padding: 5px;
+    }
+
+    .listModule:hover {
+      font-size: 25px;
+    }
+
+    .listSubModule:hover {
+      font-size: 25px;
+      background-color: #F2F2F2;
+    }
+
+    .caret {
+      cursor: pointer;
+      -webkit-user-select: none; /* Safari 3.1+ */
+      -moz-user-select: none; /* Firefox 2+ */
+      -ms-user-select: none; /* IE 10+ */
+      user-select: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .nested {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      display: none;
+      margin: 20px;
+      width:97%;
+    }
+
+    table caption {
+      text-align:left;
+    }
+
+    table th{
+      background-color: #B4C7E7;
+      text-align: left;
+      vertical-align:middle;
+      padding: 10px;
+    }
+
+    table .thCheckBox {
+      width:2%;
+    }
+
+    table .thTestName {
+      width:13%;
+    }
+
+    table .thExecutionStatus, .thExecutionStart, .thExecutionEnd, .thScreenshots {
+      width:10%;
+    }
+
+    table td {
+      text-align: left;
+      vertical-align:top;
+      padding: 10px;
+      word-wrap: break-word;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 45%; /* Could be more or less, depending on screen size */
+    }
+ 
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>  <header class="layoutElement">
+    <img src=".images/Chevron.png" width="65" height="65"> &nbsp; IFL TESTING BOT
+  </header>
+
+  <section>
+
+    <nav class="layoutElement">
+      <ul id="myUL">
+        <li><span class="caret"><img src=".images/FuelPump.svg" width="27" height="27"><a class="listModule">&nbsp;Point of Sales</a></span>
+          <ul class="nested">
+            <li class="listSubModule"><a onclick='show("POSDemo");'>Demo</a></li>
+            <li class="listSubModule"><a onclick='show("POSHK");'>HK</a></li>
+            <li class="listSubModule"><a onclick='show("POSKH");'>KH</a></li>
+            <li class="listSubModule"><a onclick='show("POSMY");'>MY</a></li>
+            <li class="listSubModule"><a onclick='show("POSPH");'>PH</a></li>
+            <li class="listSubModule"><a onclick='show("POSSG");'>SG</a></li>
+            <li class="listSubModule"><a onclick='show("POSTH");'>TH</a></li>
+          </ul>
+        </li>
+    
+        <li><span class="caret"><img src=".images/Reports.svg" width="25" height="25"><a class="listModule">&nbsp;Reports</a></span>
+          <ul class="nested">
+            <li>No items avaialable</li>
+          </ul>  
+        </li>
+    
+        <li><span class="caret"><img src=".images/Journal.svg" width="25" height="25"><a class="listModule">&nbsp;E-Journal</a></span>
+          <ul class="nested">
+            <li>No items available</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <article class="layoutElement">
+
+      <table id="tablePOSDemo" class="tableExecution" name="tableExecutionHidden">
+        <caption style="text-align:left"><h2 value="POSDemo">For demo purposes only</h2></caption>
+        <tr>
+          <th class="thCheckBox"><input type="checkbox" onClick='check_uncheck_checkbox(this.checked, "POSDemo");'/>    &nbsp;   </th>
+          <th class="thTestName">Test Name</th>
+          <th class="thExecutionStatus">Execution Status</th>
+          <th class="thExecutionStart">Execution Start</th>
+          <th class="thExecutionEnd">Execution End</th>
+          <th class="thScreenshots">Screenshots</th>
+        </tr>
+
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSDemo" class="checkboxTestScript" value="Demo_BuyDieselPayCash" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("Demo_BuyDieselPayCash");'>Demo_BuyDieselPayCash<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_Demo_BuyDieselPayCash" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("Demo_BuyDieselPayCash")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">Demo_BuyDieselPayCash</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>For demo purposes only</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSDemo</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+N/A
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("Demo_BuyDieselPayCash")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_Demo_BuyDieselPayCash" href="#" onclick='showModalLogFile("Demo_BuyDieselPayCash");'>Execution ID: N/A</a></td>
+        </tr>
+
+      </table>
+
+      <table id="tablePOSHK" class="tableExecution" name="tableExecutionHidden">
+        <caption style="text-align:left"><h2 value="POSHK">Hongkong</h2></caption>
+        <tr>
+          <th class="thCheckBox"><input type="checkbox" onClick='check_uncheck_checkbox(this.checked, "POSPH");'/>    &nbsp;   </th>
+          <th class="thTestName">Test Name</th>
+          <th class="thExecutionStatus">Last Execution Status</th>
+          <th class="thExecutionStart">Last Execution Start</th>
+          <th class="thExecutionEnd">Last Execution End</th>
+          <th class="thScreenshots">Screenshots</th>
+        </tr>  
+
+
+      </table>
+
+      <table id="tablePOSMY" class="tableExecution" name="tableExecutionHidden">
+        <caption style="text-align:left"><h2 value="POSMY">Malaysia</h2></caption>
+        <tr>
+          <th class="thCheckBox"><input type="checkbox" onClick='check_uncheck_checkbox(this.checked, "POSMY");'/>    &nbsp;   </th>
+          <th class="thTestName">Test Name</th>
+          <th class="thExecutionStatus">Last Execution Status</th>
+          <th class="thExecutionStart">Last Execution Start</th>
+          <th class="thExecutionEnd">Last Execution End</th>
+          <th class="thScreenshots">Screenshots</th>
+        </tr>  
+
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0004_ItemKeys_Cash" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0004_ItemKeys_Cash");'>IPT0004_ItemKeys_Cash<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0004_ItemKeys_Cash" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0004_ItemKeys_Cash")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0004_ItemKeys_Cash</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Drystock Transaction Cash MOP</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"At POS, enter <<<Quantity>>> 
+using POS numpad then click 
+[Quantity] button."
+Step 2	At POS, Click [Item Keys] button
+Step 3	"Select <<<Items>>>
+Repeat step 1-3 to add more items."
+Step 4	Click [Total] button
+Step 5	"Enter <<<Payment>>> using POS 
+numpad then Click [Cash] button."
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0004_ItemKeys_Cash")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0004_ItemKeys_Cash" href="#" onclick='showModalLogFile("IPT0004_ItemKeys_Cash");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0005_ItemKeys_Cheque" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0005_ItemKeys_Cheque");'>IPT0005_ItemKeys_Cheque<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0005_ItemKeys_Cheque" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0005_ItemKeys_Cheque")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0005_ItemKeys_Cheque</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Drystock Transaction Cheque MOP</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"At POS, Enter <<<Quantity>>> 
+using POS numpad button, then 
+click [Quantity] button."
+Step 2	Click [Item Keys] button
+Step 3	"Select <<<Item>>>
+Repeat steps 1-3 to add more 
+items."
+Step 4	"If applicable, Enter 
+<<<Fuelpoint>>> then click [Yes 
+Repeat] button."
+Step 5	Click [Total] button
+Step 6	Select [Cheque] button
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0005_ItemKeys_Cheque")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0005_ItemKeys_Cheque" href="#" onclick='showModalLogFile("IPT0005_ItemKeys_Cheque");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0008_ItemKeys_Card Imprinter" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0008_ItemKeys_Card Imprinter");'>IPT0008_ItemKeys_Card Imprinter<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0008_ItemKeys_Card Imprinter" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0008_ItemKeys_Card Imprinter")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0008_ItemKeys_Card Imprinter</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Drystock Transaction Card Imprinter MOP</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"At POS, Enter <<<Quantity>>> 
+using POS numpad then click 
+[Quantity] button."
+Step 2	Click [Item Keys] button
+Step 3	"Select <<<Item>>>
+Repeat step 1-3 to add more items."
+Step 4	Click [Total] button
+Step 5	"Go to [More MOPs] > [Card 
+Imprinter]"
+Step 6	"Click <<<Card Imprinter Type>>> 
+button."
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0008_ItemKeys_Card Imprinter")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0008_ItemKeys_Card Imprinter" href="#" onclick='showModalLogFile("IPT0008_ItemKeys_Card Imprinter");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0009_ItemKeys_Misc" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0009_ItemKeys_Misc");'>IPT0009_ItemKeys_Misc<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0009_ItemKeys_Misc" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0009_ItemKeys_Misc")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0009_ItemKeys_Misc</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>TBD</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"At POS, Enter <<<Quantity>>> 
+using POS numpad then click 
+[Quantity] button."
+Step 2	At POS, Click [Item Keys] button
+Step 3	"Select <<<Items>>>
+Repeat step 1-3 to add more items."
+Step 4	Click [Total] button
+Step 5	Go to [More MOPs] > [Misc]
+Step 6	Click <<<Misc>>> button.
+Step 7	Finalize using any MOP.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0009_ItemKeys_Misc")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0009_ItemKeys_Misc" href="#" onclick='showModalLogFile("IPT0009_ItemKeys_Misc");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0010_ItemKeys_2 MOPS" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0010_ItemKeys_2 MOPS");'>IPT0010_ItemKeys_2 MOPS<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0010_ItemKeys_2 MOPS" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0010_ItemKeys_2 MOPS")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0010_ItemKeys_2 MOPS</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>TBD</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"At POS, enter <<<Quantity>>> 
+using POS numpad then click 
+[Quantity] button."
+Step 2	Click [Item Keys] button
+Step 3	"Select <<<Item>>>
+Repeat steps 1-3 to add more 
+items."
+Step 4	Click [Total] button
+Step 5	Enter <<<partial payment>>> using <<<MOP1>>>
+Step 6	Select <<<MOP2>> to finalize transaction
+Step 7	Verify receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0010_ItemKeys_2 MOPS")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0010_ItemKeys_2 MOPS" href="#" onclick='showModalLogFile("IPT0010_ItemKeys_2 MOPS");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0025_Postpay_Cash" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0025_Postpay_Cash");'>IPT0025_Postpay_Cash<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0025_Postpay_Cash" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0025_Postpay_Cash")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0025_Postpay_Cash</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Postpay Transaction Cash MOP</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"Lift <<<Fuel Grade>>> nozzle 
+from any fuel point."
+Step 2	"Click the grey [Fuel point] button. 
+Then click [Man. Pump release] 
+button"
+Step 3	"[Squeeze the Trigger] and 
+dispense <<<Amount>>>."
+Step 4	[Release the trigger] and [Hang Up] the nozzle.
+Step 5	Click [Fuel point] button again.
+Step 6	"Click the transaction (orange 
+box) from the fuel point menu."
+Step 7	Click [Total] button.
+Step 8	"Enter <<<Payment Amount>>> 
+using POS numpad then Click 
+[Cash] button."
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0025_Postpay_Cash")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0025_Postpay_Cash" href="#" onclick='showModalLogFile("IPT0025_Postpay_Cash");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0036_Refund_Drystock_Cash" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0036_Refund_Drystock_Cash");'>IPT0036_Refund_Drystock_Cash<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0036_Refund_Drystock_Cash" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0036_Refund_Drystock_Cash")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0036_Refund_Drystock_Cash</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Refund_Cash</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"Pre-req: Sales Transaction finalized 
+using Cash MOP and with more 
+than 1 drystock items"
+Step 2	Go to [More Functions] > [Refund] > [Refund].
+Step 3	Enter <<<SupervisorNo>>> using numpad. Then click [Yes Repeat] button.
+Step 4	Enter <<<Password>>> using numpad. Then click [Yes Repeat] button.
+Step 5	Click [Yes repeat] button to confirm.
+Step 6	Go to [Item Keys].
+Step 7	"Select the item/s from the 
+transaction in Step 1."
+Step 8	Click [Total] button.
+Step 9	"Enter <<<Refund amount>>> using 
+POS numpad then Click [Cash] 
+button."
+Step 10	Check receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0036_Refund_Drystock_Cash")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0036_Refund_Drystock_Cash" href="#" onclick='showModalLogFile("IPT0036_Refund_Drystock_Cash");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="IPT0041_Refund_Prepay+Postpay Manual_Cash" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0041_Refund_Prepay+Postpay Manual_Cash");'>IPT0041_Refund_Prepay+Postpay Manual_Cash<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0041_Refund_Prepay+Postpay Manual_Cash" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0041_Refund_Prepay+Postpay Manual_Cash")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0041_Refund_Prepay+Postpay Manual_Cash</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Refund_Cash</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"Pre-req: Sales Transaction finalized 
+using Cash MOP and with more 
+than 1 drystock items"
+Step 2	Go to [More Functions] > [Refund] > [Refund].
+Step 3	Enter <<<SupervisorNo>>> using numpad. Then click [Yes Repeat] button.
+Step 4	Enter <<<Password>>> using numpad. Then click [Yes Repeat] button.
+Step 5	Click [Yes repeat] button to confirm.
+Step 6	Go to [Item Keys].
+Step 7	"Select the item/s from the 
+transaction in Step 1."
+Step 8	Click [Total] button.
+Step 9	"Enter <<<Refund amount>>> using 
+POS numpad then Click [Cash] 
+button."
+Step 10	Check receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0041_Refund_Prepay+Postpay Manual_Cash")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0041_Refund_Prepay+Postpay Manual_Cash" href="#" onclick='showModalLogFile("IPT0041_Refund_Prepay+Postpay Manual_Cash");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="SET0006_Print Fuel Price" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("SET0006_Print Fuel Price");'>SET0006_Print Fuel Price<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_SET0006_Print Fuel Price" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("SET0006_Print Fuel Price")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">SET0006_Print Fuel Price</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Print Forecourt</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [Pump Control] > [Print Forecourt]
+Step 2	Click [Print Fuel Prices] button
+Step 3	Click [Yes Repeat] to continue.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("SET0006_Print Fuel Price")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_SET0006_Print Fuel Price" href="#" onclick='showModalLogFile("SET0006_Print Fuel Price");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="SET0007_Print Pump Counter" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("SET0007_Print Pump Counter");'>SET0007_Print Pump Counter<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_SET0007_Print Pump Counter" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("SET0007_Print Pump Counter")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">SET0007_Print Pump Counter</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Print Pump Counter</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Go to [Pump Control] > [Print Forecourt]
+Step 2	Click [Print Pump Counter] button
+Step 3	Enter <<<Fuelpoint>>> using POS numpad. Then click [Yes Repeat] to continue
+Step 4	Click [Yes Repeat] to continue.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("SET0007_Print Pump Counter")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_SET0007_Print Pump Counter" href="#" onclick='showModalLogFile("SET0007_Print Pump Counter");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="SET0008_Start Forecourt" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("SET0008_Start Forecourt");'>SET0008_Start Forecourt<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_SET0008_Start Forecourt" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("SET0008_Start Forecourt")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">SET0008_Start Forecourt</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Start Forecourt</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Pre-req: Pumps are offline. Connection between DOMS and NAMOS is OK.
+Step 2	At POS, go to [Pump Contol].
+Step 3	Click [Start Forecourt].
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("SET0008_Start Forecourt")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_SET0008_Start Forecourt" href="#" onclick='showModalLogFile("SET0008_Start Forecourt");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSMY" class="checkboxTestScript" value="SET0012_Cashier SignOn" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("SET0012_Cashier SignOn");'>SET0012_Cashier SignOn<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_SET0012_Cashier SignOn" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("SET0012_Cashier SignOn")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">SET0012_Cashier SignOn</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Cashier SignOn</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSMY</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More Functions] > [CashierSignOn]
+Step 2	Click [Cashier SignOn] button.
+Step 3	Enter <<<Cashier no.>>> using POS numpad. Then Click [Yes Repeat] button.
+Step 4	Enter <<<Password>>>. Then Click [Yes Repeat] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("SET0012_Cashier SignOn")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_SET0012_Cashier SignOn" href="#" onclick='showModalLogFile("SET0012_Cashier SignOn");'>Execution ID: N/A</a></td>
+        </tr>
+
+      </table>
+
+      <table id="tablePOSPH" class="tableExecution" name="tableExecutionHidden">
+        <caption style="text-align:left"><h2 value="POSPH">Philippines</h2></caption>
+        <tr>
+          <th class="thCheckBox"><input type="checkbox" onClick='check_uncheck_checkbox(this.checked, "POSPH");'/>    &nbsp;   </th>
+          <th class="thTestName">Test Name</th>
+          <th class="thExecutionStatus">Execution Status</th>
+          <th class="thExecutionStart">Execution Start</th>
+          <th class="thExecutionEnd">Execution End</th>
+          <th class="thScreenshots">Screenshots</th>
+        </tr>
+
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0001_Cashier SignOn" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0001_Cashier SignOn");'>IPT0001_Cashier SignOn<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0001_Cashier SignOn" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0001_Cashier SignOn")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0001_Cashier SignOn</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Cashier SignOn</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More Functions] > [CashierSignOn]
+Step 2	Click [Cashier SignOn] button.
+Step 3	Enter <<<Cashier no.>>> using POS numpad. Then Click [Yes Repeat] button.
+Step 4	Enter <<<Password>>>. Then Click [Yes Repeat] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0001_Cashier SignOn")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 18:55:23</td>
+
+          <td class="executionEnd">06-01-2021 18:57:43</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0001_Cashier SignOn" href="#" onclick='showModalLogFile("IPT0001_Cashier SignOn");'>Execution ID: 20210601185523</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0002_Cashier Pause" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0002_Cashier Pause");'>IPT0002_Cashier Pause<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0002_Cashier Pause" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0002_Cashier Pause")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0002_Cashier Pause</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Cashier Pause</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More Functions] > [Shift Pause]
+Step 2	Click [Yes Repeat] button
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0002_Cashier Pause")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 18:58:44</td>
+
+          <td class="executionEnd">06-01-2021 19:00:23</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0002_Cashier Pause" href="#" onclick='showModalLogFile("IPT0002_Cashier Pause");'>Execution ID: 20210601185844</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0005_Cashier SignOff" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0005_Cashier SignOff");'>IPT0005_Cashier SignOff<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0005_Cashier SignOff" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0005_Cashier SignOff")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0005_Cashier SignOff</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Cashier Pause</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	"At POS, go to [More 
+Functions] > [Cashier SignOff]"
+Step 2	"Enter <<<Cashier No>>> in 
+the Number pad"
+Step 3	Click [Yes Repeat] button
+Step 4	"Enter <<<Cashier Password>>> in the Number 
+pad"
+Step 5	Click [Yes Repeat] button
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0005_Cashier SignOff")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 19:01:23</td>
+
+          <td class="executionEnd">06-01-2021 19:05:04</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0005_Cashier SignOff" href="#" onclick='showModalLogFile("IPT0005_Cashier SignOff");'>Execution ID: 20210601190123</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0006_Change Fuel Price" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0006_Change Fuel Price");'>IPT0006_Change Fuel Price<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0006_Change Fuel Price" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0006_Change Fuel Price")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0006_Change Fuel Price</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Change Fuel Price</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [Pump Control] > [Change Fuel Price]
+Step 2	Select fuel grade.
+Step 3	Enter <<<NewFuelPrice>>> using numpad in POS. Then click [Yes Repeat] button.
+Step 4	Click [Yes Repeat] to confirm.
+Step 5	At POS, go to [More Functions].
+Step 6	Click button with POS icon to open MWS.
+Step 7	Enter <<<OperatorNo>>> in Operator No field.
+Step 8	Enter <<<MWSPassword>>> in Password field.
+Step 9	Click [Login] button.
+Step 10	"Go to FSM>Fuel Price>Fuel 
+Price Change"
+Step 11	Check if fuel price in pump is updated.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0006_Change Fuel Price")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:orange"><select style="font-size: 20px;color:orange"><option style="color:orange">For Verification</option><option style="color:green">Passed</option><option style="color:red">Failed</option></select></td>
+
+          <td class="executionStart">06-01-2021 19:42:53</td>
+
+          <td class="executionEnd">06-01-2021 19:47:42</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0006_Change Fuel Price" href="#" onclick='showModalLogFile("IPT0006_Change Fuel Price");'>Execution ID: 20210601194253</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0008_Print ATG Dippings" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0008_Print ATG Dippings");'>IPT0008_Print ATG Dippings<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0008_Print ATG Dippings" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0008_Print ATG Dippings")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0008_Print ATG Dippings</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Print Pump Counter</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Go to [Pump Control] > [Print Forecourt]
+Step 2	Click [Print ATG Dippings] button
+Step 3	Click [Yes Repeat] to continue.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0008_Print ATG Dippings")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 19:48:43</td>
+
+          <td class="executionEnd">06-01-2021 19:50:11</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0008_Print ATG Dippings" href="#" onclick='showModalLogFile("IPT0008_Print ATG Dippings");'>Execution ID: 20210601194843</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0009_Print Forecourt" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0009_Print Forecourt");'>IPT0009_Print Forecourt<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0009_Print Forecourt" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0009_Print Forecourt")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0009_Print Forecourt</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Print Forecourt</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [Pump Control] > [Print Forecourt]
+Step 2	Click [Print Fuel Prices] button
+Step 3	Click [Yes Repeat] to continue.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0009_Print Forecourt")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 19:51:12</td>
+
+          <td class="executionEnd">06-01-2021 19:52:40</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0009_Print Forecourt" href="#" onclick='showModalLogFile("IPT0009_Print Forecourt");'>Execution ID: 20210601195112</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0010_Print Pump Counter" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0010_Print Pump Counter");'>IPT0010_Print Pump Counter<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0010_Print Pump Counter" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0010_Print Pump Counter")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0010_Print Pump Counter</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Print Pump Counter</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Go to [Pump Control] > [Print Forecourt]
+Step 2	Click [Print Pump Counter] button
+Step 3	Enter <<<Fuelpoint>>> using POS numpad. Then click [Yes Repeat] to continue
+Step 4	Click [Yes Repeat] to continue.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0010_Print Pump Counter")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 19:53:39</td>
+
+          <td class="executionEnd">06-01-2021 19:55:24</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0010_Print Pump Counter" href="#" onclick='showModalLogFile("IPT0010_Print Pump Counter");'>Execution ID: 20210601195339</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0011_Start Forecourt" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0011_Start Forecourt");'>IPT0011_Start Forecourt<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0011_Start Forecourt" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0011_Start Forecourt")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0011_Start Forecourt</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Start Forecourt</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Pre-req: Pumps are offline. Connection between DOMS and NAMOS is OK.
+Step 2	At POS, go to [Pump Contol].
+Step 3	Click [Start Forecourt].
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0011_Start Forecourt")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 20:06:31</td>
+
+          <td class="executionEnd">06-01-2021 20:10:47</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0011_Start Forecourt" href="#" onclick='showModalLogFile("IPT0011_Start Forecourt");'>Execution ID: 20210601200631</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0012_Stop Forecourt" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0012_Stop Forecourt");'>IPT0012_Stop Forecourt<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0012_Stop Forecourt" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0012_Stop Forecourt")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0012_Stop Forecourt</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Stop Forecourt</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Pre-req: Pumps are online.
+Step 2	Check if postpay transactions are possible.
+Step 3	At POS, go to [Pump Contol].
+Step 4	Click [Stop Forecourt].
+Step 5	While forecourt are stopped, check if Postpay transactions are not possible
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0012_Stop Forecourt")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:orange"><select style="font-size: 20px;color:orange"><option style="color:orange">For Verification</option><option style="color:green">Passed</option><option style="color:red">Failed</option></select></td>
+
+          <td class="executionStart">06-01-2021 20:11:50</td>
+
+          <td class="executionEnd">06-01-2021 20:14:08</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0012_Stop Forecourt" href="#" onclick='showModalLogFile("IPT0012_Stop Forecourt");'>Execution ID: 20210601201150</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0013_Price Override" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0013_Price Override");'>IPT0013_Price Override<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0013_Price Override" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0013_Price Override")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0013_Price Override</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Price Override</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [Item Keys].
+Step 2	Select an <<<Item>>>.
+Step 3	Click [Total] button.
+Step 4	Click [Price Override] button.
+Step 5	Enter <<<PriceOverrideValue>>> using POS numpad then click [Yes Repeat] to confirm.
+Step 6	Enter <<<Payment>>> using POS numpad then Click [Cash] button.
+Step 7	Verify receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0013_Price Override")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-01-2021 20:15:10</td>
+
+          <td class="executionEnd">06-01-2021 20:19:12</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0013_Price Override" href="#" onclick='showModalLogFile("IPT0013_Price Override");'>Execution ID: 20210601201510</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0014_Price Query" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0014_Price Query");'>IPT0014_Price Query<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0014_Price Query" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0014_Price Query")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0014_Price Query</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Price Query</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, click [Price Query].
+Step 2	Go to [Item Keys]
+Step 3	Select any item.
+Step 4	Click [Yes Repeat] to confirm
+Step 5	Click [Total] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0014_Price Query")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-03-2021 20:02:34</td>
+
+          <td class="executionEnd">06-03-2021 20:06:46</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0014_Price Query" href="#" onclick='showModalLogFile("IPT0014_Price Query");'>Execution ID: 20210603200234</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0015_Reprint Till Receipt" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0015_Reprint Till Receipt");'>IPT0015_Reprint Till Receipt<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0015_Reprint Till Receipt" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0015_Reprint Till Receipt")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0015_Reprint Till Receipt</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Reprint Till Receipt</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Select [Reprint Till Receipt] button.
+Step 2	Click [Reprint Any Receipt] button.
+Step 3	Click [Machine] where you have transactions.
+Step 4	Click [Yes Repeat] to confirm
+Step 5	Click on the -/+ button.
+Step 6	Click [Reprint on Receipt] button
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0015_Reprint Till Receipt")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-03-2021 21:43:44</td>
+
+          <td class="executionEnd">06-03-2021 21:47:59</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0015_Reprint Till Receipt" href="#" onclick='showModalLogFile("IPT0015_Reprint Till Receipt");'>Execution ID: 20210603214344</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0016_Reprint Till Receipt_Reprint On Receipt" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0016_Reprint Till Receipt_Reprint On Receipt");'>IPT0016_Reprint Till Receipt_Reprint On Receipt<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0016_Reprint Till Receipt_Reprint On Receipt" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0016_Reprint Till Receipt_Reprint On Receipt")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0016_Reprint Till Receipt_Reprint On Receipt</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Reprint Till Receipt_Reprint On Receipt</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Select [Reprint Till Receipt] button.
+Step 2	Click [Reprint On Receipt] button.
+Step 3	Click on the -/+ button.
+Step 4	Click [Reprint on Receipt] button
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0016_Reprint Till Receipt_Reprint On Receipt")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">06-03-2021 22:55:51</td>
+
+          <td class="executionEnd">06-03-2021 23:00:17</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0016_Reprint Till Receipt_Reprint On Receipt" href="#" onclick='showModalLogFile("IPT0016_Reprint Till Receipt_Reprint On Receipt");'>Execution ID: 20210603225551</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0017_Drystock_Article Number" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0017_Drystock_Article Number");'>IPT0017_Drystock_Article Number<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0017_Drystock_Article Number" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0017_Drystock_Article Number")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0017_Drystock_Article Number</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Article Number</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More Functions].
+Step 2	Click button with POS icon to open MWS.
+Step 3	Enter <<<OperatorNo>>> in Operator No field.
+Step 4	Enter <<<MWSPassword>>> in Password field.
+Step 5	Click [Login] button.
+Step 6	From MWS, go to Maintenance > Item Maintenance > Dry Stock Item
+Step 7	"Select any dry stock item and note its ""Item Number"", ""Description"" and ""First Price""
+If First Price column is not displayed. Right Click any column header>Choose column>Drag First Price column to display."
+Step 8	In POS, enter the <<<ItemNumber>>> manually using POS numpad, then click [Item] button.
+Step 9	Click [Total] button.
+Step 10	Enter <<<Payment>>> using POS numpad then Click [Cash] button.
+Step 11	Verify receipt
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0017_Drystock_Article Number")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0017_Drystock_Article Number" href="#" onclick='showModalLogFile("IPT0017_Drystock_Article Number");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0018_Drystock_Item Keys" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0018_Drystock_Item Keys");'>IPT0018_Drystock_Item Keys<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0018_Drystock_Item Keys" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0018_Drystock_Item Keys")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0018_Drystock_Item Keys</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Item Keys</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [Item Keys].
+Step 2	Select an <<<Item>>>.
+Step 3	Click [Total] button.
+Step 4	Enter <<<Payment>>> using POS numpad then Click [Cash] button.
+Step 5	Check receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0018_Drystock_Item Keys")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus" style="color:green"><b>Passed</b></td>
+
+          <td class="executionStart">05-28-2021 09:09:59</td>
+
+          <td class="executionEnd">05-28-2021 09:14:06</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0018_Drystock_Item Keys" href="#" onclick='showModalLogFile("IPT0018_Drystock_Item Keys");'>Execution ID: 20210528090959</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0036_Change Out" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0036_Change Out");'>IPT0036_Change Out<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0036_Change Out" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0036_Change Out")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0036_Change Out</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Change Out</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More MOPs] > [Change Out]
+Step 2	Enter <<<Amount>>> using POS numpad and click [Yes Repeat] to confirm.
+Step 3	Enter <<<Payment>>> using numpad and click [Cash] to finalize.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0036_Change Out")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0036_Change Out" href="#" onclick='showModalLogFile("IPT0036_Change Out");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0037_Float" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0037_Float");'>IPT0037_Float<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0037_Float" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0037_Float")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0037_Float</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Local Account Deposit -  Re-print Invoices</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More MOPs] > [Float]
+Step 2	Enter <<<Amount>>> using POS numapd and click [Yes Repeat] to confirm.
+Step 3	Enter <<<Payment>>> using numpad then click [Cash] to finalize.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0037_Float")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0037_Float" href="#" onclick='showModalLogFile("IPT0037_Float");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0038_Pay In" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0038_Pay In");'>IPT0038_Pay In<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0038_Pay In" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0038_Pay In")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0038_Pay In</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Pay In</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More MOPs] and select [Pay in]
+Step 2	Select [PayinReason] from sales window.
+Step 3	Enter <<<Amount>>> using numpad then click [Yes Repeat] to confirm.
+Step 5	Check available MOPs.
+Step 7	Enter <<<Payment>>> using POS numpad then Click [Cash] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0038_Pay In")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0038_Pay In" href="#" onclick='showModalLogFile("IPT0038_Pay In");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0039_Pay Out" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0039_Pay Out");'>IPT0039_Pay Out<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0039_Pay Out" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0039_Pay Out")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0039_Pay Out</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Pay Out</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More MOPs] > [Payout].
+Step 2	Click <<<Item>>> from sales window.
+Step 3	Enter <<<Amount>>> using POS numpad then click [Yes Repeat] to confirm.
+Step 4	Enter <<<Payment>>> using POS numpad then Click [Cash] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0039_Pay Out")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0039_Pay Out" href="#" onclick='showModalLogFile("IPT0039_Pay Out");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0040_Safe Drop" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0040_Safe Drop");'>IPT0040_Safe Drop<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0040_Safe Drop" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0040_Safe Drop")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0040_Safe Drop</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Safe Drop</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Perform a Safe Drop by going to [More MOPs] > [Safe Drop].
+Step 2	Enter <<<Amount>>> using POS numpad then click [Yes] to confirm.
+Step 3	Click [Cash] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0040_Safe Drop")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0040_Safe Drop" href="#" onclick='showModalLogFile("IPT0040_Safe Drop");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0041_Safe Drop_Transaction amount greater than safe drop amount" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0041_Safe Drop_Transaction amount greater than safe drop amount");'>IPT0041_Safe Drop_Transaction amount greater than safe drop amount<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0041_Safe Drop_Transaction amount greater than safe drop amount" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0041_Safe Drop_Transaction amount greater than safe drop amount")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0041_Safe Drop_Transaction amount greater than safe drop amount</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Safe Drop_Transaction amount greater than safe drop amount</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, enter <<<FuelAmount>> using numpad. Then click [Item Keys] button.
+Step 2	Go to [Fuel] and select a [Fuel]
+Step 3	Enter <<<Fuelpoint>>> using numpad then click [Yes Repeat] button.
+Step 4	Click [Total] button.
+Step 5	Enter <<<Payment>>> using POS numpad then Click [Cash] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0041_Safe Drop_Transaction amount greater than safe drop amount")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0041_Safe Drop_Transaction amount greater than safe drop amount" href="#" onclick='showModalLogFile("IPT0041_Safe Drop_Transaction amount greater than safe drop amount");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0042_Safe Drop_Transaction amount less than safe drop amount" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0042_Safe Drop_Transaction amount less than safe drop amount");'>IPT0042_Safe Drop_Transaction amount less than safe drop amount<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0042_Safe Drop_Transaction amount less than safe drop amount" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0042_Safe Drop_Transaction amount less than safe drop amount")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0042_Safe Drop_Transaction amount less than safe drop amount</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Safe Drop_Transaction amount less than safe drop amount</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Log in to MWS.
+Step 2	"Go to Maintenance > MOP Maintenance > General MOPs.
+
+Note that this path may differ based on Namos version."
+Step 3	Find and double click "Cash in base currency" MOP
+Step 4	Click "Limits" tab and tick [Enable safe drop] checkbox.
+Step 5	Enter <<<SafeDrop>>> in Safe drop warning limit field. (preferrably greater than 1000)
+Step 6	Click [Save] icon then close "MOP overview" window.
+Step 7	From POS, enter <<<FuelAmount>> using numpad. Then click [Item Keys] button.
+Step 8	Go to [Fuel] and select a [Fuel]
+Step 9	Enter <<<Fuelpoint>>> using numpad then click [Yes Repeat] button.
+Step 10	Click [Total] button.
+Step 11	Enter <<<Payment>>> using POS numpad then Click [Cash] button.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0042_Safe Drop_Transaction amount less than safe drop amount")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0042_Safe Drop_Transaction amount less than safe drop amount" href="#" onclick='showModalLogFile("IPT0042_Safe Drop_Transaction amount less than safe drop amount");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0054_No Sale" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0054_No Sale");'>IPT0054_No Sale<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0054_No Sale" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0054_No Sale")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0054_No Sale</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_No Sale</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [More Functions]
+Step 2	Click [No Sale] button.
+Step 3	Verify receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0054_No Sale")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0054_No Sale" href="#" onclick='showModalLogFile("IPT0054_No Sale");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0059_Void Transaction" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0059_Void Transaction");'>IPT0059_Void Transaction<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0059_Void Transaction" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0059_Void Transaction")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0059_Void Transaction</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Void Transaction</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Lift nozzle from any fuel point.
+Step 2	Select the grey fuel point. From the fuel point menu, select [Man. Pump release]
+Step 3	[Squeeze the trigger] and dispense any amount of fuel.
+Step 4	[Release the trigger] and [Hang Up] the nozzle.
+Step 5	Select the [Fuel Point] button again.
+Step 6	Select the transaction (orange box) from the fuel point menu.
+Step 7	Click [Total] button.
+Step 8	Go to [More Functions] > [Abot Receipt]
+Step 9	Click [Yes Repeat] to confirm.
+Step 10	Verify receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0059_Void Transaction")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0059_Void Transaction" href="#" onclick='showModalLogFile("IPT0059_Void Transaction");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0060_Void Line or Item" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0060_Void Line or Item");'>IPT0060_Void Line or Item<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0060_Void Line or Item" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0060_Void Line or Item")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0060_Void Line or Item</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Void Line or Item</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	
+-Create a wetstock/drystock sale.
+-Select a drystock item from the sale.
+-Click [Void Item].
+Step 2	Finalize sale using any MOP.
+Step 3	Check receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0060_Void Line or Item")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0060_Void Line or Item" href="#" onclick='showModalLogFile("IPT0060_Void Line or Item");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0061_Void Transaction (Cash Account)" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0061_Void Transaction (Cash Account)");'>IPT0061_Void Transaction (Cash Account)<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0061_Void Transaction (Cash Account)" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0061_Void Transaction (Cash Account)")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0061_Void Transaction (Cash Account)</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Void Transaction (Cash Account)</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Create a wet/dry stock sale with assgined cash customer.
+Step 2	Go to [More Functions] > [Void Transaction]
+Step 3	Check receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0061_Void Transaction (Cash Account)")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0061_Void Transaction (Cash Account)" href="#" onclick='showModalLogFile("IPT0061_Void Transaction (Cash Account)");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0062_Close POS Shift" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0062_Close POS Shift");'>IPT0062_Close POS Shift<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0062_Close POS Shift" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0062_Close POS Shift")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0062_Close POS Shift</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Close POS shift</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Pre-requisite: All pending transactions in layaway, all transactions are successfully finalized, and all prepay transactions have been dispensed.
+Step 2	Go to [More Functions] > [Cashier SignOff]
+Step 3	Enter <<<CashierNo>>> using numpad. Then click [Yes]
+Step 4	Enter <<<Password>>> using numpad. Then click [Yes]
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0062_Close POS Shift")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0062_Close POS Shift" href="#" onclick='showModalLogFile("IPT0062_Close POS Shift");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0063_Reports_Cashier Declaration" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0063_Reports_Cashier Declaration");'>IPT0063_Reports_Cashier Declaration<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0063_Reports_Cashier Declaration" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0063_Reports_Cashier Declaration")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0063_Reports_Cashier Declaration</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Cashier Declaration</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Pre-requisite: A shift has been closed.
+Step 2	Go to [More Functions] > [Till Overview]
+Step 3	Select [Cashier Declaration]
+Step 4	Select Cashier with current shift number.
+Step 5	Enter <<<Password>>> using numpad. Then click [Yes]
+Step 6	Click [Yes] until receipt is printed.
+Step 7	Check receipt.
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0063_Reports_Cashier Declaration")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0063_Reports_Cashier Declaration" href="#" onclick='showModalLogFile("IPT0063_Reports_Cashier Declaration");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0118_Cash_No Change" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0118_Cash_No Change");'>IPT0118_Cash_No Change<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0118_Cash_No Change" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0118_Cash_No Change")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0118_Cash_No Change</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Transaction Cash MOP</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Select [Fuel point] button
+Step 2	Pick-up the nozzle of the designated fuel point and fuel grade
+Step 3	Click [Man. Pump release] button.
+Step 4	Squeeze the trigger and dispense a fuel
+Step 5	Release trigger nozzle then hangup Nozzle.
+Step 6	Click the fuel point with amount display and click orange box.
+Step 7	Click [Total] button
+Step 8	Select [Cash] button
+Step 9	At keynum, enter the <<<amount>>>
+Step 10	Click [Repeat Yes] button
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0118_Cash_No Change")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0118_Cash_No Change" href="#" onclick='showModalLogFile("IPT0118_Cash_No Change");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0119_Cash_With Change" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0119_Cash_With Change");'>IPT0119_Cash_With Change<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0119_Cash_With Change" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0119_Cash_With Change")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0119_Cash_With Change</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Transaction Cash MOP</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Select [Fuel point] button
+Step 2	Pick-up the nozzle of the designated fuel point and fuel grade
+Step 3	Click [Man. Pump release] button.
+Step 4	Squeeze the trigger and dispense a fuel
+Step 5	Release trigger nozzle then hangup Nozzle.
+Step 6	Click the fuel point with amount display and click orange box.
+Step 7	Click [Total] button
+Step 8	Select [Cash] button
+Step 9	At keynum, enter the <<<amount>>>
+Step 10	Click [Repeat Yes] button
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0119_Cash_With Change")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0119_Cash_With Change" href="#" onclick='showModalLogFile("IPT0119_Cash_With Change");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0120_Postpay_Wetstock_Coupon" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0120_Postpay_Wetstock_Coupon");'>IPT0120_Postpay_Wetstock_Coupon<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0120_Postpay_Wetstock_Coupon" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0120_Postpay_Wetstock_Coupon")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0120_Postpay_Wetstock_Coupon</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Indoor_Postpay_Wetstock_Coupon</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Pick-up the nozzle of the designated fuel point and fuel grade
+Step 2	Click Fuelpoint button and click [Man. Pump Test] button
+Step 3	Squeeze the trigger and dispense a fuel
+Step 4	Release trigger nozzle.
+Step 5	Hang up the nozzle
+Step 6	Click the [Fuel Point] button.
+Step 7	Click [Total] button
+Step 8	Select [More MOPs] button
+Step 9	Select [Value Voucher] button
+Step 11	Select <<<Coupon>>>
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0120_Postpay_Wetstock_Coupon")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0120_Postpay_Wetstock_Coupon" href="#" onclick='showModalLogFile("IPT0120_Postpay_Wetstock_Coupon");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0121_MOPs_Drive Off_Wetstock" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0121_MOPs_Drive Off_Wetstock");'>IPT0121_MOPs_Drive Off_Wetstock<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0121_MOPs_Drive Off_Wetstock" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0121_MOPs_Drive Off_Wetstock")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0121_MOPs_Drive Off_Wetstock</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Drive Off_Wetstock</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Lift nozzle from any fuel point.
+Step 2	Select the grey fuel point. From the fuel point menu, select [Man. Pump release]
+Step 3	[Squeeze the trigger] and dispense any amount of fuel.
+Step 4	[Release the trigger] and [Hang Up] the nozzle.
+Step 5	Select the fuel point button again.
+Step 6	Select the transaction (orange box) from the fuel point menu.
+Step 7	Click [Total] button.
+Step 8	Go to [More MOPs] > [Drive Off].
+Step 9	Click [Yes Repeat] to confirm.
+Step 10	Verify receipt
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0121_MOPs_Drive Off_Wetstock")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0121_MOPs_Drive Off_Wetstock" href="#" onclick='showModalLogFile("IPT0121_MOPs_Drive Off_Wetstock");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0122_MOPs_Drive Off_Drystock" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0122_MOPs_Drive Off_Drystock");'>IPT0122_MOPs_Drive Off_Drystock<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0122_MOPs_Drive Off_Drystock" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0122_MOPs_Drive Off_Drystock")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0122_MOPs_Drive Off_Drystock</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Drive Off_Drystock</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [Item Keys] button.
+Step 2	Select an <<<Item>>>.
+Step 3	Click [Total] button.
+Step 4	Go to [More MOPs] > [Drive Off].
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0122_MOPs_Drive Off_Drystock")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0122_MOPs_Drive Off_Drystock" href="#" onclick='showModalLogFile("IPT0122_MOPs_Drive Off_Drystock");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0123_MOPs_Local Account - Account name" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0123_MOPs_Local Account - Account name");'>IPT0123_MOPs_Local Account - Account name<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0123_MOPs_Local Account - Account name" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0123_MOPs_Local Account - Account name")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0123_MOPs_Local Account - Account name</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Local Account - Account name</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, enter <<<Amount>>> using numpad.
+Step 2	Go to [Item Keys] > [Fuel]
+Step 3	Select any [Fuel].
+Step 4	Enter <<<Fuelpoint>>> using POS numpad. Then click [Yes Repeat] button.
+Step 5	Click [Total] button.
+Step 6	Go to [More MOPs] > [Local Account].
+Step 7	Click the button with the [keyboard icon] in numpad.
+Step 8	Go to "Account" tab.
+Step 9	Enter <<<Account>>> using the keyboard keys from POS. Then click [Yes Repeat] to search.
+Step 10	Select the "Account Name" from Sales window.
+Step 11	"Click [Yes Repeat] to confirm.
+If applicable, enter <<<Odometer>>>."
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0123_MOPs_Local Account - Account name")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0123_MOPs_Local Account - Account name" href="#" onclick='showModalLogFile("IPT0123_MOPs_Local Account - Account name");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0124_MOPs_Local Account" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0124_MOPs_Local Account");'>IPT0124_MOPs_Local Account<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0124_MOPs_Local Account" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0124_MOPs_Local Account")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0124_MOPs_Local Account</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Local Account</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, Go to [Item Keys].
+Step 2	Select [Item].
+Step 3	Click [Total] button.
+Step 4	Go to [More MOPs] > [Local Account].
+Step 5	Enter non-existent <<<invalidLocalAccountCardNo.>>. Then click [Yes Repeat]
+Step 6	Press [C] to ignore the error message.
+Step 7	Go to [More MOPs] > [Local Account].
+Step 8	Enter a valid <<<validLocalAccountCardNo.>>>. Then click [Yes Repeat]
+Step 9	"Click [Yes Repeat] to confirm.
+If applicable, enter <<<Odometer>>>."
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0124_MOPs_Local Account")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0124_MOPs_Local Account" href="#" onclick='showModalLogFile("IPT0124_MOPs_Local Account");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0126_MOPs_Local Account - Card Holder Name" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0126_MOPs_Local Account - Card Holder Name");'>IPT0126_MOPs_Local Account - Card Holder Name<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0126_MOPs_Local Account - Card Holder Name" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0126_MOPs_Local Account - Card Holder Name")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0126_MOPs_Local Account - Card Holder Name</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Local Account - Card Holder Name</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	At POS, go to [Item Keys] button.
+Step 2	Select [Item].
+Step 3	Click [Total] button.
+Step 4	Go to [More MOPs] > [Local Account].
+Step 5	Click the button with the [keyboard icon] in numpad.
+Step 6	Go to "Card Holder" tab.
+Step 7	Enter <<<CardHolder>>> using the keyboard keys from POS. Then click [Yes Repeat] to search.
+Step 8	Select the i from Sales window.
+Step 9	"Click [Yes Repeat] to confirm.
+If applicable, enter <<<Odometer>>>."
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0126_MOPs_Local Account - Card Holder Name")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0126_MOPs_Local Account - Card Holder Name" href="#" onclick='showModalLogFile("IPT0126_MOPs_Local Account - Card Holder Name");'>Execution ID: N/A</a></td>
+        </tr>
+
+        <tr>
+          <td><input type="checkbox" name="checkboxTestScript_POSPH" class="checkboxTestScript" value="IPT0127_Misc" onclick='countSelectedTests();'/>    &nbsp;   </td>
+
+          <td><a href="#" onclick='showModal("IPT0127_Misc");'>IPT0127_Misc<a></td>
+
+          <!-- The Modal -->
+          <div id="divModal_IPT0127_Misc" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick='closeModal("IPT0127_Misc")'>&times;</span>
+
+              <p>
+                <label><b>Test Name: </b></label>
+                <a class="testName">IPT0127_Misc</a>
+              </p>
+
+              <p>
+                <label><b>Test Description: </b></label>
+                <a>Transaction Misc MOP</a>
+              </p>	
+
+              <p>
+                <label><b>Test Module: </b></label>
+                <a class="testModule">POSPH</a>
+              </p>	
+
+              <label><b>Test Steps: </b><br></label>
+              <textarea rows="10" cols="100">
+Step 1	Lift nozzle from any fuel point.
+Step 2	Select the grey fuel point. From the fuel point menu, select [Man. Pump release]
+Step 3	[Squeeze the trigger] and dispense any amount of fuel.
+Step 4	[Release the trigger] and [Hang Up] the nozzle.
+Step 5	Select the fuel point button again.
+Step 6	Select the transaction (orange box) from the fuel point menu.
+Step 7	Click [Total] button.
+Step 8	Go to [More MOPs] > [Misc].
+Step 9	Select <<<Payment Type>>>
+Step 10	Verify receipt
+
+              </textarea>
+
+              <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                <p><input type="button" value="Close" onclick='closeModal("IPT0127_Misc")'/></p>
+              </span>
+            </div>
+          </div>
+
+          <td class="executionStatus"  style="color:gray"><b>Not Started</b></td>
+
+          <td class="executionStart">N/A</td>
+
+          <td class="executionEnd">N/A</td>
+
+          <td class="Screenshots"><a id="logFile_IPT0127_Misc" href="#" onclick='showModalLogFile("IPT0127_Misc");'>Execution ID: N/A</a></td>
+        </tr>
+
+      </table>
+
+    </article>
+
+    <aside class="layoutElement" id="asideSelectedTests">
+      <div>
+        <b><br><br>
+        <a id="aNumberOfSelectedTests" style="font-size: 30px;">0</a><a> Selected Test(s)</a><br><br>
+        <button id="buttonExecute" onclick='showModalRobotTrigger("ExecuteTestScripts");'>Execute Test Scripts</button>
+
+          <!-- The Modal -->
+        <div id="divModal_ExecuteTestScripts" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content" style="width: 20%;">
+            <span class="close" onclick='closeModal("ExecuteTestScripts")'>&times;</span>
+
+            <p style="font-size: 20px;">Proceed to execute test scripts?</p>
+
+            <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+              <p>
+                <input type="button" id="button_ExecuteTestScripts" value="Execute Test Scripts" class="robotTriggerButton" onclick='displayMiniBot();'/> &nbsp;
+                <input type="button" value="Cancel" onclick='closeModal("ExecuteTestScripts")'/>
+              </p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="layoutElement" id="asidePending">
+      <div>
+        <label for="pendingTest"><b><br><br>Pending: </b></label>
+        <a id="pendingTest"><br>None<br></a><br><br>
+      </div>
+    </aside>
+
+    <aside class="layoutElement" id="asideClickMe" style="background-color:#F2F2F2;">
+      <div>
+        <img src=".images/Cool Kids - Bust.png" width="245" height="250" style="float:right; z-index:-1;"/>
+        <div id="clickMore" onclick='showFooter();'>CLICK FOR MORE</div>
+      </div>
+    </aside>
+
+  </section>
+
+  <footer id="footerElement" class="layoutElement" >
+    <img src=".images/Cycle.svg" width="22" height="22"><a href="#" onClick='ResetTestCycle();'>Reset Test Cycle</a> &nbsp; &nbsp; &nbsp;
+
+    <!-- The Modal -->
+    <div id="divModal_ResetTestCycle" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content" style="width: 20%;">
+        <span class="close" onclick='closeModal("ResetTestCycle")'>&times;</span>
+  
+        <p style="font-size: 20px;">Proceed to reset test cyle?</p>
+  
+        <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+  
+        <p>
+          <input type="button" id="button_ResetTestCycle" value="Reset Test Cycle" class="robotTriggerButton"/> &nbsp;
+          <input type="button" value="Cancel" onclick='closeModal("ResetTestCycle")'/>
+        </p>
+        </span>
+      </div>
+    </div>
+
+    <img src=".images/Download.svg" width="20" height="20"><a href="#">Extract Report</a> &nbsp; &nbsp; &nbsp;
+
+    <img src=".images/Add.svg" width="20" height="20"><a href="#" onClick='showModal("AddTest"); showModalRobotTrigger("AddTest")'>Add Test</a>
+
+    <!-- The Modal -->
+    <div id="divModal_AddTest" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onclick='closeModal("AddTest")'>&times;</span>
+  
+        <p style="font-size: 15px;">
+          <label>Test Name: </label><br>
+          <input type="text" id="textboxTestName"><br>
+        </p>
+
+        <p style="font-size: 15px;">
+          <label>Test Description: </label><br>
+          <input type="text" id="textboxTestDescription"><br>
+        </p>
+
+        <p style="font-size: 15px;">
+          <label>Test Module: </label><br>
+          <input type="text" id="textboxTestModule"><br>
+        </p>
+
+        <p style="font-size: 15px;">
+          <label>Test Steps: </label><br>
+          <textarea rows="10" cols="100" id="textareaTestSteps"></textarea><br>
+        </p>
+  
+        <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+  
+        <p>
+          <input type="button" id="button_AddTest" value="Add Test" class="robotTriggerButton" onclick='displayLoading();'/> &nbsp;
+          <input type="button" value="Cancel" onclick='closeModal("AddTest")'/>
+        </p>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var toggler = document.getElementsByClassName("caret");
+    var i;  
+    for (i = 0; i < toggler.length; i++) {
+      toggler[i].addEventListener("click", function() {
+        this.parentElement.querySelector(".nested").classList.toggle("active");
+        this.classList.toggle("caret-down");
+      });
+    }
+
+    function show(nr) {
+      var toggler = document.getElementsByClassName("tableExecution");
+      var i;
+      for (i = 0; i < toggler.length; i++) {
+        toggler[i].style.display="none";
+        toggler[i].setAttribute("name", "tableExecutionHidden");
+      }
+      document.getElementById("table"+nr).style.display="block";
+      document.getElementById("table"+nr).setAttribute("name", "tableExecutionShown");
+    }
+
+    function displayMiniBot() {
+      var myWindow = window.open("",'NewWin', 'toolbar=no,status=no,width=250,height=100,titlebar=no,top=50,left=1600,location=no');
+      myWindow.document.write("<html>");
+      myWindow.document.write("<head>");
+      myWindow.document.write("<title>IFL Tester Bot</title>");
+      myWindow.document.write("<style>");
+      myWindow.document.write("body {background-size: 250px 100px; background-image: url('.images/Monitor.png');}");
+      myWindow.document.write("</style>");
+      myWindow.document.write("</head>");
+      myWindow.document.write("<body><img src='.images/click.gif' width='250' height='100'></body>");
+      myWindow.document.write("</html>");
+
+      var pendingHTML = "<br>";
+        $('input[class="checkboxTestScript"]').each(function() { 
+          if(this.checked==true){
+            pendingHTML += this.value+"<br>";
+            document.getElementById("pendingTest").innerHTML = pendingHTML;
+          }
+        });
+    } 
+
+    function displayLoading() {
+      var myWindow = window.open("",'NewWin', 'toolbar=no,status=no,width=250,height=150,titlebar=no,top=50,left=1600,location=no');
+      myWindow.document.write("<html>");
+      myWindow.document.write("<head>");
+      myWindow.document.write("<title>IFL Tester Bot</title>");
+      myWindow.document.write("</head>");
+      myWindow.document.write("<body><img src='.images/Loading.gif' width='250' height='150'></body>");
+      myWindow.document.write("</html>");
+
+      var pendingHTML = "<br>";
+        $('input[class="checkboxTestScript"]').each(function() { 
+          if(this.checked==true){
+            pendingHTML += this.value+"<br>";
+            document.getElementById("pendingTest").innerHTML = pendingHTML;
+          }
+        });
+    } 
+
+    function showModal(nr) {
+      var toggler = document.getElementsByClassName("modal");
+      var i;
+  
+      for (i = 0; i < toggler.length; i++) {
+         toggler[i].style.display="none";
+         toggler[i].setAttribute("class", "modalHidden");
+      }
+      document.getElementById("divModal_"+nr).style.display="block";
+      document.getElementById("divModal_"+nr).setAttribute("class", "modal");
+    }
+
+    function showModalRobotTrigger(nr) {
+      showModal(nr);
+
+      var toggler = document.getElementsByClassName("robotTriggerButton");  
+      var i;
+
+      for (i = 0; i < toggler.length; i++) {
+        document.getElementById("button_"+nr).setAttribute("class", "robotTriggerButton");
+      }
+      document.getElementById("button_"+nr).setAttribute("class", "activeRobotTriggerButton");
+    }
+
+    function closeModal(nr) {
+      document.getElementById("divModal_"+nr).style.display="none";
+    }
+
+    function check_uncheck_checkbox() {
+      var module = arguments[1]
+      if(arguments[0]) {
+        $('input[class="checkboxTestScript"]').each(function() { 
+          if(this.name=="checkboxTestScript_"+module){
+            this.checked = true;
+          }
+        });
+      } else {
+        $('input[class="checkboxTestScript"]').each(function() {
+          if(this.name=="checkboxTestScript_"+module){
+            this.checked = false;
+          }
+        });
+      }
+      countSelectedTests();
+    }
+
+    function countSelectedTests() {
+      var toggler = document.getElementsByClassName("checkboxTestScript");
+      var i;
+      var count=0;
+
+      for (i = 0; i < toggler.length; i++) {
+        if(toggler[i].checked==true) {
+          count+=1;
+        }
+      }
+      document.getElementById("aNumberOfSelectedTests").innerHTML=count; 
+    }
+    
+    function ResetTestCycle() {
+      var message = prompt("Please enter password", "");
+      if (message == "admin") {
+        showModalRobotTrigger("ResetTestCycle");
+      }
+      else {
+        alert("You entered a wrong password");
+      }
+    }
+    
+    function showFooter () {
+      if(document.getElementById("footerElement").style.display=="flex") {
+        document.getElementById("footerElement").style.display="none";
+        document.getElementById("clickMore").innerHTML="CLICK FOR MORE"; 
+      } else {
+        document.getElementById("footerElement").style.display="flex";
+        document.getElementById("clickMore").innerHTML="CLICK TO HIDE"; 
+      }
+    }
+
+    function showModalLogFile(InArg) {
+      var str = document.getElementById("logFile_"+InArg).innerHTML;
+      var res = str.replace("Execution ID: ", "");
+      document.getElementById("executionID").innerHTML = res;
+      document.getElementById("logFileTestName").innerHTML = InArg;
+      showModal("logFile");
+
+      var toggler = document.getElementsByClassName("robotTriggerButton");  
+      var i;
+      var nr = "DownloadLogFile";
+
+      for (i = 0; i < toggler.length; i++) {
+        document.getElementById("button_"+nr).setAttribute("class", "robotTriggerButton");
+      }
+      document.getElementById("button_"+nr).setAttribute("class", "activeRobotTriggerButton");
+    }
+  </script>
+
+  <!-- The Modal -->
+  <div id="divModal_logFile" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content" style="width: 20%;">
+      <span class="close" onclick='closeModal("logFile")'>&times;</span>
+
+      <p style="font-size: 20px;">Proceed to download log file?</p>
+
+      <p>
+        <label>Test Name: </label>
+        <a id="logFileTestName">Test Name</a>
+      </p>	
+
+      <p>
+        <label>Execution ID: </label>
+        <a id="executionID">20210323171033</a>
+      </p>	
+
+      <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+        <p>
+          <input type="button" id="button_DownloadLogFile" value="Download Log" class="robotTriggerButton"/> &nbsp;
+          <input type="button" value="Cancel" onclick='closeModal("logFile")'/>
+        </p>
+      </span>
+    </div>
+  </div>
+</body>
+
+
+</html>

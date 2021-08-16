@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="ResetTestCycle" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1480,2075" sap2010:WorkflowViewState.IdRef="ResetTestCycle_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="22">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ResetTestCycle" sap:VirtualizedContainerService.HintSize="677,2010" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_tableExecution" />
+      <Variable x:TypeArguments="x:String" Name="Directory_Table" />
+      <Variable x:TypeArguments="x:String" Name="Directory_TableRow" />
+      <Variable x:TypeArguments="scg:IEnumerable(ucas:StorageFileInfo)" Name="ListStorageFiles_TableRow" />
+      <Variable x:TypeArguments="x:String" Name="HTMLCode" />
+      <Variable x:TypeArguments="x:String" Name="ReadStorageText" />
+      <Variable x:TypeArguments="x:String" Name="WriteStorageText" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="635,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Bot will now start reset of test cycle&quot;]" />
+    <ucas:ListStorageFiles Filter="{x:Null}" TimeoutMS="{x:Null}" Directory="tableExecution" DisplayName="List Storage Files" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="635,22" sap2010:WorkflowViewState.IdRef="ListStorageFiles_1" Recursive="True" Result="[ListStorageFiles_tableExecution]" StorageBucketName=".html" />
+    <ui:ForEach x:TypeArguments="ucas:StorageFileInfo" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="635,1440" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ListStorageFiles_tableExecution]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="ucas:StorageFileInfo">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ucas:StorageFileInfo" Name="item" />
+          </ActivityAction.Argument>
+          <If Condition="[item.FileFullPath.Contains(&quot;Table_Opening.txt&quot;)]" sap:VirtualizedContainerService.HintSize="599,1306" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="454,1158" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:Replace sap:VirtualizedContainerService.HintSize="412,59" sap2010:WorkflowViewState.IdRef="Replace_1" Input="[item.FileFullPath]" IsBuilderTabModified="False" Pattern="\\Table_Opening.txt" RegexOption="IgnoreCase, Compiled" Result="[Directory_Table]">
+                  <ui:Replace.Replacement>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" Value="" />
+                    </InArgument>
+                  </ui:Replace.Replacement>
+                </ui:Replace>
+                <Assign sap:VirtualizedContainerService.HintSize="412,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Directory_TableRow]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[Directory_Table+"\Table Row"]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ucas:ListStorageFiles Filter="{x:Null}" TimeoutMS="{x:Null}" Directory="[Directory_TableRow]" DisplayName="List Storage Files" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="412,22" sap2010:WorkflowViewState.IdRef="ListStorageFiles_2" Recursive="False" Result="[ListStorageFiles_TableRow]" StorageBucketName=".html" />
+                <ui:ForEach x:TypeArguments="ucas:StorageFileInfo" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="412,805" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[ListStorageFiles_TableRow]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="ucas:StorageFileInfo">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ucas:StorageFileInfo" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,671" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_2" Path="[item.FileFullPath]" Result="[ReadStorageText]" StorageBucketName=".html" />
+                        <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_3" Input="[ReadStorageText]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionStatus&quot;&quot; )(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[&quot; style=&quot;&quot;color:gray&quot;&quot;&gt;&lt;b&gt;Not Started&lt;/b&gt;&quot;]" Result="[WriteStorageText]" />
+                        <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_4" Input="[WriteStorageText]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionStart&quot;&quot;&gt;)(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="N/A" Result="[WriteStorageText]" />
+                        <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_5" Input="[WriteStorageText]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionEnd&quot;&quot;&gt;)(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="N/A" Result="[WriteStorageText]" />
+                        <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_6" Input="[WriteStorageText]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;Screenshots&quot;&quot;&gt;&lt;a href=&quot;&quot;)(.*?)(?=&quot;&quot;&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="#" Result="[WriteStorageText]" />
+                        <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_7" Input="[WriteStorageText]" IsBuilderTabModified="False" Pattern="(?&lt;=Execution ID: )(.*?)(?=&lt;/a&gt;&lt;/td&gt;)" RegexOption="IgnoreCase, Compiled" Replacement="N/A" Result="[WriteStorageText]" />
+                        <ucas:WriteStorageText TimeoutMS="{x:Null}" DisplayName="Write Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="WriteStorageText_2" Path="[item.FileFullPath]" StorageBucketName=".html" Text="[WriteStorageText]" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+              </Sequence>
+            </If.Then>
+          </If>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WEB_BuildTestUI workflow" sap:VirtualizedContainerService.HintSize="635,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Functions of UI/WEB_BuildTestUI.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Refresh Browser'" sap:VirtualizedContainerService.HintSize="635,51" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="864b88f9fa5f8a92bf4ec7dd9b5e0edd" Selector="&lt;html title='IFL Testing Bot*' /&gt;&#xA;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <ui:RefreshBrowser Browser="{x:Null}" DisplayName="Refresh Browser" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="RefreshBrowser_1" />
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BrowserScope>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="635,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Test cycle was reset&quot;]" />
+  </Sequence>
+</Activity>

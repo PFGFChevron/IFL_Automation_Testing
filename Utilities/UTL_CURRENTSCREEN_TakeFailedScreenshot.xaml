@@ -1,0 +1,171 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_TakeFailedScreenshot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="TestName" Type="InArgument(x:String)" />
+    <x:Property Name="ModuleName" Type="InArgument(x:String)" />
+    <x:Property Name="ExecutionID" Type="InArgument(x:String)" />
+    <x:Property Name="Reason" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1006,1888</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>TakeScreenshot_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="21">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="42">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="CURRENTSCREEN_TakeFailedScreenshot" sap:VirtualizedContainerService.HintSize="552,1823" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:Image" Name="Screenshot" />
+      <Variable x:TypeArguments="x:String" Name="Directory" />
+      <Variable x:TypeArguments="x:String" Name="ScreenshotPath" />
+      <Variable x:TypeArguments="x:Boolean" Name="CTempScreenshot" />
+      <Variable x:TypeArguments="x:String" Name="TestLogPath" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Long workflow" sap:VirtualizedContainerService.HintSize="510,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Long.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Taking Failed Screenshot</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Assign sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Directory]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["C:\temp\.screenshots\"+ModuleName+"\"+TestName+"\"+ExecutionID]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[Directory]" />
+    <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot" sap:VirtualizedContainerService.HintSize="510,68" sap2010:WorkflowViewState.IdRef="TakeScreenshot_3" Screenshot="[Screenshot]">
+      <ui:TakeScreenshot.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="586e4f22-a6f7-46dd-9192-6a8af4d3380a">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:TakeScreenshot.Target>
+    </ui:TakeScreenshot>
+    <Assign sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ScreenshotPath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Directory+"\Screenshot_"+DateTime.Now.ToString("yyyyMMddHHmmss")+".png"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:SaveImage DisplayName="Save Image" FileName="[ScreenshotPath]" sap:VirtualizedContainerService.HintSize="510,92" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[Screenshot]" />
+    <Assign sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Directory]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["C:\temp\.testLogs\"+ModuleName+"\"+TestName+"\"+ExecutionID]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="510,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_3" Path="[Directory]" />
+    <Assign sap:VirtualizedContainerService.HintSize="510,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[TestLogPath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Directory+"\Test Log_"+TestName+"_"+ExecutionID+".docx"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:Replace sap:VirtualizedContainerService.HintSize="510,59" sap2010:WorkflowViewState.IdRef="Replace_1" Input="[Reason]" IsBuilderTabModified="False" Pattern="System.Activities.Statements.WorkflowTerminatedException: " RegexOption="IgnoreCase, Compiled" Result="[Reason]">
+      <ui:Replace.Replacement>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </ui:Replace.Replacement>
+    </ui:Replace>
+    <ui:Replace sap:VirtualizedContainerService.HintSize="510,59" sap2010:WorkflowViewState.IdRef="Replace_2" Input="[Reason]" IsBuilderTabModified="False" Pattern="(...at System\.)([^]]+)" RegexOption="IgnoreCase, Compiled" Result="[Reason]">
+      <ui:Replace.Replacement>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </ui:Replace.Replacement>
+    </ui:Replace>
+    <ui:Replace sap:VirtualizedContainerService.HintSize="510,59" sap2010:WorkflowViewState.IdRef="Replace_3" Input="[Reason]" IsBuilderTabModified="False" Pattern="(UiPath.CV.ElementNotFoundException: Element not found)([^]]+)" RegexOption="IgnoreCase, Compiled" Result="[Reason]">
+      <ui:Replace.Replacement>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </ui:Replace.Replacement>
+    </ui:Replace>
+    <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[TestLogPath]" sap:VirtualizedContainerService.HintSize="510,429" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
+      <p:WordApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WordDocument">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="476,320" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <p:WordAppendText DisplayName="Append Text" sap:VirtualizedContainerService.HintSize="434,104" sap2010:WorkflowViewState.IdRef="WordAppendText_1" Text="[&quot;Test Execution FAILED: &quot;+Reason]" />
+            <p:WordAddImage DisplayName="Add Picture" sap:VirtualizedContainerService.HintSize="434,84" sap2010:WorkflowViewState.IdRef="WordAddImage_1" ImagePath="[ScreenshotPath]" />
+          </Sequence>
+        </ActivityAction>
+      </p:WordApplicationScope.Body>
+    </p:WordApplicationScope>
+  </Sequence>
+</Activity>

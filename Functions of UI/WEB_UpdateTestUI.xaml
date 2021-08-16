@@ -1,0 +1,145 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="WEB_UpdateTestUI" this:WEB_UpdateTestUI.ModuleName="POSPH" this:WEB_UpdateTestUI.TestName="Indoor_Cash_No Change" this:WEB_UpdateTestUI.ExecutionID="20210309104125" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ModuleName" Type="InArgument(x:String)" />
+    <x:Property Name="TestName" Type="InArgument(x:String)" />
+    <x:Property Name="ExecutionID" Type="InArgument(x:String)" />
+    <x:Property Name="ExecutionStart" Type="InArgument(x:String)" />
+    <x:Property Name="ExecutionEnd" Type="InArgument(x:String)" />
+    <x:Property Name="ExecutionStatus" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1166,1247</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>WEB_UpdateTestUI_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="42">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="44">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="WEB_UpdateTestUI" sap:VirtualizedContainerService.HintSize="1176,1082" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Path_TableRow" />
+      <Variable x:TypeArguments="x:String" Name="FileContent" />
+      <Variable x:TypeArguments="x:String" Name="ScreenshotPath" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="1134,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Path_TableRow]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["tableExecution\Table"+ModuleName+"\Table Row\"+TestName+".txt"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="1134,22" sap2010:WorkflowViewState.IdRef="ReadStorageText_1" Path="[Path_TableRow]" Result="[FileContent]" StorageBucketName=".html" />
+    <Sequence DisplayName="Update Screenshot Link" sap:VirtualizedContainerService.HintSize="1134,66" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_6" Input="[FileContent]" IsBuilderTabModified="False" Pattern="(?&lt;=Execution ID: )(.*?)(?=&lt;/a&gt;&lt;/td&gt;)" RegexOption="IgnoreCase, Compiled" Replacement="[ExecutionID]" Result="[FileContent]" />
+      <ucas:WriteStorageText TimeoutMS="{x:Null}" DisplayName="Write Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="WriteStorageText_1" Path="[Path_TableRow]" StorageBucketName=".html" Text="[FileContent]" />
+    </Sequence>
+    <Sequence DisplayName="Update Execution Start" sap:VirtualizedContainerService.HintSize="1134,66" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_2" Input="[FileContent]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionStart&quot;&quot;&gt;)(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[ExecutionStart]" Result="[FileContent]" />
+      <ucas:WriteStorageText TimeoutMS="{x:Null}" DisplayName="Write Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="WriteStorageText_2" Path="[Path_TableRow]" StorageBucketName=".html" Text="[FileContent]" />
+    </Sequence>
+    <Sequence DisplayName="Update Execution End" sap:VirtualizedContainerService.HintSize="1134,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_3" Input="[FileContent]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionEnd&quot;&quot;&gt;)(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[ExecutionEnd]" Result="[FileContent]" />
+      <ucas:WriteStorageText TimeoutMS="{x:Null}" DisplayName="Write Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="WriteStorageText_3" Path="[Path_TableRow]" StorageBucketName=".html" Text="[FileContent]" />
+    </Sequence>
+    <Sequence DisplayName="Update Execution Status" sap:VirtualizedContainerService.HintSize="1134,510" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If Condition="[ExecutionStatus = &quot;Passed&quot;]" sap:VirtualizedContainerService.HintSize="1092,356" sap2010:WorkflowViewState.IdRef="If_1">
+        <If.Then>
+          <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_4" Input="[FileContent]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionStatus&quot;&quot; )(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[&quot;style=&quot;&quot;color:green&quot;&quot;&gt;&lt;b&gt;Passed&lt;/b&gt;&quot;]" Result="[FileContent]" />
+        </If.Then>
+        <If.Else>
+          <If Condition="[ExecutionStatus = &quot;For Verification&quot;]" sap:VirtualizedContainerService.HintSize="713,208" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_7" Input="[FileContent]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionStatus&quot;&quot; )(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[&quot;style=&quot;&quot;color:orange&quot;&quot;&gt;&lt;select style=&quot;&quot;font-size: 20px;color:orange&quot;&quot;&gt;&lt;option style=&quot;&quot;color:orange&quot;&quot;&gt;For Verification&lt;/option&gt;&lt;option style=&quot;&quot;color:green&quot;&quot;&gt;Passed&lt;/option&gt;&lt;option style=&quot;&quot;color:red&quot;&quot;&gt;Failed&lt;/option&gt;&lt;/select&gt;&quot;]" Result="[FileContent]" />
+            </If.Then>
+            <If.Else>
+              <ui:Replace sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="Replace_8" Input="[FileContent]" IsBuilderTabModified="False" Pattern="[&quot;(?&lt;=&lt;td class=&quot;&quot;executionStatus&quot;&quot; )(.*?)(?=&lt;/td&gt;)&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[&quot;style=&quot;&quot;color:red&quot;&quot;&gt;&lt;b&gt;Failed&lt;/b&gt;&quot;]" Result="[FileContent]" />
+            </If.Else>
+          </If>
+        </If.Else>
+      </If>
+      <ucas:WriteStorageText TimeoutMS="{x:Null}" DisplayName="Write Storage Text" FolderPath="(IFL) International Fuel and Lubricant/.html" sap:VirtualizedContainerService.HintSize="1092,22" sap2010:WorkflowViewState.IdRef="WriteStorageText_4" Path="[Path_TableRow]" StorageBucketName=".html" Text="[FileContent]" />
+    </Sequence>
+  </Sequence>
+</Activity>
