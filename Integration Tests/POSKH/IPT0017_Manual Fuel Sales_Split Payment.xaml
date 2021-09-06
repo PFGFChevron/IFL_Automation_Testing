@@ -10,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>716.8,2645.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>716.8,3044.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Indoor_Cash_No_Change_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -65,9 +65,13 @@
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="IPT0017_Manual Fuel Sales_Split Payment" sap:VirtualizedContainerService.HintSize="478.4,2580.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="IPT0017_Manual Fuel Sales_Split Payment" sap:VirtualizedContainerService.HintSize="478.4,2940" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="TotalAmount" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -85,7 +89,7 @@
     </ui:InvokeWorkflowFile>
     <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,319.2" sap2010:WorkflowViewState.IdRef="TryCatch_11">
       <TryCatch.Try>
-        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_BuyWetstock_Gold workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_63" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\Purchase\NAMOS_KH_BuyWetstock_Gold.xaml">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_BuyWetstock_Gold_$15 workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_80" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\Purchase\NAMOS_KH_BuyWetstock_Gold_$15.xaml">
           <ui:InvokeWorkflowFile.Arguments>
             <scg:Dictionary x:TypeArguments="x:String, Argument" />
           </ui:InvokeWorkflowFile.Arguments>
@@ -103,7 +107,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="420,243.2" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="420,244.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -140,16 +144,18 @@
         <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">[ExecutionID]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,319.2" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,319.2" sap2010:WorkflowViewState.IdRef="TryCatch_12">
       <TryCatch.Try>
-        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_PayWithCash_1_00$_SplitPayment_4050KHR workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_65" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\Payment\NAMOS_KH_PayWithCash_1_00$_SplitPayment_4050KHR.xaml">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_GetTotalAmount_Split Payment workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_81" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\Others\NAMOS_KH_GetTotalAmount_Split Payment.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            <OutArgument x:TypeArguments="x:String" x:Key="TotalAmount">
+              <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="TotalAmount" />
+            </OutArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_12">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -160,13 +166,13 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="420,244.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="420,244.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_CURRENTSCREEN_TakeFailedScreenshot workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_70" UnSafe="False" WorkflowFileName="Utilities\UTL_CURRENTSCREEN_TakeFailedScreenshot.xaml">
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_CURRENTSCREEN_TakeFailedScreenshot workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_82" UnSafe="False" WorkflowFileName="Utilities/UTL_CURRENTSCREEN_TakeFailedScreenshot.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="ModuleName">[ModuleName]</InArgument>
@@ -174,18 +180,68 @@
                   <InArgument x:TypeArguments="x:String" x:Key="Reason">[exception.ToString]</InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
-              <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="378.4,22.4" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_7" />
+              <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="378.4,22.4" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_13" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,319.2" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+      <TryCatch.Try>
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_PayWithRiel_ExactAmount workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_83" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\Payment\NAMOS_KH_PayWithRiel_ExactAmount.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="TotalAmount">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TotalAmount" />
+            </InArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+        </ui:InvokeWorkflowFile>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_13">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="420.8,244.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_CURRENTSCREEN_TakeFailedScreenshot workflow" sap:VirtualizedContainerService.HintSize="379.2,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_84" UnSafe="False" WorkflowFileName="Utilities/UTL_CURRENTSCREEN_TakeFailedScreenshot.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="ModuleName">[ModuleName]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">[ExecutionID]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Reason">[exception.ToString]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="379.2,22.4" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_14" />
             </Sequence>
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
       <TryCatch.Finally>
-        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_WORD_AddToTestResult workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_77" UnSafe="False" WorkflowFileName="Utilities\UTL_WORD_AddToTestResult.xaml">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_WORD_AddToTestResult workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_85" UnSafe="False" WorkflowFileName="Utilities/UTL_WORD_AddToTestResult.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">[ExecutionID]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="Transacation">Split Payment - Cash &amp; Riel</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">[ModuleName]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExecutionID" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="Transacation">
+              <Literal x:TypeArguments="x:String">Pay with Cash &amp; Riel - Split Payment</Literal>
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ModuleName" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="TestName">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TestName" />
+            </InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </TryCatch.Finally>

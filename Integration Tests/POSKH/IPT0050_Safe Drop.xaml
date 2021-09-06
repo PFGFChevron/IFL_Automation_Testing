@@ -65,7 +65,6 @@
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="IPT0050_Safe Drop" sap:VirtualizedContainerService.HintSize="501.6,4009.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -89,7 +88,7 @@
     </ui:InvokeWorkflowFile>
     <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="460,319.2" sap2010:WorkflowViewState.IdRef="TryCatch_4">
       <TryCatch.Try>
-        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_BuyWetstock_Silver workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_74" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\Purchase\NAMOS_KH_BuyWetstock_Silver.xaml">
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_BuyWetstock_Silver_$250 workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_81" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\Purchase\NAMOS_KH_BuyWetstock_Silver_$250.xaml">
           <ui:InvokeWorkflowFile.Arguments>
             <scg:Dictionary x:TypeArguments="x:String, Argument" />
           </ui:InvokeWorkflowFile.Arguments>
@@ -245,9 +244,7 @@
       <TryCatch.Try>
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_KH_CashSafeDrop workflow" sap:VirtualizedContainerService.HintSize="378.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_77" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\KH\More MOPs\NAMOS_KH_CashSafeDrop.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="TotalAmount">
-              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TotalAmount" />
-            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="TotalAmount">[TotalAmount]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </TryCatch.Try>
@@ -285,18 +282,10 @@
       <TryCatch.Finally>
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_WORD_AddToTestResult workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_79" UnSafe="False" WorkflowFileName="Utilities/UTL_WORD_AddToTestResult.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">
-              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExecutionID" />
-            </InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="Transacation">
-              <Literal x:TypeArguments="x:String">Cash Safe Drop</Literal>
-            </InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">
-              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ModuleName" />
-            </InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="TestName">
-              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TestName" />
-            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">[ExecutionID]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="Transacation">Cash Safe Drop</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">[ModuleName]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </TryCatch.Finally>

@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1101.6,1652.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>716.8,1692.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>NAMOS_PayCash_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -60,6 +60,7 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="NAMOS_KH_PayWithCash_ExactAmount" sap:VirtualizedContainerService.HintSize="512,1588" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -77,9 +78,7 @@
           <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="436.8,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Paying with Riel - Exact Amount - &quot;+TotalAmount" />
-                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">["Paying with Riel - Exact Amount - "+TotalAmount]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="436.8,107.2" sap2010:WorkflowViewState.IdRef="CVRefresh_1" InformativeScreenshot="724bba1fde01c1d63ce3bde50a93b59b" Version="V1">
@@ -482,12 +481,14 @@
             </TryCatch>
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="436.8,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Clicking Cash</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">
+                  <Literal x:TypeArguments="x:String">Clicking KHR</Literal>
+                </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="436.8,107.2" sap2010:WorkflowViewState.IdRef="CVRefresh_2" InformativeScreenshot="aa30b7048fbd5dc2dd0599416c13522a" Version="V1">
               <p:CVRefresh.DesignTimeCache>
-                <uc:CVCache InformativeScreenshot="88079937ec570c6f2fa9392bb739c1af" LogicalPosition="0, 128" OcrText="Current Sesslon: KH_POS1_New_MNL_ b 1 sesslon cp&#xD;&#xA;SCREEN SHARING 1 10.00&#xD;&#xA;NO. 3&#xD;&#xA;Amount Emergency&#xD;&#xA;More&#xD;&#xA;Functions&#xD;&#xA;Reprint&#xD;&#xA;Receipt&#xD;&#xA;Query&#xD;&#xA;Override System Desktop Console&#xD;&#xA;Everyone&#xD;&#xA;Aileen Acapuyan can now view&#xD;&#xA;and control fre customer's screen. Total&#xD;&#xA;Quantity NO. 2&#xD;&#xA;choose payment type&#xD;&#xA;Cash&#xD;&#xA;KHR&#xD;&#xA;40500 10.00&#xD;&#xA;10.00&#xD;&#xA;40500 Recall&#xD;&#xA;Layaway.&#xD;&#xA;discount More&#xD;&#xA;Mops&#xD;&#xA;7&#xD;&#xA;4&#xD;&#xA;1 Item Keys&#xD;&#xA;8&#xD;&#xA;5&#xD;&#xA;2&#xD;&#xA;Space&#xD;&#xA;KHR Num&#xD;&#xA;9&#xD;&#xA;6&#xD;&#xA;3&#xD;&#xA;Back-&#xD;&#xA;space&#xD;&#xA;Cash 14:43:30&#xD;&#xA;Quantity&#xD;&#xA;Void Item&#xD;&#xA;Yes&#xD;&#xA;Repeat&#xD;&#xA;NO&#xD;&#xA;Total&#xD;&#xA;Control" Position="0, 103" ScreenshotGuid="ca5eb982-8499-4d63-a3b3-79c9dda6cc35" ServerVersion="1">
+                <uc:CVCache InformativeScreenshot="88079937ec570c6f2fa9392bb739c1af" LogicalPosition="0, 128" OcrText="Current Sesslon: KH_POS1_New_MNL_ b 1 sesslon cp&#xA;SCREEN SHARING 1 10.00&#xA;NO. 3&#xA;Amount Emergency&#xA;More&#xA;Functions&#xA;Reprint&#xA;Receipt&#xA;Query&#xA;Override System Desktop Console&#xA;Everyone&#xA;Aileen Acapuyan can now view&#xA;and control fre customer's screen. Total&#xA;Quantity NO. 2&#xA;choose payment type&#xA;Cash&#xA;KHR&#xA;40500 10.00&#xA;10.00&#xA;40500 Recall&#xA;Layaway.&#xA;discount More&#xA;Mops&#xA;7&#xA;4&#xA;1 Item Keys&#xA;8&#xA;5&#xA;2&#xA;Space&#xA;KHR Num&#xA;9&#xA;6&#xA;3&#xA;Back-&#xA;space&#xA;Cash 14:43:30&#xA;Quantity&#xA;Void Item&#xA;Yes&#xA;Repeat&#xA;NO&#xA;Total&#xA;Control" Position="0, 103" ScreenshotGuid="ca5eb982-8499-4d63-a3b3-79c9dda6cc35" ServerVersion="1">
                   <uc:CVCache.CvTables>
                     <x:Array Type="uc:CvTableInfo">
                       <uc:CvTableInfo>
@@ -845,7 +846,7 @@
             </p:CVRefresh>
             <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,338.4" sap2010:WorkflowViewState.IdRef="TryCatch_4">
               <TryCatch.Try>
-                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (1052,801,85,84)&quot; +&#xD;&#xA;&quot;Anchor: Text 'KHR' (1081,838,29,10)&quot; +&#xD;&#xA;&quot;Anchor: Text 'Cash' (1163,838,33,10)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Button" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_4" InformativeScreenshot="5e4ea685d29bb2a10ab6974ea9eb9f12" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
+                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (1052,801,85,84)&quot; +&#xA;&quot;Anchor: Text 'KHR' (1081,838,29,10)&quot; +&#xA;&quot;Anchor: Text 'Cash' (1163,838,33,10)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Button" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_4" InformativeScreenshot="5e4ea685d29bb2a10ab6974ea9eb9f12" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                   <p:CvClickWithDescriptor.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
