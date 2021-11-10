@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_KH_CashierSignOn" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="717.6,5924" sap2010:WorkflowViewState.IdRef="NAMOS_CashierSignIn_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_KH_CashierSignOn" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="817,6126" sap2010:WorkflowViewState.IdRef="NAMOS_CashierSignIn_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uta="clr-namespace:UiPath.Testing.Activities;assembly=UiPath.Testing.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
       <x:String>System.Activities</x:String>
@@ -26,6 +26,15 @@
       <x:String>System.Windows.Media</x:String>
       <x:String>UiPath.Vision.OCR</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Shared.ObjectLibrary</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -56,15 +65,19 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="NAMOS_KH_CashierSignOn" sap:VirtualizedContainerService.HintSize="645.6,5859.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="NAMOS_KH_CashierSignOn" sap:VirtualizedContainerService.HintSize="646,6061" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" DisplayName="CV Screen Scope" sap:VirtualizedContainerService.HintSize="604,5766.4" sap2010:WorkflowViewState.IdRef="CVScope_3" Version="V1">
+    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" DisplayName="CV Screen Scope" sap:VirtualizedContainerService.HintSize="604,5969" sap2010:WorkflowViewState.IdRef="CVScope_3" Version="V1">
       <p:CVScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -74,12 +87,12 @@
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="CashierName" />
             </Sequence.Variables>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Long workflow" sap:VirtualizedContainerService.HintSize="570.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Long.xaml">
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Long workflow" sap:VirtualizedContainerService.HintSize="570,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Long.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Verifying if cashier is already logged in</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="570.4,107.2" sap2010:WorkflowViewState.IdRef="CVRefresh_13" InformativeScreenshot="adc953d7b5392ee0b400a1596a7a63e4" Version="V1">
+            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="570,106" sap2010:WorkflowViewState.IdRef="CVRefresh_13" InformativeScreenshot="adc953d7b5392ee0b400a1596a7a63e4" Version="V1">
               <p:CVRefresh.DesignTimeCache>
                 <uc:CVCache InformativeScreenshot="f3897b8edf52c0a9db3d8ae981467566" LogicalPosition="0, 0" OcrText="Web Rep Console Aileen Acap X +&#xA;https://chevron.beyondtrustcloud.cam/conso]e# Not syncing O&#xA;LG SIT&#xA;SCREEN SHARING v LGUAT Jira&#xA;Total&#xA;Quantity Item&#xA;1 1 session&#xA;NO. 2 2.00&#xA;No. 3&#xA;Amount Emergency&#xA;More&#xA;Functions&#xA;Reprint&#xA;Receipt System 21-07-05&#xA;Ouantity&#xA;Item&#xA;vald Line x&#xA;Everyone&#xA;(10:08:01) Aileen Acapuyan can now view&#xA;and control the customer's screen.&#xA;More&#xA;MOPS&#xA;7&#xA;4&#xA;1&#xA;00 Article&#xA;8&#xA;5&#xA;2&#xA;0 Num&#xA;9&#xA;6&#xA;3&#xA;Back.&#xA;space&#xA;Control" Position="0, 0" ScaleFactor="1.25" ScreenshotGuid="e9ca92c8-f683-4f6b-90f8-e061b1df6438" ServerVersion="1">
                   <uc:CVCache.CvTables>
@@ -481,9 +494,9 @@
                 </uc:CVCache>
               </p:CVRefresh.DesignTimeCache>
             </p:CVRefresh>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570.4,368.8" sap2010:WorkflowViewState.IdRef="TryCatch_15">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570,363" sap2010:WorkflowViewState.IdRef="TryCatch_15">
               <TryCatch.Try>
-                <p:CvGetTextWithDescriptor Descriptor="[&quot;Target: AnyText (774,201,60,15)&quot; +&#xA;&quot;Anchor: Text 'Emergency' (551,197,119,23)&quot;]" DesignTimeScaleFactor="1.25" DisplayName="CV Get Text - Any Text" sap:VirtualizedContainerService.HintSize="333.6,137.6" sap2010:WorkflowViewState.IdRef="CvGetTextWithDescriptor_2" InformativeScreenshot="c57807c4399803b4143ae6cf9566d061" RefreshBefore="True" Result="[CashierName]" Version="V1">
+                <p:CvGetTextWithDescriptor Descriptor="[&quot;Target: AnyText (774,201,60,15)&quot; +&#xA;&quot;Anchor: Text 'Emergency' (551,197,119,23)&quot;]" DesignTimeScaleFactor="1.25" DisplayName="CV Get Text - Any Text" sap:VirtualizedContainerService.HintSize="334,136" sap2010:WorkflowViewState.IdRef="CvGetTextWithDescriptor_2" InformativeScreenshot="c57807c4399803b4143ae6cf9566d061" RefreshBefore="True" Result="[CashierName]" Version="V1">
                   <p:CvGetTextWithDescriptor.DesignTimeDescriptor>
                     <uc:CvDescriptor InformativeScreenshot="c57807c4399803b4143ae6cf9566d061">
                       <uc:CvDescriptor.Anchors>
@@ -499,7 +512,7 @@
                 </p:CvGetTextWithDescriptor>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_15">
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_15">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1393,7 +1406,7 @@
                 <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Clicking Cashier SignOn</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" sap:VirtualizedContainerService.HintSize="570.4,107.2" sap2010:WorkflowViewState.IdRef="CVRefresh_4" InformativeScreenshot="45a00ce7b499128d9c39757c05dafda0" Version="V1">
+            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" sap:VirtualizedContainerService.HintSize="570,106" sap2010:WorkflowViewState.IdRef="CVRefresh_4" InformativeScreenshot="45a00ce7b499128d9c39757c05dafda0" Version="V1">
               <p:CVRefresh.DesignTimeCache>
                 <uc:CVCache InformativeScreenshot="e4bbaa13bcc3584ff0de4bd69b311d6b" LogicalPosition="0, 103" OcrText="Web Rep Console&#xA;I'Veb Rep Console - Patricio Ca X +&#xA;https:!ichevron.beyondtrustcloud.com/console#&#xA;Orchestrator - CVX Orchestrator - ACN OrchestiG —ion Proce... UiPath Academy Docume.&quot;.-. Web rhell popup... v.rscr.ot., W Home - SNo&amp;day Coo' Kids - Illusträti... UiPath Academy UiPath V.arketplace&#xA;Current Sesslon: 1 session&#xA;SCREEN SHARING Total&#xA;Cashier SignOn&#xA;Training SignOn&#xA;No cashier UiPath Community... GitHub&#xA;Desktop Console&#xA;Everyone&#xA;(20:43:54) Patricio can now view&#xA;and control fre customer's screen. Emergency&#xA;More&#xA;Functions&#xA;Reprint&#xA;Receipt&#xA;Override&#xA;Receipt&#xA;A)tt No cashier&#xA;Article&#xA;Rec all&#xA;Item&#xA;discount&#xA;Card More&#xA;MOPS&#xA;7&#xA;1&#xA;Plus: 8&#xA;2&#xA;Space Num&#xA;9&#xA;3&#xA;sack-&#xA;space Ouantitv&#xA;Item&#xA;Void Line&#xA;Yes&#xA;Repeat&#xA;NO&#xA;Pump&#xA;Control Credit /&#xA;Bank Card" Position="0, 103" ScreenshotGuid="00f46824-c173-4161-b7e2-8ff08552fe92" ServerVersion="1">
                   <uc:CVCache.CvTables>
@@ -1756,9 +1769,9 @@
                 </uc:CVCache>
               </p:CVRefresh.DesignTimeCache>
             </p:CVRefresh>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570.4,338.4" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570,333" sap2010:WorkflowViewState.IdRef="TryCatch_3">
               <TryCatch.Try>
-                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (304,386,203,68)&quot; +&#xA;&quot;Anchor: Text 'Cashier SignOn' (330,411,144,18)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Button" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_14" InformativeScreenshot="9f0ed7e45ff1d88265015695fc78a413" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
+                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (304,386,203,68)&quot; +&#xA;&quot;Anchor: Text 'Cashier SignOn' (330,411,144,18)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Button" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_14" InformativeScreenshot="9f0ed7e45ff1d88265015695fc78a413" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                   <p:CvClickWithDescriptor.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
@@ -1794,7 +1807,7 @@
                 </p:CvClickWithDescriptor>
               </TryCatch.Try>
               <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -1805,17 +1818,17 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                     </ActivityAction.Argument>
-                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_3" />
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_3" />
                   </ActivityAction>
                 </Catch>
               </TryCatch.Catches>
             </TryCatch>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="570.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="570,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Entering Cashier Number</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="570.4,107.2" sap2010:WorkflowViewState.IdRef="CVRefresh_8" InformativeScreenshot="0dfc272dfe196dbbbe4eec179227bde1" Version="V1">
+            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="570,106" sap2010:WorkflowViewState.IdRef="CVRefresh_8" InformativeScreenshot="0dfc272dfe196dbbbe4eec179227bde1" Version="V1">
               <p:CVRefresh.DesignTimeCache>
                 <uc:CVCache InformativeScreenshot="365bf80b35b63701b9bc1ae258c19522" LogicalPosition="0, 128" OcrText="Q Current Session: b 1 sesslon cp&#xA;SCREEN SHARING Total&#xA;Quantity&#xA;Cashier SignOn&#xA;Log in cashier no. Emergency No cashier&#xA;NO. 2 NO. 3&#xA;Amount&#xA;Pump&#xA;Control More&#xA;Functions&#xA;Reprint&#xA;Receipt&#xA;Override&#xA;Receipt&#xA;A)tt Rec all&#xA;Item&#xA;discount More&#xA;MOPS&#xA;7&#xA;4&#xA;1 Article&#xA;Keys&#xA;8&#xA;5&#xA;2&#xA;Space Num&#xA;9&#xA;6&#xA;3&#xA;sack-&#xA;space 21-07-05&#xA;Ouantitv&#xA;Item&#xA;Void Line&#xA;Yes&#xA;Repeat&#xA;NO Desktop Console&#xA;Everyone&#xA;Aileen Acapuyan can now view&#xA;and control fre customer's screen.&#xA;HK BOSH EPS&#xA;Reply" Position="0, 103" ScreenshotGuid="187365d4-d677-419e-8c96-3ff0fdfa920b" ServerVersion="1">
                   <uc:CVCache.CvTables>
@@ -2145,16 +2158,34 @@
                 </uc:CVCache>
               </p:CVRefresh.DesignTimeCache>
             </p:CVRefresh>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_NAMOS_Numpad workflow" sap:VirtualizedContainerService.HintSize="570.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Utilities\UTL_NAMOS_Numpad.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="Numkeys">
-                  <Literal x:TypeArguments="x:String">998</Literal>
-                </InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570.4,338.4" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570,314" sap2010:WorkflowViewState.IdRef="TryCatch_17">
               <TryCatch.Try>
-                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (1222,649,81,72)&quot; +&#xA;&quot;Anchor: Text 'Repeat' (1240,684,49,13)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Button" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_26" InformativeScreenshot="1669d23ed0d40f354cd801ce0da4c340" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_NAMOS_Numpad workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Utilities\UTL_NAMOS_Numpad.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="Numkeys">998</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_17">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_17" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570,334" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+              <TryCatch.Try>
+                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Button (1222,649,81,72)&quot; +&#xA;&quot;Anchor: Text 'Repeat' (1240,684,49,13)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Button" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_26" InformativeScreenshot="1669d23ed0d40f354cd801ce0da4c340" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                   <p:CvClickWithDescriptor.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
@@ -2527,9 +2558,7 @@
             </p:CVRefresh>
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_NAMOS_Numpad workflow" sap:VirtualizedContainerService.HintSize="570.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Utilities\UTL_NAMOS_Numpad.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="Numkeys">
-                  <Literal x:TypeArguments="x:String">998</Literal>
-                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Numkeys">998</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="570.4,338.4" sap2010:WorkflowViewState.IdRef="TryCatch_11">
@@ -3272,7 +3301,7 @@
           <ActivityFunc.Argument>
             <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
           </ActivityFunc.Argument>
-          <ui:MicrosoftOCR FilterRegion="{x:Null}" Output="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_4" Image="[Image]" Language="en" Profile="Screen" Scale="1" />
+          <ui:MicrosoftOCR FilterRegion="{x:Null}" Output="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_4" Image="[Image]" Language="en" Profile="Screen" Scale="1" />
         </ActivityFunc>
       </p:CVScope.OCREngine>
       <p:CVScope.Target>
