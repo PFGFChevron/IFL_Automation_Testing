@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_03B_AM_AuditMe" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="840,1240" sap2010:WorkflowViewState.IdRef="_03B_AM_AuditMe_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Diagnostics;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_03B_AM_AuditMe" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="899,1021" sap2010:WorkflowViewState.IdRef="_03B_AM_AuditMe_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Diagnostics;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -58,9 +58,11 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Diagnostics.DiagnosticSource</AssemblyReference>
       <AssemblyReference>System.Configuration.Install</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_03B_AM_AuditMe" sap:VirtualizedContainerService.HintSize="476,1175" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="_03B_AM_AuditMe" sap:VirtualizedContainerService.HintSize="476,956" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="takescr" />
       <Variable x:TypeArguments="sd:Process" Name="imageOpen" />
@@ -82,7 +84,7 @@
         </ui:Target>
       </ui:SendHotkey.Target>
     </ui:SendHotkey>
-    <ui:BrowserScope Browser="{x:Null}" BrowserType="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" DisplayName="Attach Browser 'ApplicationFrameHost.ex...'" sap:VirtualizedContainerService.HintSize="434,406" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="65c06daefe7d3716bbae20068c192568" Selector="&lt;html title='GIL Options Panel - Home' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" BrowserType="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" DisplayName="Attach Browser 'GIL Options Panel'" sap:VirtualizedContainerService.HintSize="434,406" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="f87e3ddeea57ea0c17e647168e711314" Selector="&lt;html title='GIL Options Panel - Home' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -121,7 +123,7 @@
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <Delay DisplayName="Delay - 3 seconds" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    <Delay DisplayName="Delay - 3 seconds" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
     <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot" sap:VirtualizedContainerService.HintSize="434,68" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[takescr]">
       <ui:TakeScreenshot.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="75dc7d6e-806a-4e28-8b8b-a5087b059a76">
@@ -134,15 +136,6 @@
         </ui:Target>
       </ui:TakeScreenshot.Target>
     </ui:TakeScreenshot>
-    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder -  temp folder" sap:VirtualizedContainerService.HintSize="434,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="C:\temp\ISMS Monthly Checklist" />
-    <ui:SaveImage DisplayName="Save Image" FileName="[&quot;C:\temp\ISMS Monthly Checklist\&quot;+&quot;03B_AM_AuditMe_&quot;+Now.ToString(&quot;MMMMyyyy&quot;)+&quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[takescr]" />
-    <Assign DisplayName="Assign - Saves image file in imageOpen" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="sd:Process">[imageOpen]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="sd:Process">[System.Diagnostics.Process.Start("C:\temp\ISMS Monthly Checklist\"+"03B_AM_AuditMe_"+Now.ToString("MMMMyyyy")+".png")]</InArgument>
-      </Assign.Value>
-    </Assign>
+    <ui:SaveImage DisplayName="Save Image" FileName="[&quot;C:\temp\Physical asset inventory\&quot;+DateTime.Now.ToString(&quot;MMMM yyyy&quot;)+&quot;\03B_AM_AuditMe_&quot;+Now.ToString(&quot;MMMMyyyy&quot;)+&quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[takescr]" />
   </Sequence>
 </Activity>

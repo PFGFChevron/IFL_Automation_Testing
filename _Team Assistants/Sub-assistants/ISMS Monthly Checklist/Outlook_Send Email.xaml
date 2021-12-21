@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>840,831</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>899,831</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Send_Email_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -42,6 +42,7 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.Mail.Outlook.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -78,29 +79,38 @@
       <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Outlook_Send Email" sap:VirtualizedContainerService.HintSize="376,336" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Outlook_Send Email" sap:VirtualizedContainerService.HintSize="476,544" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi ISMS Rep,&quot;+&#xD;&#xA;vbNewLine+&#xD;&#xA;&quot;Kindly see attached screesnhots for my Physical Asset Inventory for this month. Thanks&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;[ISMS] Monthly Checklists for &quot;+DateTime.Now.ToString(&quot;MMMM yyyy&quot;)]" To="[EmailAddress_To]">
+    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hi ISMS Rep,&quot;+&#xA;vbNewLine+&#xA;&quot;Kindly see attached screesnhots for my Physical Asset Inventory for this month. Thanks&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="434,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;[ISMS] Monthly Checklists for &quot;+DateTime.Now.ToString(&quot;MMMM yyyy&quot;)]" To="[EmailAddress_To]">
       <ui:SendOutlookMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-          <InArgument x:TypeArguments="x:String">
-            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;C:\temp\ISMS Monthly Checklist\&quot;+&quot;03A_AM_Home_&quot;+Now.ToString(&quot;MMMMyyyy&quot;)+&quot;.png&quot;" />
-          </InArgument>
-          <InArgument x:TypeArguments="x:String">
-            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;C:\temp\ISMS Monthly Checklist\&quot;+&quot;03B_AM_AuditMe_&quot;+Now.ToString(&quot;MMMMyyyy&quot;)+&quot;.png&quot;" />
-          </InArgument>
+          <InArgument x:TypeArguments="x:String">["C:\temp\Physical asset inventory\"+DateTime.Now.ToString("MMMM yyyy")+"\03A_AM_Home_"+Now.ToString("MMMMyyyy")+".png"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["C:\temp\Physical asset inventory\"+DateTime.Now.ToString("MMMM yyyy")+"\03B_AM_AuditMe_"+Now.ToString("MMMMyyyy")+".png"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["C:\temp\Physical asset inventory\"+DateTime.Now.ToString("MMMM yyyy")+"\04A_SCE_"+DateTime.Now.ToString("MMMMyyyy")+".pdf"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["C:\temp\Physical asset inventory\"+DateTime.Now.ToString("MMMM yyyy")+"\05A_CVX_HDDE_"+DateTime.Now.ToString("MMMMyyyy")+".pdf"]</InArgument>
         </scg:List>
       </ui:SendOutlookMail.Files>
     </ui:SendOutlookMail>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Audit Me screenshots were successfully taken.&quot;+&#xD;&#xA;vbNewLine+&#xD;&#xA;vbNewLine+&#xD;&#xA;&quot;Screenshot location: &quot;+vbNewLine+&quot;C:\temp\Physical asset inventory&quot;]" />
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Physical Asset Inventory'" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="4214b365999e5157678fd533280f71ce" Selector="&lt;html app='msedge.exe' title='Physical Asset Inventory' /&gt;">
+      <ui:BrowserScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+          </ActivityAction.Argument>
+          <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
+        </ActivityAction>
+      </ui:BrowserScope.Body>
+    </ui:BrowserScope>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;GIL Physical Asset Inventory screenshots were successfully taken.&quot;+&#xA;vbNewLine+&#xA;vbNewLine+&#xA;&quot;Screenshot location: &quot;+vbNewLine+&quot;C:\temp\Physical asset inventory\&quot;+DateTime.Now.ToString(&quot;MMMM yyyy&quot;)+&quot;\&quot;]" />
   </Sequence>
 </Activity>

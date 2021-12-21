@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="_03A_AM_Home" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="840,1049" sap2010:WorkflowViewState.IdRef="Try_Open_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Diagnostics;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="_03A_AM_Home" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="899,857" sap2010:WorkflowViewState.IdRef="Try_Open_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Diagnostics;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="54">
       <x:String>System.Activities</x:String>
@@ -64,9 +64,13 @@
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="03A_AM_Home" sap:VirtualizedContainerService.HintSize="486,984" sap2010:WorkflowViewState.IdRef="Sequence_15">
+  <Sequence DisplayName="03A_AM_Home" sap:VirtualizedContainerService.HintSize="486,792" sap2010:WorkflowViewState.IdRef="Sequence_15">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:Image" Name="takescr" />
       <Variable x:TypeArguments="sd:Process" Name="imageOpen" />
@@ -77,6 +81,14 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder -  temp folder" sap:VirtualizedContainerService.HintSize="444,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_4" Path="[&quot;C:\temp\Physical asset inventory\&quot;+DateTime.Now.ToString(&quot;MMMM yyyy&quot;)+&quot;\.screenshots&quot;]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CreateDirectory>
     <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="444,116" sap2010:WorkflowViewState.IdRef="SendHotkey_7" Key="d" KeyModifiers="Win">
       <ui:SendHotkey.Target>
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="6559358b-6cb8-4ab1-b16f-743f5275be77">
@@ -89,20 +101,13 @@
         </ui:Target>
       </ui:SendHotkey.Target>
     </ui:SendHotkey>
-    <ui:OpenBrowser BrowserType="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="444,215" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="http://optionspanel.chevron.com/">
+    <ui:OpenBrowser BrowserType="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="444,123" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="http://optionspanel.chevron.com/">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_19">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_12" />
-          </Sequence>
+          <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_12" />
         </ActivityAction>
       </ui:OpenBrowser.Body>
     </ui:OpenBrowser>
@@ -119,15 +124,6 @@
         </ui:Target>
       </ui:TakeScreenshot.Target>
     </ui:TakeScreenshot>
-    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder -  temp folder" sap:VirtualizedContainerService.HintSize="444,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_3" Path="C:\temp\ISMS Monthly Checklist" />
-    <ui:SaveImage DisplayName="Save Image" FileName="[&quot;C:\temp\ISMS Monthly Checklist\&quot;+&quot;03A_AM_Home_&quot;+Now.ToString(&quot;MMMMyyyy&quot;)+&quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="444,92" sap2010:WorkflowViewState.IdRef="SaveImage_3" Image="[takescr]" />
-    <Assign DisplayName="Assign - Saves image file in imageOpen" sap:VirtualizedContainerService.HintSize="444,60" sap2010:WorkflowViewState.IdRef="Assign_3">
-      <Assign.To>
-        <OutArgument x:TypeArguments="sd:Process">[imageOpen]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="sd:Process">[System.Diagnostics.Process.Start("C:\temp\ISMS Monthly Checklist\"+"03A_AM_Home_"+Now.ToString("MMMMyyyy")+".png")]</InArgument>
-      </Assign.Value>
-    </Assign>
+    <ui:SaveImage DisplayName="Save Image" FileName="[&quot;C:\temp\Physical asset inventory\&quot;+DateTime.Now.ToString(&quot;MMMM yyyy&quot;)+&quot;\03A_AM_Home_&quot;+Now.ToString(&quot;MMMMyyyy&quot;)+&quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="444,92" sap2010:WorkflowViewState.IdRef="SaveImage_3" Image="[takescr]" />
   </Sequence>
 </Activity>
