@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="OpenLogFile" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1488,1073" sap2010:WorkflowViewState.IdRef="OpenLogFile_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="OpenLogFile_Local" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="865,1073" sap2010:WorkflowViewState.IdRef="OpenLogFile_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="21">
+    <scg:List x:TypeArguments="x:String" Capacity="42">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -22,10 +22,11 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="25">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="50">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -51,9 +52,10 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="OpenLogFile" sap:VirtualizedContainerService.HintSize="476,1008" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="OpenLogFile_Local" sap:VirtualizedContainerService.HintSize="476,1008" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="20210323171820" Name="ExecutionID" />
       <Variable x:TypeArguments="x:String" Name="TestName" />
@@ -69,7 +71,7 @@
         <OutArgument x:TypeArguments="x:String">[ExecutionID]</OutArgument>
       </ui:GetAttribute.Result>
       <ui:GetAttribute.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="096590dc-c942-46e3-8e78-9148900e4534" InformativeScreenshot="03a6f1704db329fcd203be02b1ec912f" Selector="&lt;html title='IFL Testing Bot' /&gt;&lt;webctrl id='executionID' tag='A' /&gt;">
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="096590dc-c942-46e3-8e78-9148900e4534" InformativeScreenshot="03a6f1704db329fcd203be02b1ec912f" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;&lt;webctrl id='executionID' tag='A' /&gt;">
           <ui:Target.TimeoutMS>
             <InArgument x:TypeArguments="x:Int32" />
           </ui:Target.TimeoutMS>
@@ -84,7 +86,7 @@
         <OutArgument x:TypeArguments="x:String">[TestName]</OutArgument>
       </ui:GetAttribute.Result>
       <ui:GetAttribute.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bbb1d5db-c818-4a2c-b2ed-e12359992197" InformativeScreenshot="f41e5e47d1bc4cb9b135d03555edd286" Selector="&lt;html title='IFL Testing Bot' /&gt;&lt;webctrl id='logFileTestName' tag='A' /&gt;">
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="bbb1d5db-c818-4a2c-b2ed-e12359992197" InformativeScreenshot="f41e5e47d1bc4cb9b135d03555edd286" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;&lt;webctrl id='logFileTestName' tag='A' /&gt;">
           <ui:Target.TimeoutMS>
             <InArgument x:TypeArguments="x:Int32" />
           </ui:Target.TimeoutMS>
@@ -94,12 +96,12 @@
         </ui:Target>
       </ui:GetAttribute.Target>
     </ui:GetAttribute>
-    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="parentid" DisplayName="Get Attribute 'H2'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="GetAttribute_3">
+    <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="parentid" DisplayName="Get Attribute 'H2'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="GetAttribute_5">
       <ui:GetAttribute.Result>
         <OutArgument x:TypeArguments="x:String">[ModuleName]</OutArgument>
       </ui:GetAttribute.Result>
       <ui:GetAttribute.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1d669a6d-30b9-431b-9bcf-a2147f36accb" InformativeScreenshot="5994f1c3f23930ddc90975bd02df6fb0" Selector="&lt;html title='IFL Testing Bot' /&gt;&lt;webctrl tag='H2' parentname='tableExecutionShown' parentclass='tableExecution' /&gt;">
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1d669a6d-30b9-431b-9bcf-a2147f36accb" InformativeScreenshot="15ac4532e61f1cfc26428296752f2f94" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;&lt;webctrl tag='H2' parentclass='tableExecution' parentname='tableExecutionShown' title='IFL Testing Bot' /&gt;">
           <ui:Target.TimeoutMS>
             <InArgument x:TypeArguments="x:Int32" />
           </ui:Target.TimeoutMS>
@@ -117,7 +119,7 @@
       </ui:Replace.Replacement>
     </ui:Replace>
     <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="[&quot;.testLogs\&quot;+ModuleName+&quot;\&quot;+TestName+&quot;\Test Log_&quot;+TestName+&quot;_&quot;+ExecutionID+&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="434,87" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'Refresh Browser'" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="d57c91a09dedebc70cfa4932482aa074" Selector="&lt;html title='IFL Testing Bot' /&gt;&#xA;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach Browser 'Refresh Browser'" sap:VirtualizedContainerService.HintSize="434,168" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="a85ef45f6fc227d4523bce0565c7910f" Selector="&lt;html app='msedge.exe' title='IFL Testing Bot' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
