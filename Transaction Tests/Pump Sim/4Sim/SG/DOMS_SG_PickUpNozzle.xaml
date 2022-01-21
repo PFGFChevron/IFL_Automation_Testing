@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>840,2103</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>784,2103</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>NAMOS_CashierSignIn_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -86,6 +86,7 @@
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="DOMS_SG_PickUpNozzle" sap:VirtualizedContainerService.HintSize="514,2038" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -106,7 +107,7 @@
             </Sequence.Variables>
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Entering Dispense No.</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">["Entering Dispense No: "+Fuelpoint+" &amp; Hose No: "+FuelGrade]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="438,106" sap2010:WorkflowViewState.IdRef="CVRefresh_13" InformativeScreenshot="86e1b5a4a2fad03fb19210491f3093ad" Version="V1">
@@ -922,9 +923,14 @@
             </p:CVRefresh>
             <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,361" sap2010:WorkflowViewState.IdRef="TryCatch_16">
               <TryCatch.Try>
-                <p:CvTypeIntoWithDescriptor SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" Descriptor="[&quot;Target: Text 'Hose No:' (827,282,42,8) OffsetPoint: (55,1)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Type Into - Text" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="CvTypeIntoWithDescriptor_2" InformativeScreenshot="f6ff7943101bfe13ff0174ac1c498627" Text="[FuelGrade]" Version="V1">
+                <p:CvTypeIntoWithDescriptor SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" Descriptor="[&quot;Target: Text 'Hose No:' (827,282,42,8) OffsetPoint: (55,1)&quot; +&#xD;&#xA;&quot;Anchor: Icon (665,273,32,34)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Type Into - Text" EmptyField="True" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="CvTypeIntoWithDescriptor_2" InformativeScreenshot="1a33eff591d064e800e9b1b64897b0b8" Text="[FuelGrade]" Version="V1">
                   <p:CvTypeIntoWithDescriptor.DesignTimeDescriptor>
-                    <uc:CvDescriptor InformativeScreenshot="f6ff7943101bfe13ff0174ac1c498627" TargetPointOffset="55, 1">
+                    <uc:CvDescriptor InformativeScreenshot="1a33eff591d064e800e9b1b64897b0b8" TargetPointOffset="55, 1">
+                      <uc:CvDescriptor.Anchors>
+                        <x:Array Type="uc:CvElementDescriptor">
+                          <uc:CvElementDescriptor DesignTimeArea="665, 273, 32, 34" ElementType="Icon" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAiCAYAAAA+stv/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJqSURBVFhH5ZbhbSshEIQphmYowGVcM1fGK+CacTFkP2CSNb7D4JcoPzLSChvZfLOznOWQf1l/y8D9nvNx/Cu177V+3ICgwARnD/H6RwwAUIceKMlQSrfvMVCABwc/ditpb9tuD8XesoG02ZfCLccEpL2P7NV9D1aXlIB9GksGgBb4lvO2U3RWE0i2h4lohgS+gnpNGwjR5mUAou6FmRBb2WeAj6BeUwZq7DZDAx3M21Y6Ll2nBma1hJJ1vaKXBspFsdiBA46AyrytDEzkGwYNzkhWNTTAgZr5V7cVpj3S2bZQ5k35SzijSwNEDRxo6bqtQEkjWYViqj5eezPA/GcvILo0ULuvnQoMlGIPQ7zOBrhb10pAhYkQQqm3ngK+xHzpElB97L6KhLx6A6oYw3AswztQLmDrNNnrctBFN4q9L/bf+x2wL5XHqsCtLI1jr5esny17dHoG57MjXRoAGInbfnhY/UHAgcoEMAwApLyBUfzo1EB5Amz2wCniz/d6kCBcLpkC7g34GsWPTg1w+ZLgrA4kMB1qHGdw9vjMKz0Z2O3Qz+7NfTQAjxkw3zWiO8E8XHuv4kdPBoK653DW1oUM+EMx04MFZ53RgwFmXS5egzMKAUcGdOFUfVIjPRgAGA0MvP7DqfEjGdClYhWY1ZuYjR89jYAL99m5QQSkIwxImr/gvYlZPRlAHI4BoCWF9p6DFS2rbnpvgHVWpwYkwIAoJcFKAVL1BmbjR0MDkox4SF9+X2ZnNGVA4nDuAXX17GtEs1oygIhX3QLsayV+tGzACxgdY0aprMSP/suAF2ZWu0ffZuBd/bKBnD8AYR2FtkyfCF8AAAAASUVORK5CYII=" />
+                        </x:Array>
+                      </uc:CvDescriptor.Anchors>
                       <uc:CvDescriptor.Target>
                         <uc:CvElementDescriptor DesignTimeArea="827, 282, 42, 8" ElementType="Text" Text="Hose No:" />
                       </uc:CvDescriptor.Target>

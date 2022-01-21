@@ -10,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>840,5962</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>784,5962</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Indoor_Cash_No_Change_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -71,22 +71,16 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="DOP0042_Sales_Transactions_Wet_Stock_Cash_With_Change_2_Diesel" sap:VirtualizedContainerService.HintSize="480,5897" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Drystock" />
       <Variable x:TypeArguments="x:String" Name="TotalAmount" />
-      <Variable x:TypeArguments="x:String" Name="Fuelpoint">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">02</Literal>
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:String" Name="FuelGrade">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">1</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="02" Name="Fuelpoint" />
+      <Variable x:TypeArguments="x:String" Default="1" Name="FuelGrade" />
       <Variable x:TypeArguments="x:Boolean" Name="SafeDropFlag" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -96,9 +90,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_55" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="LogMessage">
-          <Literal x:TypeArguments="x:String">********Test Started: DOP0042_Sales_Transactions_Wet_Stock_Cash_With_Change_2_Diesel********</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="LogMessage">********Test Started: DOP0042_Sales_Transactions_Wet_Stock_Cash_With_Change_2_Diesel********</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="True" DisplayName="Invoke NAMOS_SG_CashierSignOn workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_48" UnSafe="False" WorkflowFileName="Transaction Tests/NAMOS/SG/More Functions/NAMOS_SG_CashierSignOn.xaml">
@@ -179,7 +171,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,243" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,241" sap2010:WorkflowViewState.IdRef="Sequence_14">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -458,10 +450,18 @@
       <TryCatch.Finally>
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WORD_AddToTestResult workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_80" UnSafe="False" WorkflowFileName="Utilities/UTL_WORD_AddToTestResult.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">[ExecutionID]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="Transacation">["Select Wetstock Transaction - Fuelpoint "+Fuelpoint]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">[ModuleName]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExecutionID" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="Transacation">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Select Wetstock Transaction - Fuelpoint: &quot;+Fuelpoint+&quot; - Grade: &quot;+FuelGrade" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ModuleName" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="TestName">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TestName" />
+            </InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </TryCatch.Finally>

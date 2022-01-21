@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98" this:DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98.DelayShort="3" this:DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98.DelayLong="10" this:DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98.TestName="DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98" this:DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98.ModuleName="POSSG" this:DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98.ExecutionID="[&quot;ExecutionID&quot;+DateTime.Now.ToString(&quot;yyyyMMddHHmmss&quot;)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="DelayShort" Type="InArgument(x:Int32)" />
@@ -11,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>817,5748</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>927,5962</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Indoor_Cash_No_Change_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -72,14 +71,16 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98" sap:VirtualizedContainerService.HintSize="480,5643" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DOP0032_Sales_Transactions_Wet_Stock_Cash_Exact_Change_2_98" sap:VirtualizedContainerService.HintSize="480,5897" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Drystock" />
       <Variable x:TypeArguments="x:String" Name="TotalAmount" />
       <Variable x:TypeArguments="x:String" Default="02" Name="Fuelpoint" />
       <Variable x:TypeArguments="x:String" Default="3" Name="FuelGrade" />
+      <Variable x:TypeArguments="x:Boolean" Name="SafeDropFlag" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -169,7 +170,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,241" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,243" sap2010:WorkflowViewState.IdRef="Sequence_14">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -209,7 +210,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,241" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,243" sap2010:WorkflowViewState.IdRef="Sequence_15">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -289,7 +290,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,241" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <Sequence DisplayName="Catches exception" sap:VirtualizedContainerService.HintSize="421,243" sap2010:WorkflowViewState.IdRef="Sequence_17">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -449,7 +450,7 @@
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WORD_AddToTestResult workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_80" UnSafe="False" WorkflowFileName="Utilities/UTL_WORD_AddToTestResult.xaml">
           <ui:InvokeWorkflowFile.Arguments>
             <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">[ExecutionID]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="Transacation">["Select Wetstock Transaction - Fuelpoint "+Fuelpoint]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="Transacation">["Select Wetstock Transaction - Fuelpoint: "+Fuelpoint+" - Grade: "+FuelGrade]</InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="ModuleName">[ModuleName]</InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
@@ -553,6 +554,11 @@
         </ui:InvokeWorkflowFile>
       </TryCatch.Finally>
     </TryCatch>
+    <ui:InvokeWorkflowFile ContinueOnError="True" DisplayName="Invoke NAMOS_SG_CashSafeDrop_ErrorHandler_Partition1 workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_83" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\SG\Others\NAMOS_SG_CashSafeDrop_ErrorHandler_Partition1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="SafeDropFlag">[SafeDropFlag]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_TakeScreenshot workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Utilities/UTL_NAMOS_TakeScreenshot.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
@@ -704,6 +710,11 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
+    <ui:InvokeWorkflowFile ContinueOnError="True" DisplayName="Invoke NAMOS_SG_CashSafeDrop_ErrorHandler_Partition2 workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_84" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\SG\Others\NAMOS_SG_CashSafeDrop_ErrorHandler_Partition2.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="SafeDropFlag">[SafeDropFlag]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
     <Assign sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[ExecutionStatus]</OutArgument>

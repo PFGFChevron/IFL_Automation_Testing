@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98" this:DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98.DelayShort="3" this:DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98.DelayLong="10" this:DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98.TestName="DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98" this:DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98.ModuleName="POSSG" this:DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98.ExecutionID="[&quot;ExecutionID&quot;+DateTime.Now.ToString(&quot;yyyyMMddHHmmss&quot;)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="DelayShort" Type="InArgument(x:Int32)" />
@@ -11,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>817,5354</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>927,5608</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Indoor_Cash_No_Change_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -72,10 +71,11 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98" sap:VirtualizedContainerService.HintSize="480,5289" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98" sap:VirtualizedContainerService.HintSize="480,5543" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Drystock" />
       <Variable x:TypeArguments="x:String" Name="TotalAmount" />
@@ -89,9 +89,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_55" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="LogMessage">
-          <Literal x:TypeArguments="x:String">********Test Started: DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98********</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="LogMessage">********Test Started: DOP0075_Sales_Transactions_Wet_Stock_Pump_2_Coupon_Manual_98********</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="True" DisplayName="Invoke NAMOS_SG_CashierSignOn workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_48" UnSafe="False" WorkflowFileName="Transaction Tests/NAMOS/SG/More Functions/NAMOS_SG_CashierSignOn.xaml">
@@ -451,10 +449,18 @@
       <TryCatch.Finally>
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WORD_AddToTestResult workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_80" UnSafe="False" WorkflowFileName="Utilities/UTL_WORD_AddToTestResult.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">[ExecutionID]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="Transacation">["Select Wetstock Transaction - Fuelpoint "+Fuelpoint]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">[ModuleName]</InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ExecutionID">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExecutionID" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="Transacation">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Select Wetstock Transaction - Fuelpoint: &quot;+Fuelpoint+&quot; - Grade: &quot;+FuelGrade" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="ModuleName">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ModuleName" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="TestName">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TestName" />
+            </InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </TryCatch.Finally>
@@ -512,7 +518,7 @@
               <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExecutionID" />
             </InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="Transacation">
-              <Literal x:TypeArguments="x:String">Pay with Value Voucher - Promo Voucher - Exact Amount</Literal>
+              <Literal x:TypeArguments="x:String">Pay with Coupon - Promo Voucher - Exact Amount</Literal>
             </InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="ModuleName">
               <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ModuleName" />
@@ -524,6 +530,11 @@
         </ui:InvokeWorkflowFile>
       </TryCatch.Finally>
     </TryCatch>
+    <ui:InvokeWorkflowFile ContinueOnError="True" DisplayName="Invoke NAMOS_SG_CashSafeDrop_ErrorHandler_Partition1 workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_84" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\SG\Others\NAMOS_SG_CashSafeDrop_ErrorHandler_Partition1.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="SafeDropFlag">[SafeDropFlag]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_TakeScreenshot workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Utilities/UTL_NAMOS_TakeScreenshot.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="TestName">[TestName]</InArgument>
@@ -675,6 +686,11 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
+    <ui:InvokeWorkflowFile ContinueOnError="True" DisplayName="Invoke NAMOS_SG_CashSafeDrop_ErrorHandler_Partition2 workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_85" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\SG\Others\NAMOS_SG_CashSafeDrop_ErrorHandler_Partition2.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="SafeDropFlag">[SafeDropFlag]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
     <Assign sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[ExecutionStatus]</OutArgument>
