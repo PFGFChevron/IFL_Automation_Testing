@@ -6,10 +6,10 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1794,831</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>925,701</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="23">
+    <scg:List x:TypeArguments="x:String" Capacity="46">
       <x:String>System.Activities.XamlIntegration</x:String>
       <x:String>System.Activities.Validation</x:String>
       <x:String>System.Activities</x:String>
@@ -33,6 +33,8 @@
       <x:String>System.Windows.Media</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
       <x:String>System.Collections</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -94,13 +96,13 @@
           <av:Size x:Key="ShapeSize">200,51</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:MonitorEvents ContinueOnError="{x:Null}" DisplayName="Monitor Events" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="MonitorEvents_3">
+      <ui:MonitorEvents ContinueOnError="{x:Null}" DisplayName="Monitor Events" sap:VirtualizedContainerService.HintSize="1578,994" sap2010:WorkflowViewState.IdRef="MonitorEvents_3">
         <ui:MonitorEvents.Handler>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="args" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Event Handler" sap:VirtualizedContainerService.HintSize="539,664" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="Event Handler" sap:VirtualizedContainerService.HintSize="539,804" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="RobotFunction" />
               </Sequence.Variables>
@@ -110,7 +112,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="497,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
-              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="value" DisplayName="Get Attribute 'activeRobotTriggerButton'" sap:VirtualizedContainerService.HintSize="497,134" sap2010:WorkflowViewState.IdRef="GetAttribute_8">
+              <ui:GetAttribute Attribute="value" ContinueOnError="True" DisplayName="Get Attribute 'activeRobotTriggerButton'" sap:VirtualizedContainerService.HintSize="497,134" sap2010:WorkflowViewState.IdRef="GetAttribute_8">
                 <ui:GetAttribute.Result>
                   <OutArgument x:TypeArguments="x:String">[RobotFunction]</OutArgument>
                 </ui:GetAttribute.Result>
@@ -125,9 +127,20 @@
                   </ui:Target>
                 </ui:GetAttribute.Target>
               </ui:GetAttribute>
-              <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[RobotFunction]" sap:VirtualizedContainerService.HintSize="497,337" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+              <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[RobotFunction]" sap:VirtualizedContainerService.HintSize="497,476" sap2010:WorkflowViewState.IdRef="Switch`1_4">
                 <Switch.Default>
-                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Unknown error is encountered&quot;]" />
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,229" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Unknown error is encountered&quot;]" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                  </ui:CommentOut>
                 </Switch.Default>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
