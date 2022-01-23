@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>925,701</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>925,831</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="46">
@@ -63,6 +63,7 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Main" sap:VirtualizedContainerService.HintSize="684,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -96,13 +97,13 @@
           <av:Size x:Key="ShapeSize">200,51</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:MonitorEvents ContinueOnError="{x:Null}" DisplayName="Monitor Events" sap:VirtualizedContainerService.HintSize="1578,994" sap2010:WorkflowViewState.IdRef="MonitorEvents_3">
+      <ui:MonitorEvents ContinueOnError="{x:Null}" DisplayName="Monitor Events" sap:VirtualizedContainerService.HintSize="1578,856" sap2010:WorkflowViewState.IdRef="MonitorEvents_3">
         <ui:MonitorEvents.Handler>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="args" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Event Handler" sap:VirtualizedContainerService.HintSize="539,804" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="Event Handler" sap:VirtualizedContainerService.HintSize="539,666" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="RobotFunction" />
               </Sequence.Variables>
@@ -127,20 +128,9 @@
                   </ui:Target>
                 </ui:GetAttribute.Target>
               </ui:GetAttribute>
-              <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[RobotFunction]" sap:VirtualizedContainerService.HintSize="497,476" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+              <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[RobotFunction]" sap:VirtualizedContainerService.HintSize="497,338" sap2010:WorkflowViewState.IdRef="Switch`1_4">
                 <Switch.Default>
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,229" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,151" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Unknown error is encountered&quot;]" />
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                  </ui:CommentOut>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[&quot;Unknown error is encountered during Monitor Events&quot;]" />
                 </Switch.Default>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
