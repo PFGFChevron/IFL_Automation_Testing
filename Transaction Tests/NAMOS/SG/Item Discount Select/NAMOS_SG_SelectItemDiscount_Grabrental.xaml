@@ -1,4 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_SG_SelectItemDiscount_5_CreditCardDiscountP98" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="840,2301" sap2010:WorkflowViewState.IdRef="NAMOS_PayCash_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_SG_SelectItemDiscount_5_CreditCardDiscountP98" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:this="clr-namespace:" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="Discount" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:NAMOS_SG_SelectItemDiscount_5_CreditCardDiscountP98.Discount>
+    <InArgument x:TypeArguments="x:String" />
+  </this:NAMOS_SG_SelectItemDiscount_5_CreditCardDiscountP98.Discount>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>933,2401</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>NAMOS_PayCash_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -65,7 +76,6 @@
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Callout.Activity</AssemblyReference>
       <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
@@ -76,12 +86,20 @@
       <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="NAMOS_SG_VoidLineItem" sap:VirtualizedContainerService.HintSize="514,2236" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="NAMOS_SG_VoidLineItem" sap:VirtualizedContainerService.HintSize="514,2336" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="472,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Discount]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">Grabrental</InArgument>
+      </Assign.Value>
+    </Assign>
     <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" DisplayName="Computer Vision" sap:VirtualizedContainerService.HintSize="472,2144" sap2010:WorkflowViewState.IdRef="CVScope_2" Version="V1">
       <p:CVScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
@@ -593,14 +611,12 @@
             </TryCatch>
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">
-                  <Literal x:TypeArguments="x:String">Clicking Up Arrow</Literal>
-                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Clicking Up Arrow</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="438,106" sap2010:WorkflowViewState.IdRef="CVRefresh_5" InformativeScreenshot="a4478acf76ca7aa47d1f9d6523965c8f" Version="V1">
               <p:CVRefresh.DesignTimeCache>
-                <uc:CVCache InformativeScreenshot="f157c3f24fc57d52b33c70b1a5bd69e4" LogicalPosition="0, 0" OcrText="Web Rep Console&#xD;&#xA;I'Veb Rep Console - Patricio Ca X +&#xD;&#xA;Orchestrator - CVX Orchestrator - ACN OrchestiG —ion Proce... UiPath Academy Document -Web uscript.shell popup... W Fome - Workday Cool Kids - Illusträti... UiPath Academy U iPath UiPath Community... GitHub&#xD;&#xA;Current Sesslon: b 2 sesslons&#xD;&#xA;SCREEN SHARING Total&#xD;&#xA;5% CreditCard Disc&#xD;&#xA;P98&#xD;&#xA;5% CreditCard Disc&#xD;&#xA;P95_&#xD;&#xA;5% CreditCard Disc&#xD;&#xA;5% CreditCard Disc&#xD;&#xA;P92_&#xD;&#xA;156.5L&#xD;&#xA;D [ksktop e&#xD;&#xA;Emergency&#xD;&#xA;Day More&#xD;&#xA;Functions&#xD;&#xA;Reprint&#xD;&#xA;Receipt&#xD;&#xA;Override&#xD;&#xA;Receipt&#xD;&#xA;A)tt System&#xD;&#xA;5% ccard Petrol&#xD;&#xA;Disc.&#xD;&#xA;14% safra Diesel&#xD;&#xA;Disc.&#xD;&#xA;14% OCBC Petrol&#xD;&#xA;Disc.&#xD;&#xA;14% HSBC Petrol&#xD;&#xA;Disc. Rec all&#xD;&#xA;Item&#xD;&#xA;discount&#xD;&#xA;Card More&#xD;&#xA;Mops&#xD;&#xA;Plus: Article&#xD;&#xA;Keys&#xD;&#xA;2&#xD;&#xA;Space Num&#xD;&#xA;-4 Ouantitv&#xD;&#xA;Item&#xD;&#xA;Void Line&#xD;&#xA;Yes&#xD;&#xA;Repeat&#xD;&#xA;NO x&#xD;&#xA;Everyone&#xD;&#xA;(14:39:33) Patricio can now view&#xD;&#xA;and control fre customer's screen.&#xD;&#xA;IF&amp;I_ Weekly Team Meeting&#xD;&#xA;Pump&#xD;&#xA;Control Credit /&#xD;&#xA;Bank Card" Position="0, 0" ScreenshotGuid="ace4ecb0-8e99-4a60-8688-94d9961364e4" ServerVersion="1">
+                <uc:CVCache InformativeScreenshot="f157c3f24fc57d52b33c70b1a5bd69e4" LogicalPosition="0, 0" OcrText="Web Rep Console&#xA;I'Veb Rep Console - Patricio Ca X +&#xA;Orchestrator - CVX Orchestrator - ACN OrchestiG —ion Proce... UiPath Academy Document -Web uscript.shell popup... W Fome - Workday Cool Kids - Illusträti... UiPath Academy U iPath UiPath Community... GitHub&#xA;Current Sesslon: b 2 sesslons&#xA;SCREEN SHARING Total&#xA;5% CreditCard Disc&#xA;P98&#xA;5% CreditCard Disc&#xA;P95_&#xA;5% CreditCard Disc&#xA;5% CreditCard Disc&#xA;P92_&#xA;156.5L&#xA;D [ksktop e&#xA;Emergency&#xA;Day More&#xA;Functions&#xA;Reprint&#xA;Receipt&#xA;Override&#xA;Receipt&#xA;A)tt System&#xA;5% ccard Petrol&#xA;Disc.&#xA;14% safra Diesel&#xA;Disc.&#xA;14% OCBC Petrol&#xA;Disc.&#xA;14% HSBC Petrol&#xA;Disc. Rec all&#xA;Item&#xA;discount&#xA;Card More&#xA;Mops&#xA;Plus: Article&#xA;Keys&#xA;2&#xA;Space Num&#xA;-4 Ouantitv&#xA;Item&#xA;Void Line&#xA;Yes&#xA;Repeat&#xA;NO x&#xA;Everyone&#xA;(14:39:33) Patricio can now view&#xA;and control fre customer's screen.&#xA;IF&amp;I_ Weekly Team Meeting&#xA;Pump&#xA;Control Credit /&#xA;Bank Card" Position="0, 0" ScreenshotGuid="ace4ecb0-8e99-4a60-8688-94d9961364e4" ServerVersion="1">
                   <uc:CVCache.CvTables>
                     <x:Array Type="uc:CvTableInfo">
                       <uc:CvTableInfo>

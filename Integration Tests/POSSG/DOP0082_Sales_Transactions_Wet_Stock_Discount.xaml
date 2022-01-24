@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Activity mc:Ignorable="sap sap2010" x:Class="DOP0030_Sales_Transactions_Wet_Stock_Cash_Exact_Change_1_Diesel" this:DOP0030_Sales_Transactions_Wet_Stock_Cash_Exact_Change_1_Diesel.DelayShort="3" this:DOP0030_Sales_Transactions_Wet_Stock_Cash_Exact_Change_1_Diesel.DelayLong="10" this:DOP0030_Sales_Transactions_Wet_Stock_Cash_Exact_Change_1_Diesel.TestName="DOP0082_Sales_Transactions_Wet_Stock_Discount" this:DOP0030_Sales_Transactions_Wet_Stock_Cash_Exact_Change_1_Diesel.ModuleName="POSSG" this:DOP0030_Sales_Transactions_Wet_Stock_Cash_Exact_Change_1_Diesel.ExecutionID="[&quot;ExecutionID&quot;+DateTime.Now.ToString(&quot;yyyyMMddHHmmss&quot;)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="DelayShort" Type="InArgument(x:Int32)" />
@@ -10,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>840,6443</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>933,6443</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Indoor_Cash_No_Change_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -71,6 +72,7 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
@@ -81,6 +83,7 @@
       <Variable x:TypeArguments="x:String" Default="01" Name="Fuelpoint" />
       <Variable x:TypeArguments="x:String" Default="1" Name="FuelGrade" />
       <Variable x:TypeArguments="x:Boolean" Name="SafeDropFlag" />
+      <Variable x:TypeArguments="x:String" Name="Discount" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -468,7 +471,9 @@
       <TryCatch.Try>
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke NAMOS_SG_SelectItemDiscount_Grabrental workflow" sap:VirtualizedContainerService.HintSize="379,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_92" UnSafe="False" WorkflowFileName="Transaction Tests\NAMOS\SG\Item Discount Select\NAMOS_SG_SelectItemDiscount_Grabrental.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            <InArgument x:TypeArguments="x:String" x:Key="Discount">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Discount" />
+            </InArgument>
           </ui:InvokeWorkflowFile.Arguments>
         </ui:InvokeWorkflowFile>
       </TryCatch.Try>
@@ -510,7 +515,7 @@
               <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ExecutionID" />
             </InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="Transacation">
-              <Literal x:TypeArguments="x:String">Select Item Discount - Grabrental</Literal>
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Select Item Discount - &quot;+Discount" />
             </InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="ModuleName">
               <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ModuleName" />
