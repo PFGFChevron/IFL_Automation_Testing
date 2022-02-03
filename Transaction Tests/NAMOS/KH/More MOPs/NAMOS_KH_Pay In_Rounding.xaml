@@ -1,6 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_KH_Pay_In_Misc" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1097,3847" sap2010:WorkflowViewState.IdRef="NAMOS_BuyCoolant1L_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="NAMOS_KH_Pay_In_Rounding" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="PayInAmount" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>939,3674</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>NAMOS_BuyCoolant1L_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="23">
+    <scg:List x:TypeArguments="x:String" Capacity="46">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -24,6 +32,16 @@
       <x:String>System.Windows.Markup</x:String>
       <x:String>UiPath.CV</x:String>
       <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Shared.ObjectLibrary</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -54,15 +72,37 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Callout.Activity</AssemblyReference>
+      <AssemblyReference>UiPath.Form.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Presentations.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="NAMOS_KH_Pay In_Misc" sap:VirtualizedContainerService.HintSize="514,3782" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="NAMOS_KH_Pay In_Rounding" sap:VirtualizedContainerService.HintSize="514,3609" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" DisplayName="Computer Vision" sap:VirtualizedContainerService.HintSize="472,3690" sap2010:WorkflowViewState.IdRef="CVScope_6" Version="V1">
+    <Assign sap:VirtualizedContainerService.HintSize="472,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[PayInAmount]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">35</InArgument>
+      </Assign.Value>
+    </Assign>
+    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" Server="{x:Null}" DisplayName="Computer Vision" sap:VirtualizedContainerService.HintSize="472,3417" sap2010:WorkflowViewState.IdRef="CVScope_6" Version="V1">
       <p:CVScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -976,7 +1016,7 @@
             </TryCatch>
             <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Clicking Payin - Misc</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Clicking Payin - Rounding</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="438,106" sap2010:WorkflowViewState.IdRef="CVRefresh_40" InformativeScreenshot="d5b5711792ef53fd3dbfb6f8385247a0" Version="V1">
@@ -1338,7 +1378,7 @@
             </p:CVRefresh>
             <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,333" sap2010:WorkflowViewState.IdRef="TryCatch_21">
               <TryCatch.Try>
-                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Payin • Misc' (347,308,110,18)&quot; +&#xA;&quot;Anchor: Text 'IOU' (420,388,31,14)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_42" InformativeScreenshot="8799751065b2859ea461159482942587" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
+                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Rounding' (392,468,88,18)&quot; +&#xA;&quot;Anchor: Text 'IOU' (420,388,31,14)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_42" InformativeScreenshot="b59cf1e17479f5b548899e85010c4826" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                   <p:CvClickWithDescriptor.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
@@ -1350,14 +1390,14 @@
                     </ui:CursorPosition>
                   </p:CvClickWithDescriptor.CursorPosition>
                   <p:CvClickWithDescriptor.DesignTimeDescriptor>
-                    <uc:CvDescriptor InformativeScreenshot="8799751065b2859ea461159482942587">
+                    <uc:CvDescriptor InformativeScreenshot="b59cf1e17479f5b548899e85010c4826">
                       <uc:CvDescriptor.Anchors>
                         <x:Array Type="uc:CvElementDescriptor">
                           <uc:CvElementDescriptor DesignTimeArea="420, 388, 31, 14" ElementType="Text" Text="IOU" />
                         </x:Array>
                       </uc:CvDescriptor.Anchors>
                       <uc:CvDescriptor.Target>
-                        <uc:CvElementDescriptor DesignTimeArea="347, 308, 110, 18" ElementType="Text" Text="Payin • Misc" />
+                        <uc:CvElementDescriptor DesignTimeArea="392, 468, 88, 18" ElementType="Text" Text="Rounding" />
                       </uc:CvDescriptor.Target>
                     </uc:CvDescriptor>
                   </p:CvClickWithDescriptor.DesignTimeDescriptor>
@@ -1808,16 +1848,413 @@
                 </uc:CVCache>
               </p:CVRefresh.DesignTimeCache>
             </p:CVRefresh>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_NAMOS_Numpad workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Utilities\UTL_NAMOS_Numpad.xaml">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,314" sap2010:WorkflowViewState.IdRef="TryCatch_23">
+              <TryCatch.Try>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_NAMOS_Numpad workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Utilities\UTL_NAMOS_Numpad.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="Numkeys">[PayInAmount]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_23">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_24" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="Numkeys">
-                  <Literal x:TypeArguments="x:String">25</Literal>
+                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">
+                  <Literal x:TypeArguments="x:String">Clicking Yes Repeat</Literal>
                 </InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
+            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="438,106" sap2010:WorkflowViewState.IdRef="CVRefresh_41" InformativeScreenshot="58e3920cfc0e51c4d0575799c9561448" Version="V1">
+              <p:CVRefresh.DesignTimeCache>
+                <uc:CVCache InformativeScreenshot="ced700597835067c0115aaabd7923b30" LogicalPosition="0, 103" OcrText="Web Rep Console - Patricio Ca X +&#xD;&#xA;I'Veb Rep Console Orchestrator - CVX OrchestiG&#xD;&#xA;Current Sesslon: 1 esslon - ACN Orchestration Proce...&#xD;&#xA;NO. 3&#xD;&#xA;Amount UiPath Academy&#xD;&#xA;Emergency&#xD;&#xA;More&#xD;&#xA;Functions&#xD;&#xA;Reprint&#xD;&#xA;Receipt&#xD;&#xA;Query&#xD;&#xA;Override&#xD;&#xA;Receipt Document -Web uscript.shell popup...&#xD;&#xA;System W Fome - Workday Cool Kids - Illusträti...&#xD;&#xA;SCREEN SHARING Total&#xD;&#xA;Quantity&#xD;&#xA;Payin - Rounding&#xD;&#xA;Amount/quantity:&#xD;&#xA;35 NO. 2 More&#xD;&#xA;Mops&#xD;&#xA;7&#xD;&#xA;4&#xD;&#xA;1 UiPath UiPath Community...&#xD;&#xA;[ksktop e&#xD;&#xA;Everyone&#xD;&#xA;Patricio Calacasan can now view&#xD;&#xA;and control fre customer's screen.&#xD;&#xA;(16:35:29) [Patricio Calacasan] You have&#xD;&#xA;been inactive in this session for 9 minute(s)&#xD;&#xA;and are about to be removed.&#xD;&#xA;[Patricio Calacasan] Thankyou.&#xD;&#xA;You will remain in the session.&#xD;&#xA;[Patricio Calacasan] You have&#xD;&#xA;been inactive in this session for 9 minute(s)&#xD;&#xA;and are about to be removed.&#xD;&#xA;[Patricio Calacasan] Thankyou.&#xD;&#xA;You will remain in the session. Recall&#xD;&#xA;Ticket&#xD;&#xA;discount Article&#xD;&#xA;Keys&#xD;&#xA;8&#xD;&#xA;5&#xD;&#xA;2&#xD;&#xA;Space&#xD;&#xA;KHR Num&#xD;&#xA;9&#xD;&#xA;6&#xD;&#xA;3&#xD;&#xA;Back-&#xD;&#xA;space&#xD;&#xA;Cash Quantity&#xD;&#xA;Void Line&#xD;&#xA;Repeat&#xD;&#xA;Yes&#xD;&#xA;NO&#xD;&#xA;Total&#xD;&#xA;Pump&#xD;&#xA;Control" Position="0, 103" ScreenshotGuid="8c756c76-853c-4a44-9bdf-f5a107e3bd67" ServerVersion="1">
+                  <uc:CVCache.CvTables>
+                    <x:Array Type="uc:CvTableInfo">
+                      <uc:CvTableInfo>
+                        <uc:CvTableInfo.Columns>
+                          <x:Array Type="x:Int32">
+                            <x:Int32>286</x:Int32>
+                            <x:Int32>396</x:Int32>
+                            <x:Int32>482</x:Int32>
+                            <x:Int32>620</x:Int32>
+                            <x:Int32>711</x:Int32>
+                          </x:Array>
+                        </uc:CvTableInfo.Columns>
+                        <uc:CvTableInfo.Rows>
+                          <x:Array Type="x:Int32">
+                            <x:Int32>336</x:Int32>
+                            <x:Int32>373</x:Int32>
+                            <x:Int32>402</x:Int32>
+                          </x:Array>
+                        </uc:CvTableInfo.Rows>
+                      </uc:CvTableInfo>
+                    </x:Array>
+                  </uc:CVCache.CvTables>
+                  <uc:CVCache.CvUiElements>
+                    <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="256">
+                      <uc:CvElementInfo Category="Icon" Region="60, 39, 24, 23" />
+                      <uc:CvElementInfo Category="Icon" Region="15, 40, 24, 21" />
+                      <uc:CvElementInfo Category="Icon" Region="1320, 147, 26, 31" />
+                      <uc:CvElementInfo Category="Icon" Region="1744, 39, 23, 23" />
+                      <uc:CvElementInfo Category="Button" Region="1716, 976, 91, 39" />
+                      <uc:CvElementInfo Category="Icon" Region="1560, 39, 23, 23" />
+                      <uc:CvElementInfo Category="Button" Region="44, 0, 248, 32" />
+                      <uc:CvElementInfo Category="Icon" Region="1652, 40, 22, 21" />
+                      <uc:CvElementInfo Category="Icon" Region="293, 5, 21, 21" />
+                      <uc:CvElementInfo Category="Icon" Region="1609, 40, 21, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="1791, 149, 29, 27" />
+                      <uc:CvElementInfo Category="Icon" Region="1676, 147, 31, 31" />
+                      <uc:CvElementInfo Category="Icon" Region="1016, 72, 20, 21" />
+                      <uc:CvElementInfo Category="Icon" Region="431, 147, 37, 29" />
+                      <uc:CvElementInfo Category="Icon" Region="1641, 147, 30, 30" />
+                      <uc:CvElementInfo Category="Icon" Region="385, 146, 31, 31" />
+                      <uc:CvElementInfo Category="Icon" Region="334, 147, 38, 30" />
+                      <uc:CvElementInfo Category="Icon" Region="1696, 40, 21, 22" />
+                      <uc:CvElementInfo Category="InputBox" Region="191, 33, 1399, 33" />
+                      <uc:CvElementInfo Category="Icon" Region="1712, 147, 31, 31" />
+                      <uc:CvElementInfo Category="Button" Region="1051, 553, 85, 82" />
+                      <uc:CvElementInfo Category="Icon" Region="481, 146, 34, 32" />
+                      <uc:CvElementInfo Category="Icon" Region="1409, 148, 41, 26" />
+                      <uc:CvElementInfo Category="Icon" Region="1842, 109, 24, 25" />
+                      <uc:CvElementInfo Category="Icon" Region="148, 39, 22, 22" />
+                      <uc:CvElementInfo Category="Icon" Region="1169, 73, 19, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="584, 74, 20, 19" />
+                      <uc:CvElementInfo Category="Icon" Region="1506, 144, 36, 32" />
+                      <uc:CvElementInfo Category="Icon" Region="56, 5, 20, 21" />
+                      <uc:CvElementInfo Category="Icon" Region="1461, 149, 33, 26" />
+                      <uc:CvElementInfo Category="Icon" Region="1881, 44, 22, 14" />
+                      <uc:CvElementInfo Category="CloseButton" Region="1888, 7, 19, 18" />
+                      <uc:CvElementInfo Category="Icon" Region="13, 73, 19, 21" />
+                      <uc:CvElementInfo Category="Icon" Region="290, 146, 30, 30" />
+                      <uc:CvElementInfo Category="Icon" Region="738, 74, 19, 19" />
+                      <uc:CvElementInfo Category="Icon" Region="237, 147, 40, 30" />
+                      <uc:CvElementInfo Category="Icon" Region="1452, 74, 19, 19" />
+                      <uc:CvElementInfo Category="Icon" Region="721, 374, 78, 85" />
+                      <uc:CvElementInfo Category="MaximizeButton" Region="1842, 6, 19, 19" />
+                      <uc:CvElementInfo Category="Icon" Region="302, 74, 19, 19" />
+                      <uc:CvElementInfo Category="Icon" Region="1298, 73, 21, 20" />
+                      <uc:CvElementInfo Category="CloseButton" Region="262, 8, 16, 16" />
+                      <uc:CvElementInfo Category="Icon" Region="201, 40, 19, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="442, 74, 19, 19" />
+                      <uc:CvElementInfo Category="Icon" Region="151, 74, 19, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="1832, 37, 28, 28" />
+                      <uc:CvElementInfo Category="Icon" Region="1722, 73, 21, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="1789, 40, 22, 22" />
+                      <uc:CvElementInfo Category="Icon" Region="864, 73, 21, 21" />
+                      <uc:CvElementInfo Category="MinimizeButton" Region="1794, 7, 21, 16" />
+                      <uc:CvElementInfo Category="Button" Region="1137, 643, 82, 79" />
+                      <uc:CvElementInfo Category="Icon" Region="1579, 73, 20, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="8, 107, 30, 29" />
+                      <uc:CvElementInfo Category="Icon" Region="1605, 108, 33, 28" />
+                      <uc:CvElementInfo Category="ArrowButton" Region="1886, 74, 16, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="104, 39, 23, 23" />
+                      <uc:CvElementInfo Category="ArrowButton" Region="155, 150, 25, 23" />
+                      <uc:CvElementInfo Category="Icon" Region="889, 229, 27, 31" />
+                      <uc:CvElementInfo Category="InputBox" Region="998, 232, 306, 40" />
+                      <uc:CvElementInfo Category="Button" Region="1051, 640, 85, 83" />
+                      <uc:CvElementInfo Category="Icon" Region="56, 107, 30, 29" />
+                      <uc:CvElementInfo Category="Button" Region="1221, 639, 85, 81" />
+                      <uc:CvElementInfo Category="Icon" Region="1616, 194, 28, 28" />
+                      <uc:CvElementInfo Category="Button" Region="1222, 734, 83, 74" />
+                      <uc:CvElementInfo Category="Icon" Region="1556, 147, 33, 31" />
+                      <uc:CvElementInfo Category="Button" Region="45, 100, 51, 39" />
+                      <uc:CvElementInfo Category="InputBox" Region="289, 232, 432, 72" />
+                      <uc:CvElementInfo Category="Button" Region="1051, 465, 86, 83" />
+                      <uc:CvElementInfo Category="Button" Region="1136, 554, 85, 79" />
+                      <uc:CvElementInfo Category="Icon" Region="969, 463, 83, 86" />
+                      <uc:CvElementInfo Category="Button" Region="723, 321, 160, 44" />
+                      <uc:CvElementInfo Category="Icon" Region="452, 724, 94, 89" />
+                      <uc:CvElementInfo Category="Icon" Region="991, 847, 41, 20" />
+                      <uc:CvElementInfo Category="Icon" Region="968, 637, 88, 90" />
+                      <uc:CvElementInfo Category="Icon" Region="1052, 730, 84, 82" />
+                      <uc:CvElementInfo Category="Icon" Region="721, 639, 76, 83" />
+                      <uc:CvElementInfo Category="Button" Region="722, 243, 160, 58" />
+                      <uc:CvElementInfo Category="InputBox" Region="1362, 151, 36, 22" />
+                      <uc:CvElementInfo Category="Button" Region="1603, 102, 224, 38" />
+                      <uc:CvElementInfo Category="Icon" Region="738, 664, 39, 31" />
+                      <uc:CvElementInfo Category="Button" Region="101, 103, 308, 35" />
+                      <uc:CvElementInfo Category="Button" Region="1136, 472, 85, 74" />
+                      <uc:CvElementInfo Category="Icon" Region="969, 553, 83, 84" />
+                      <uc:CvElementInfo Category="Button" Region="1834, 103, 85, 37" />
+                      <uc:CvElementInfo Category="Icon" Region="1866, 147, 31, 31" />
+                      <uc:CvElementInfo Category="Button" Region="720, 642, 77, 80" />
+                      <uc:CvElementInfo Category="Icon" Region="373, 724, 81, 86" />
+                      <uc:CvElementInfo Category="Icon" Region="14, 6, 20, 19" />
+                      <uc:CvElementInfo Category="Cell" Region="286, 373, 110, 29" />
+                      <uc:CvElementInfo Category="Cell" Region="286, 336, 110, 37" />
+                      <uc:CvElementInfo Category="Cell" Region="1221, 641, 82, 61" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="283, 630, 442, 90" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1136, 817, 88, 85" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1362, 150, 37, 24" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1218, 904, 93, 85" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1622, 510, 267, 49" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1136, 463, 87, 86" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1136, 730, 85, 81" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1222, 905, 85, 85" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1137, 553, 84, 85" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1229, 320, 50, 44" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="971, 731, 80, 80" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1210, 284, 28, 26" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="290, 730, 84, 81" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="0, 0, 47, 32" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1625, 435, 262, 68" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="289, 729, 79, 42" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1621, 376, 269, 51" />
+                      <uc:CvElementInfo Category="CloseButton" Confidence="Runtime" Region="1865, 146, 33, 32" />
+                      <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="1618, 194, 26, 27" />
+                      <uc:CvElementInfo Category="MaximizeButton" Confidence="Runtime" Region="12, 4, 24, 23" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1624, 377, 266, 47" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="99, 106, 303, 29" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="3, 140, 193, 44" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1139, 431, 81, 25" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1220, 728, 87, 86" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1624, 241, 259, 49" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="41, 0, 256, 29" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1623, 303, 266, 65" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1236, 915, 58, 60" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1051, 730, 86, 81" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="0, 102, 48, 37" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1623, 848, 272, 105" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1633, 868, 17, 14" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="968, 555, 83, 79" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1362, 150, 37, 24" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1624, 245, 264, 48" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="717, 226, 174, 85" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1139, 820, 82, 76" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="321, 735, 23, 28" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="993, 848, 37, 18" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="968, 646, 84, 77" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1604, 102, 224, 37" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="681, 102, 924, 36" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1624, 436, 263, 66" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1272, 276, 34, 35" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="969, 472, 84, 72" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="291, 730, 35, 33" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="155, 152, 25, 20" />
+                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1625, 302, 261, 65" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1220, 641, 86, 84" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1052, 638, 84, 86" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="457, 725, 86, 89" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="287, 630, 437, 92" />
+                      <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="999, 665, 17, 18" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1053, 465, 83, 83" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1886, 74, 16, 19" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="287, 232, 434, 72" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1618, 846, 282, 107" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1461, 150, 32, 22" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1135, 726, 88, 87" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="723, 380, 73, 66" />
+                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1053, 554, 83, 82" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1843, 140, 73, 46" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1618, 195, 26, 27" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1579, 73, 20, 20" />
+                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="371, 720, 85, 91" />
+                      <uc:CvElementInfo Category="RadioButton" Confidence="Runtime" Region="105, 40, 22, 22" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="482, 294, 138, 87" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="396, 373, 86, 29" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="482, 336, 138, 37" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="0, 142, 28, 43" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="620, 373, 91, 29" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="396, 373, 224, 29" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="288, 731, 84, 82" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="623, 308, 97, 66" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="963, 548, 92, 22" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="962, 632, 94, 24" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1221, 729, 83, 78" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="290, 783, 82, 28" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1135, 725, 85, 86" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="717, 393, 82, 173" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="927, 452, 116, 28" />
+                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1153, 268, 159, 36" />
+                    </scg:List>
+                  </uc:CVCache.CvUiElements>
+                  <uc:CVCache.OcrTexts>
+                    <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="256">
+                      <uc:OcrTextInfo Region="84, 11, 24, 9" Text="Web" />
+                      <uc:OcrTextInfo Region="112, 11, 19, 12" Text="Rep" />
+                      <uc:OcrTextInfo Region="135, 11, 42, 9" Text="Console" />
+                      <uc:OcrTextInfo Region="182, 16, 3, 1" Text="-" />
+                      <uc:OcrTextInfo Region="190, 11, 37, 9" Text="Patricio" />
+                      <uc:OcrTextInfo Region="232, 11, 12, 9" Text="Ca" />
+                      <uc:OcrTextInfo Region="266, 12, 9, 9" Text="X" />
+                      <uc:OcrTextInfo Region="297, 8, 15, 15" Text="+" />
+                      <uc:OcrTextInfo Region="177, 79, 23, 9" Text="I'Veb" />
+                      <uc:OcrTextInfo Region="205, 79, 19, 12" Text="Rep" />
+                      <uc:OcrTextInfo Region="228, 79, 42, 9" Text="Console" />
+                      <uc:OcrTextInfo Region="329, 79, 65, 9" Text="Orchestrator" />
+                      <uc:OcrTextInfo Region="399, 84, 3, 1" Text="-" />
+                      <uc:OcrTextInfo Region="407, 79, 21, 9" Text="CVX" />
+                      <uc:OcrTextInfo Region="469, 79, 50, 9" Text="OrchestiG" />
+                      <uc:OcrTextInfo Region="110, 115, 51, 12" Text="Current" />
+                      <uc:OcrTextInfo Region="165, 115, 53, 12" Text="Sesslon:" />
+                      <uc:OcrTextInfo Region="417, 116, 4, 10" Text="1" />
+                      <uc:OcrTextInfo Region="435, 115, 41, 12" Text="esslon" />
+                      <uc:OcrTextInfo Region="539, 84, 3, 1" Text="-" />
+                      <uc:OcrTextInfo Region="546, 79, 23, 9" Text="ACN" />
+                      <uc:OcrTextInfo Region="611, 79, 70, 9" Text="Orchestration" />
+                      <uc:OcrTextInfo Region="686, 79, 37, 9" Text="Proce..." />
+                      <uc:OcrTextInfo Region="628, 343, 21, 10" Text="NO." />
+                      <uc:OcrTextInfo Region="654, 343, 7, 10" Text="3" />
+                      <uc:OcrTextInfo Region="652, 385, 60, 12" Text="Amount" />
+                      <uc:OcrTextInfo Region="765, 79, 33, 9" Text="UiPath" />
+                      <uc:OcrTextInfo Region="802, 79, 48, 12" Text="Academy" />
+                      <uc:OcrTextInfo Region="732, 241, 144, 27" Text="Emergency" />
+                      <uc:OcrTextInfo Region="824, 403, 35, 10" Text="More" />
+                      <uc:OcrTextInfo Region="808, 419, 68, 10" Text="Functions" />
+                      <uc:OcrTextInfo Region="817, 484, 51, 13" Text="Reprint" />
+                      <uc:OcrTextInfo Region="816, 516, 53, 13" Text="Receipt" />
+                      <uc:OcrTextInfo Region="822, 596, 41, 13" Text="Query" />
+                      <uc:OcrTextInfo Region="811, 684, 61, 10" Text="Override" />
+                      <uc:OcrTextInfo Region="816, 756, 53, 13" Text="Receipt" />
+                      <uc:OcrTextInfo Region="892, 79, 54, 9" Text="Document" />
+                      <uc:OcrTextInfo Region="950, 79, 31, 9" Text="-Web" />
+                      <uc:OcrTextInfo Region="1042, 79, 63, 12" Text="uscript.shell" />
+                      <uc:OcrTextInfo Region="1110, 82, 42, 9" Text="popup..." />
+                      <uc:OcrTextInfo Region="1001, 245, 73, 19" Text="System" />
+                      <uc:OcrTextInfo Region="1172, 84, 12, 8" Text="W" />
+                      <uc:OcrTextInfo Region="1195, 79, 31, 9" Text="Fome" />
+                      <uc:OcrTextInfo Region="1230, 84, 4, 1" Text="-" />
+                      <uc:OcrTextInfo Region="1238, 79, 46, 12" Text="Workday" />
+                      <uc:OcrTextInfo Region="1326, 79, 23, 9" Text="Cool" />
+                      <uc:OcrTextInfo Region="1354, 79, 20, 9" Text="Kids" />
+                      <uc:OcrTextInfo Region="1379, 84, 3, 1" Text="-" />
+                      <uc:OcrTextInfo Region="1387, 79, 49, 9" Text="Illusträti..." />
+                      <uc:OcrTextInfo Region="34, 158, 51, 11" Text="SCREEN" />
+                      <uc:OcrTextInfo Region="90, 158, 60, 11" Text="SHARING" />
+                      <uc:OcrTextInfo Region="297, 253, 84, 30" Text="Total" />
+                      <uc:OcrTextInfo Region="296, 385, 66, 15" Text="Quantity" />
+                      <uc:OcrTextInfo Region="298, 641, 53, 22" Text="Payin" />
+                      <uc:OcrTextInfo Region="358, 651, 7, 2" Text="-" />
+                      <uc:OcrTextInfo Region="374, 641, 92, 22" Text="Rounding" />
+                      <uc:OcrTextInfo Region="296, 667, 163, 22" Text="Amount/quantity:" />
+                      <uc:OcrTextInfo Region="297, 693, 24, 17" Text="35" />
+                      <uc:OcrTextInfo Region="490, 343, 21, 10" Text="NO." />
+                      <uc:OcrTextInfo Region="516, 343, 7, 10" Text="2" />
+                      <uc:OcrTextInfo Region="993, 403, 35, 10" Text="More" />
+                      <uc:OcrTextInfo Region="991, 419, 39, 10" Text="Mops" />
+                      <uc:OcrTextInfo Region="1001, 489, 19, 30" Text="7" />
+                      <uc:OcrTextInfo Region="1000, 577, 20, 30" Text="4" />
+                      <uc:OcrTextInfo Region="1003, 665, 11, 30" Text="1" />
+                      <uc:OcrTextInfo Region="1606, 79, 33, 9" Text="UiPath" />
+                      <uc:OcrTextInfo Region="1749, 79, 33, 9" Text="UiPath" />
+                      <uc:OcrTextInfo Region="1786, 79, 69, 12" Text="Community..." />
+                      <uc:OcrTextInfo Region="1642, 116, 46, 12" Text="[ksktop" />
+                      <uc:OcrTextInfo Region="1820, 118, 6, 7" Text="e" />
+                      <uc:OcrTextInfo Region="1804, 201, 92, 19" Text="Everyone" />
+                      <uc:OcrTextInfo Region="1690, 255, 40, 9" Text="Patricio" />
+                      <uc:OcrTextInfo Region="1735, 255, 55, 9" Text="Calacasan" />
+                      <uc:OcrTextInfo Region="1794, 258, 18, 6" Text="can" />
+                      <uc:OcrTextInfo Region="1817, 258, 23, 6" Text="now" />
+                      <uc:OcrTextInfo Region="1843, 256, 25, 8" Text="view" />
+                      <uc:OcrTextInfo Region="1631, 272, 21, 9" Text="and" />
+                      <uc:OcrTextInfo Region="1656, 272, 39, 9" Text="control" />
+                      <uc:OcrTextInfo Region="1698, 272, 18, 9" Text="fre" />
+                      <uc:OcrTextInfo Region="1720, 272, 61, 9" Text="customer's" />
+                      <uc:OcrTextInfo Region="1785, 275, 39, 6" Text="screen." />
+                      <uc:OcrTextInfo Region="1631, 313, 54, 11" Text="(16:35:29)" />
+                      <uc:OcrTextInfo Region="1690, 313, 44, 11" Text="[Patricio" />
+                      <uc:OcrTextInfo Region="1739, 313, 58, 11" Text="Calacasan]" />
+                      <uc:OcrTextInfo Region="1801, 313, 21, 9" Text="You" />
+                      <uc:OcrTextInfo Region="1826, 313, 26, 9" Text="have" />
+                      <uc:OcrTextInfo Region="1632, 330, 27, 9" Text="been" />
+                      <uc:OcrTextInfo Region="1663, 331, 42, 8" Text="inactive" />
+                      <uc:OcrTextInfo Region="1709, 331, 9, 8" Text="in" />
+                      <uc:OcrTextInfo Region="1722, 330, 20, 9" Text="this" />
+                      <uc:OcrTextInfo Region="1746, 331, 40, 8" Text="session" />
+                      <uc:OcrTextInfo Region="1790, 330, 16, 9" Text="for" />
+                      <uc:OcrTextInfo Region="1810, 330, 6, 9" Text="9" />
+                      <uc:OcrTextInfo Region="1820, 330, 52, 11" Text="minute(s)" />
+                      <uc:OcrTextInfo Region="1631, 347, 21, 9" Text="and" />
+                      <uc:OcrTextInfo Region="1656, 350, 17, 6" Text="are" />
+                      <uc:OcrTextInfo Region="1677, 347, 33, 9" Text="about" />
+                      <uc:OcrTextInfo Region="1713, 349, 11, 7" Text="to" />
+                      <uc:OcrTextInfo Region="1728, 347, 13, 9" Text="be" />
+                      <uc:OcrTextInfo Region="1746, 347, 51, 9" Text="removed." />
+                      <uc:OcrTextInfo Region="1690, 388, 44, 11" Text="[Patricio" />
+                      <uc:OcrTextInfo Region="1739, 388, 58, 11" Text="Calacasan]" />
+                      <uc:OcrTextInfo Region="1801, 388, 61, 12" Text="Thankyou." />
+                      <uc:OcrTextInfo Region="1631, 405, 21, 9" Text="You" />
+                      <uc:OcrTextInfo Region="1656, 405, 17, 9" Text="will" />
+                      <uc:OcrTextInfo Region="1678, 406, 38, 8" Text="remain" />
+                      <uc:OcrTextInfo Region="1721, 406, 9, 8" Text="in" />
+                      <uc:OcrTextInfo Region="1734, 405, 17, 9" Text="the" />
+                      <uc:OcrTextInfo Region="1755, 406, 44, 8" Text="session." />
+                      <uc:OcrTextInfo Region="1690, 446, 44, 11" Text="[Patricio" />
+                      <uc:OcrTextInfo Region="1739, 446, 58, 11" Text="Calacasan]" />
+                      <uc:OcrTextInfo Region="1801, 446, 21, 9" Text="You" />
+                      <uc:OcrTextInfo Region="1826, 446, 26, 9" Text="have" />
+                      <uc:OcrTextInfo Region="1632, 463, 27, 9" Text="been" />
+                      <uc:OcrTextInfo Region="1663, 464, 42, 8" Text="inactive" />
+                      <uc:OcrTextInfo Region="1709, 464, 9, 8" Text="in" />
+                      <uc:OcrTextInfo Region="1722, 463, 20, 9" Text="this" />
+                      <uc:OcrTextInfo Region="1746, 464, 40, 8" Text="session" />
+                      <uc:OcrTextInfo Region="1790, 463, 16, 9" Text="for" />
+                      <uc:OcrTextInfo Region="1810, 463, 6, 9" Text="9" />
+                      <uc:OcrTextInfo Region="1820, 463, 52, 11" Text="minute(s)" />
+                      <uc:OcrTextInfo Region="1631, 480, 21, 9" Text="and" />
+                      <uc:OcrTextInfo Region="1656, 483, 17, 6" Text="are" />
+                      <uc:OcrTextInfo Region="1677, 480, 33, 9" Text="about" />
+                      <uc:OcrTextInfo Region="1713, 482, 11, 7" Text="to" />
+                      <uc:OcrTextInfo Region="1728, 480, 13, 9" Text="be" />
+                      <uc:OcrTextInfo Region="1746, 480, 51, 9" Text="removed." />
+                      <uc:OcrTextInfo Region="1690, 521, 44, 11" Text="[Patricio" />
+                      <uc:OcrTextInfo Region="1739, 521, 58, 11" Text="Calacasan]" />
+                      <uc:OcrTextInfo Region="1801, 521, 61, 12" Text="Thankyou." />
+                      <uc:OcrTextInfo Region="1631, 538, 21, 9" Text="You" />
+                      <uc:OcrTextInfo Region="1656, 538, 17, 9" Text="will" />
+                      <uc:OcrTextInfo Region="1678, 539, 38, 8" Text="remain" />
+                      <uc:OcrTextInfo Region="1721, 539, 9, 8" Text="in" />
+                      <uc:OcrTextInfo Region="1734, 538, 17, 9" Text="the" />
+                      <uc:OcrTextInfo Region="1755, 539, 44, 8" Text="session." />
+                      <uc:OcrTextInfo Region="905, 500, 41, 10" Text="Recall" />
+                      <uc:OcrTextInfo Region="905, 516, 42, 10" Text="Ticket" />
+                      <uc:OcrTextInfo Region="896, 676, 60, 10" Text="discount" />
+                      <uc:OcrTextInfo Region="1072, 403, 44, 10" Text="Article" />
+                      <uc:OcrTextInfo Region="1079, 419, 32, 13" Text="Keys" />
+                      <uc:OcrTextInfo Region="1085, 489, 19, 30" Text="8" />
+                      <uc:OcrTextInfo Region="1085, 577, 19, 30" Text="5" />
+                      <uc:OcrTextInfo Region="1084, 665, 20, 30" Text="2" />
+                      <uc:OcrTextInfo Region="1074, 853, 41, 13" Text="Space" />
+                      <uc:OcrTextInfo Region="1081, 941, 29, 10" Text="KHR" />
+                      <uc:OcrTextInfo Region="1166, 440, 29, 10" Text="Num" />
+                      <uc:OcrTextInfo Region="1170, 489, 19, 30" Text="9" />
+                      <uc:OcrTextInfo Region="1169, 577, 20, 30" Text="6" />
+                      <uc:OcrTextInfo Region="1170, 665, 19, 30" Text="3" />
+                      <uc:OcrTextInfo Region="1161, 845, 38, 10" Text="Back-" />
+                      <uc:OcrTextInfo Region="1160, 863, 40, 11" Text="space" />
+                      <uc:OcrTextInfo Region="1163, 941, 33, 10" Text="Cash" />
+                      <uc:OcrTextInfo Region="1236, 411, 57, 13" Text="Quantity" />
+                      <uc:OcrTextInfo Region="1232, 588, 29, 10" Text="Void" />
+                      <uc:OcrTextInfo Region="1267, 588, 28, 10" Text="Line" />
+                      <uc:OcrTextInfo Region="1240, 668, 49, 13" Text="Repeat" />
+                      <uc:OcrTextInfo Region="1252, 684, 24, 10" Text="Yes" />
+                      <uc:OcrTextInfo Region="1255, 765, 17, 10" Text="NO" />
+                      <uc:OcrTextInfo Region="1247, 853, 32, 10" Text="Total" />
+                      <uc:OcrTextInfo Region="675, 919, 73, 27" Text="Pump" />
+                      <uc:OcrTextInfo Region="665, 952, 91, 21" Text="Control" />
+                    </scg:List>
+                  </uc:CVCache.OcrTexts>
+                </uc:CVCache>
+              </p:CVRefresh.DesignTimeCache>
+            </p:CVRefresh>
             <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,333" sap2010:WorkflowViewState.IdRef="TryCatch_16">
               <TryCatch.Try>
-                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Repeat' (1240,581,49,13)&quot; +&#xA;&quot;Anchor: Text 'Void Item' (1232,485,63,10)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_37" InformativeScreenshot="cffd9e0cc900fe2023e815bba91ef391" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
+                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Yes' (1252,684,24,10)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_37" InformativeScreenshot="5cd910f2bef4a7c4275864b276a5c97d" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
                   <p:CvClickWithDescriptor.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
@@ -1829,14 +2266,9 @@
                     </ui:CursorPosition>
                   </p:CvClickWithDescriptor.CursorPosition>
                   <p:CvClickWithDescriptor.DesignTimeDescriptor>
-                    <uc:CvDescriptor InformativeScreenshot="5bb19b878f18a9d7d82426bc52d257f8">
-                      <uc:CvDescriptor.Anchors>
-                        <x:Array Type="uc:CvElementDescriptor">
-                          <uc:CvElementDescriptor DesignTimeArea="1232, 485, 63, 10" ElementType="Text" Text="Void Item" />
-                        </x:Array>
-                      </uc:CvDescriptor.Anchors>
+                    <uc:CvDescriptor InformativeScreenshot="5cd910f2bef4a7c4275864b276a5c97d">
                       <uc:CvDescriptor.Target>
-                        <uc:CvElementDescriptor DesignTimeArea="1240, 581, 49, 13" ElementType="Text" Text="Repeat" />
+                        <uc:CvElementDescriptor DesignTimeArea="1252, 684, 24, 10" ElementType="Text" Text="Yes" />
                       </uc:CvDescriptor.Target>
                     </uc:CvDescriptor>
                   </p:CvClickWithDescriptor.DesignTimeDescriptor>
@@ -1865,570 +2297,6 @@
                       <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                     </ActivityAction.Argument>
                     <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_17" />
-                  </ActivityAction>
-                </Catch>
-              </TryCatch.Catches>
-            </TryCatch>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_DELAY_Short workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Utilities\UTL_DELAY_Short.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="LogMessage">Enter amount and Click Cash</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <p:CVRefresh DelayBefore="{x:Null}" TimeoutMS="{x:Null}" DisplayName="CV refresh" sap:VirtualizedContainerService.HintSize="438,106" sap2010:WorkflowViewState.IdRef="CVRefresh_39" InformativeScreenshot="f7c2e4f9bb5de37d286586f4d748d772" Version="V1">
-              <p:CVRefresh.DesignTimeCache>
-                <uc:CVCache InformativeScreenshot="482d257a8d57c03489e2c710d96e5819" LogicalPosition="0, 128" OcrText="Current Sesslon: KH_POS1_New_MNL_ b 1 sesslon&#xA;SCREEN SHARING Void Item cp Desktop Console&#xA;Q x&#xA;Total&#xA;Quantity&#xA;Rayin 23.00&#xA;NO. 3&#xA;Amount Emergency&#xA;More&#xA;Functions&#xA;Reprint&#xA;Receipt&#xA;Query&#xA;Override&#xA;Receipt System&#xA;NO. 2&#xA;choose payment type&#xA;23.00&#xA;23.00 Cash&#xA;KHR Recall&#xA;Layaway&#xA;discount More&#xA;Mops&#xA;7&#xA;4&#xA;1 Item Keys&#xA;8&#xA;5&#xA;2&#xA;Space&#xA;KHR Num&#xA;9&#xA;6&#xA;3&#xA;Back-&#xA;space&#xA;Cash 24/08/21&#xA;Quantity&#xA;Yes&#xA;Repeat&#xA;NO&#xA;Total Everyone&#xA;(14:53:34) Michael Dolotallas has left fre&#xA;conversabon.&#xA;3:51) [Aileen Acapuyan] You have been&#xA;inactive in this session forg minute(s) and&#xA;are about to be&#xA;[Aileen You&#xA;will remain in the sæsion.&#xA;[Aileen Acapuyan] You have been&#xA;inactive in this session forg minute(s) and&#xA;are about to be&#xA;(15:23:01) [Aileen You&#xA;will remain in the sæsion.&#xA;(1 [Aileen Acapuyan] You have been&#xA;inactive in this session forg minute(s) and&#xA;are about to be&#xA;[Aileen You&#xA;will remain in the sæsion.&#xA;[Aileen Acapuyan] You have been&#xA;inactive in this session forg minute(s) and&#xA;are about to be&#xA;(15:53:51) [Aileen You&#xA;will remain in the sæsion.&#xA;Control" Position="0, 103" ScreenshotGuid="ae587a7d-9973-4f42-a994-b8ba4e3d18d9" ServerVersion="1">
-                  <uc:CVCache.CvTables>
-                    <x:Array Type="uc:CvTableInfo">
-                      <uc:CvTableInfo>
-                        <uc:CvTableInfo.Columns>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>963</x:Int32>
-                            <x:Int32>1052</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Columns>
-                        <uc:CvTableInfo.Rows>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>443</x:Int32>
-                            <x:Int32>463</x:Int32>
-                            <x:Int32>509</x:Int32>
-                            <x:Int32>529</x:Int32>
-                            <x:Int32>592</x:Int32>
-                            <x:Int32>618</x:Int32>
-                            <x:Int32>639</x:Int32>
-                            <x:Int32>685</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Rows>
-                      </uc:CvTableInfo>
-                      <uc:CvTableInfo>
-                        <uc:CvTableInfo.Columns>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>1052</x:Int32>
-                            <x:Int32>1135</x:Int32>
-                            <x:Int32>1220</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Columns>
-                        <uc:CvTableInfo.Rows>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>727</x:Int32>
-                            <x:Int32>774</x:Int32>
-                            <x:Int32>794</x:Int32>
-                            <x:Int32>889</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Rows>
-                      </uc:CvTableInfo>
-                      <uc:CvTableInfo>
-                        <uc:CvTableInfo.Columns>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>291</x:Int32>
-                            <x:Int32>356</x:Int32>
-                            <x:Int32>377</x:Int32>
-                            <x:Int32>696</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Columns>
-                        <uc:CvTableInfo.Rows>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>307</x:Int32>
-                            <x:Int32>331</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Rows>
-                      </uc:CvTableInfo>
-                      <uc:CvTableInfo>
-                        <uc:CvTableInfo.Columns>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>1624</x:Int32>
-                            <x:Int32>1892</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Columns>
-                        <uc:CvTableInfo.Rows>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>453</x:Int32>
-                            <x:Int32>529</x:Int32>
-                            <x:Int32>581</x:Int32>
-                            <x:Int32>662</x:Int32>
-                            <x:Int32>713</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Rows>
-                      </uc:CvTableInfo>
-                      <uc:CvTableInfo>
-                        <uc:CvTableInfo.Columns>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>965</x:Int32>
-                            <x:Int32>1049</x:Int32>
-                            <x:Int32>1135</x:Int32>
-                            <x:Int32>1220</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Columns>
-                        <uc:CvTableInfo.Rows>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>358</x:Int32>
-                            <x:Int32>374</x:Int32>
-                            <x:Int32>417</x:Int32>
-                            <x:Int32>437</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Rows>
-                      </uc:CvTableInfo>
-                      <uc:CvTableInfo>
-                        <uc:CvTableInfo.Columns>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>1049</x:Int32>
-                            <x:Int32>1136</x:Int32>
-                            <x:Int32>1222</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Columns>
-                        <uc:CvTableInfo.Rows>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>441</x:Int32>
-                            <x:Int32>530</x:Int32>
-                            <x:Int32>617</x:Int32>
-                            <x:Int32>696</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Rows>
-                      </uc:CvTableInfo>
-                      <uc:CvTableInfo>
-                        <uc:CvTableInfo.Columns>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>286</x:Int32>
-                            <x:Int32>724</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Columns>
-                        <uc:CvTableInfo.Rows>
-                          <x:Array Type="x:Int32">
-                            <x:Int32>494</x:Int32>
-                            <x:Int32>614</x:Int32>
-                            <x:Int32>701</x:Int32>
-                          </x:Array>
-                        </uc:CvTableInfo.Rows>
-                      </uc:CvTableInfo>
-                    </x:Array>
-                  </uc:CVCache.CvTables>
-                  <uc:CVCache.CvUiElements>
-                    <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="256">
-                      <uc:CvElementInfo Category="Icon" Region="385, 44, 32, 32" />
-                      <uc:CvElementInfo Category="Icon" Region="1641, 44, 29, 30" />
-                      <uc:CvElementInfo Category="Icon" Region="333, 43, 38, 31" />
-                      <uc:CvElementInfo Category="Icon" Region="1675, 45, 31, 30" />
-                      <uc:CvElementInfo Category="Icon" Region="1712, 43, 31, 30" />
-                      <uc:CvElementInfo Category="Icon" Region="1460, 45, 36, 28" />
-                      <uc:CvElementInfo Category="Icon" Region="237, 43, 38, 31" />
-                      <uc:CvElementInfo Category="Icon" Region="1791, 45, 29, 28" />
-                      <uc:CvElementInfo Category="Icon" Region="430, 43, 37, 30" />
-                      <uc:CvElementInfo Category="Icon" Region="1410, 46, 39, 24" />
-                      <uc:CvElementInfo Category="Icon" Region="1507, 41, 36, 32" />
-                      <uc:CvElementInfo Category="Icon" Region="291, 42, 30, 33" />
-                      <uc:CvElementInfo Category="Icon" Region="479, 43, 36, 34" />
-                      <uc:CvElementInfo Category="Button" Region="1717, 871, 90, 41" />
-                      <uc:CvElementInfo Category="Button" Region="1053, 538, 84, 82" />
-                      <uc:CvElementInfo Category="Button" Region="1138, 803, 83, 81" />
-                      <uc:CvElementInfo Category="Icon" Region="889, 126, 27, 30" />
-                      <uc:CvElementInfo Category="Icon" Region="1842, 6, 25, 26" />
-                      <uc:CvElementInfo Category="Icon" Region="1604, 4, 35, 28" />
-                      <uc:CvElementInfo Category="Icon" Region="1320, 44, 26, 31" />
-                      <uc:CvElementInfo Category="Button" Region="1052, 454, 85, 78" />
-                      <uc:CvElementInfo Category="Icon" Region="57, 4, 31, 29" />
-                      <uc:CvElementInfo Category="Icon" Region="7, 3, 33, 31" />
-                      <uc:CvElementInfo Category="ArrowButton" Region="155, 48, 25, 22" />
-                      <uc:CvElementInfo Category="Icon" Region="718, 270, 81, 88" />
-                      <uc:CvElementInfo Category="Button" Region="1053, 365, 83, 77" />
-                      <uc:CvElementInfo Category="Icon" Region="1266, 172, 41, 36" />
-                      <uc:CvElementInfo Category="Button" Region="1052, 801, 85, 84" />
-                      <uc:CvElementInfo Category="Icon" Region="1557, 43, 32, 30" />
-                      <uc:CvElementInfo Category="Button" Region="626, 801, 170, 77" />
-                      <uc:CvElementInfo Category="Icon" Region="1361, 46, 40, 27" />
-                      <uc:CvElementInfo Category="Icon" Region="718, 534, 81, 86" />
-                      <uc:CvElementInfo Category="Icon" Region="1135, 621, 87, 91" />
-                      <uc:CvElementInfo Category="Icon" Region="1618, 92, 26, 26" />
-                      <uc:CvElementInfo Category="Icon" Region="797, 269, 88, 90" />
-                      <uc:CvElementInfo Category="InputBox" Region="995, 130, 312, 39" />
-                      <uc:CvElementInfo Category="Icon" Region="455, 621, 89, 91" />
-                      <uc:CvElementInfo Category="Icon" Region="991, 743, 41, 22" />
-                      <uc:CvElementInfo Category="Button" Region="1627, 266, 260, 50" />
-                      <uc:CvElementInfo Category="Icon" Region="1137, 536, 87, 85" />
-                      <uc:CvElementInfo Category="Icon" Region="537, 621, 89, 89" />
-                      <uc:CvElementInfo Category="Button" Region="1136, 540, 85, 78" />
-                      <uc:CvElementInfo Category="Button" Region="1137, 454, 85, 76" />
-                      <uc:CvElementInfo Category="Button" Region="721, 133, 162, 67" />
-                      <uc:CvElementInfo Category="Button" Region="1223, 802, 85, 82" />
-                      <uc:CvElementInfo Category="Icon" Region="369, 622, 89, 91" />
-                      <uc:CvElementInfo Category="Icon" Region="967, 373, 85, 74" />
-                      <uc:CvElementInfo Category="Icon" Region="1866, 43, 30, 31" />
-                      <uc:CvElementInfo Category="Cell" Region="963, 639, 89, 46" />
-                      <uc:CvElementInfo Category="Cell" Region="286, 494, 438, 120" />
-                      <uc:CvElementInfo Category="Cell" Region="963, 529, 89, 63" />
-                      <uc:CvElementInfo Category="Cell" Region="963, 463, 89, 46" />
-                      <uc:CvElementInfo Category="Cell" Region="1135, 727, 85, 47" />
-                      <uc:CvElementInfo Category="Cell" Region="1135, 794, 85, 95" />
-                      <uc:CvElementInfo Category="Cell" Region="356, 307, 340, 24" />
-                      <uc:CvElementInfo Category="Cell" Region="799, 266, 84, 88" />
-                      <uc:CvElementInfo Category="Cell" Region="1624, 529, 268, 52" />
-                      <uc:CvElementInfo Category="Cell" Region="1049, 374, 86, 43" />
-                      <uc:CvElementInfo Category="Cell" Region="421, 274, 224, 21" />
-                      <uc:CvElementInfo Category="Cell" Region="1624, 581, 268, 81" />
-                      <uc:CvElementInfo Category="Cell" Region="1624, 662, 268, 51" />
-                      <uc:CvElementInfo Category="Cell" Region="1624, 453, 268, 76" />
-                      <uc:CvElementInfo Category="Cell" Region="286, 614, 438, 87" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="722, 218, 162, 44" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="47, 0, 49, 36" />
-                      <uc:CvElementInfo Category="CloseButton" Confidence="Runtime" Region="1861, 41, 40, 36" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1052, 626, 86, 82" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="997, 137, 25, 27" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1137, 365, 84, 80" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="290, 503, 438, 116" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1626, 195, 263, 61" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1625, 398, 265, 51" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1837, 2, 77, 34" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1625, 533, 264, 49" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="799, 275, 86, 83" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1605, 2, 227, 34" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="290, 626, 34, 34" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1619, 132, 274, 53" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="969, 536, 82, 89" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1134, 359, 89, 86" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1139, 331, 82, 23" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="968, 269, 87, 88" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="94, 3, 311, 31" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="721, 128, 165, 74" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1625, 667, 264, 48" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1363, 48, 37, 23" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1624, 324, 266, 68" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1626, 592, 261, 66" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1625, 744, 271, 104" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1626, 458, 263, 66" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="0, 0, 48, 36" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="289, 620, 85, 90" />
-                      <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="1618, 92, 27, 28" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="719, 535, 77, 81" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1138, 449, 83, 80" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="993, 745, 37, 19" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="721, 278, 73, 73" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="969, 453, 84, 80" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1228, 216, 53, 47" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="970, 453, 82, 82" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="0, 39, 208, 44" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="105, 3, 306, 32" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="155, 49, 23, 20" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1052, 624, 86, 86" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1627, 667, 259, 46" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="408, 782, 26, 34" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="625, 798, 174, 86" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="968, 637, 86, 68" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1137, 628, 84, 78" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="512, 238, 13, 15" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1223, 800, 81, 85" />
-                      <uc:CvElementInfo Category="CloseButton" Confidence="Runtime" Region="1561, 45, 26, 27" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="285, 128, 436, 71" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1140, 718, 81, 76" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1051, 801, 86, 83" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="968, 635, 84, 69" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1847, 37, 62, 45" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1768, 36, 72, 45" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1054, 364, 82, 78" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1626, 266, 259, 51" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="292, 624, 79, 83" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1626, 459, 263, 65" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1135, 264, 89, 85" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1624, 192, 262, 64" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1626, 533, 264, 47" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1844, 5, 45, 28" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1625, 399, 265, 49" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1623, 134, 269, 50" />
-                      <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="84, 5, 1541, 31" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="968, 272, 85, 81" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="921, 137, 19, 21" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="294, 625, 75, 36" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="399, 778, 43, 47" />
-                      <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1136, 799, 89, 86" />
-                      <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1624, 742, 273, 108" />
-                      <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="920, 137, 17, 20" />
-                      <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="513, 237, 13, 14" />
-                      <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="1426, 48, 20, 18" />
-                      <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="292, 45, 29, 30" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="963, 443, 89, 20" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1622, 325, 269, 31" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1135, 774, 85, 20" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="291, 307, 65, 24" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1049, 530, 87, 87" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1626, 321, 265, 72" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1138, 326, 82, 27" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1136, 617, 86, 79" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="291, 270, 97, 34" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1049, 617, 87, 79" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1049, 441, 87, 89" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="963, 618, 89, 21" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1135, 374, 85, 43" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="965, 374, 84, 43" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="394, 269, 40, 27" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="477, 295, 145, 15" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1052, 794, 83, 95" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="294, 294, 90, 16" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="963, 509, 89, 20" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1136, 441, 86, 89" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="965, 358, 84, 16" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="627, 801, 167, 83" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="722, 217, 166, 45" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="965, 417, 84, 20" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1136, 530, 86, 87" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="963, 592, 89, 26" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1140, 271, 80, 61" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="968, 681, 88, 27" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="382, 294, 12, 15" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1167, 201, 95, 74" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="605, 296, 105, 13" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="618, 270, 89, 29" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="968, 334, 83, 17" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1138, 715, 83, 14" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1049, 358, 86, 16" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1135, 358, 85, 16" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="370, 295, 291, 14" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1050, 292, 86, 70" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1135, 417, 85, 20" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="720, 535, 73, 13" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1136, 685, 86, 19" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="392, 295, 48, 15" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="721, 122, 184, 80" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="1049, 417, 86, 20" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="635, 803, 146, 8" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="713, 597, 83, 20" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="416, 295, 148, 15" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="970, 271, 82, 82" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="612, 208, 111, 56" />
-                      <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="807, 373, 82, 67" />
-                    </scg:List>
-                  </uc:CVCache.CvUiElements>
-                  <uc:CVCache.OcrTexts>
-                    <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="256">
-                      <uc:OcrTextInfo Region="110, 12, 51, 12" Text="Current" />
-                      <uc:OcrTextInfo Region="165, 12, 54, 12" Text="Sesslon:" />
-                      <uc:OcrTextInfo Region="224, 12, 141, 14" Text="KH_POS1_New_MNL_" />
-                      <uc:OcrTextInfo Region="380, 12, 8, 12" Text="b" />
-                      <uc:OcrTextInfo Region="417, 13, 5, 10" Text="1" />
-                      <uc:OcrTextInfo Region="428, 12, 49, 12" Text="sesslon" />
-                      <uc:OcrTextInfo Region="34, 55, 51, 11" Text="SCREEN" />
-                      <uc:OcrTextInfo Region="90, 55, 60, 11" Text="SHARING" />
-                      <uc:OcrTextInfo Region="1232, 485, 29, 10" Text="Void" />
-                      <uc:OcrTextInfo Region="1267, 485, 28, 10" Text="Item" />
-                      <uc:OcrTextInfo Region="1510, 45, 30, 26" Text="cp" />
-                      <uc:OcrTextInfo Region="1641, 13, 47, 12" Text="Desktop" />
-                      <uc:OcrTextInfo Region="1781, 13, 45, 9" Text="Console" />
-                      <uc:OcrTextInfo Region="1794, 49, 22, 22" Text="Q" />
-                      <uc:OcrTextInfo Region="1871, 49, 22, 22" Text="x" />
-                      <uc:OcrTextInfo Region="297, 150, 84, 30" Text="Total" />
-                      <uc:OcrTextInfo Region="296, 282, 66, 15" Text="Quantity" />
-                      <uc:OcrTextInfo Region="297, 314, 53, 17" Text="Rayin" />
-                      <uc:OcrTextInfo Region="614, 150, 100, 30" Text="23.00" />
-                      <uc:OcrTextInfo Region="628, 240, 21, 10" Text="NO." />
-                      <uc:OcrTextInfo Region="654, 240, 7, 10" Text="3" />
-                      <uc:OcrTextInfo Region="652, 282, 60, 12" Text="Amount" />
-                      <uc:OcrTextInfo Region="732, 138, 144, 27" Text="Emergency" />
-                      <uc:OcrTextInfo Region="824, 300, 35, 10" Text="More" />
-                      <uc:OcrTextInfo Region="808, 316, 68, 10" Text="Functions" />
-                      <uc:OcrTextInfo Region="817, 381, 51, 13" Text="Reprint" />
-                      <uc:OcrTextInfo Region="816, 413, 53, 13" Text="Receipt" />
-                      <uc:OcrTextInfo Region="822, 493, 41, 13" Text="Query" />
-                      <uc:OcrTextInfo Region="811, 581, 61, 10" Text="Override" />
-                      <uc:OcrTextInfo Region="816, 653, 53, 13" Text="Receipt" />
-                      <uc:OcrTextInfo Region="1001, 142, 73, 19" Text="System" />
-                      <uc:OcrTextInfo Region="490, 240, 21, 10" Text="NO." />
-                      <uc:OcrTextInfo Region="516, 240, 7, 10" Text="2" />
-                      <uc:OcrTextInfo Region="297, 512, 73, 17" Text="choose" />
-                      <uc:OcrTextInfo Region="378, 512, 84, 22" Text="payment" />
-                      <uc:OcrTextInfo Region="468, 512, 41, 22" Text="type" />
-                      <uc:OcrTextInfo Region="399, 538, 56, 17" Text="23.00" />
-                      <uc:OcrTextInfo Region="399, 564, 56, 17" Text="23.00" />
-                      <uc:OcrTextInfo Region="297, 564, 52, 17" Text="Cash" />
-                      <uc:OcrTextInfo Region="298, 590, 46, 17" Text="KHR" />
-                      <uc:OcrTextInfo Region="905, 397, 41, 10" Text="Recall" />
-                      <uc:OcrTextInfo Region="898, 413, 56, 13" Text="Layaway" />
-                      <uc:OcrTextInfo Region="896, 573, 60, 10" Text="discount" />
-                      <uc:OcrTextInfo Region="993, 300, 35, 10" Text="More" />
-                      <uc:OcrTextInfo Region="991, 316, 39, 10" Text="Mops" />
-                      <uc:OcrTextInfo Region="1001, 386, 19, 30" Text="7" />
-                      <uc:OcrTextInfo Region="1000, 474, 20, 30" Text="4" />
-                      <uc:OcrTextInfo Region="1003, 562, 11, 30" Text="1" />
-                      <uc:OcrTextInfo Region="1062, 308, 28, 10" Text="Item" />
-                      <uc:OcrTextInfo Region="1096, 308, 32, 13" Text="Keys" />
-                      <uc:OcrTextInfo Region="1085, 386, 19, 30" Text="8" />
-                      <uc:OcrTextInfo Region="1085, 474, 19, 30" Text="5" />
-                      <uc:OcrTextInfo Region="1084, 562, 20, 30" Text="2" />
-                      <uc:OcrTextInfo Region="1074, 750, 41, 13" Text="Space" />
-                      <uc:OcrTextInfo Region="1081, 838, 29, 10" Text="KHR" />
-                      <uc:OcrTextInfo Region="1166, 337, 29, 10" Text="Num" />
-                      <uc:OcrTextInfo Region="1170, 386, 19, 30" Text="9" />
-                      <uc:OcrTextInfo Region="1169, 474, 20, 30" Text="6" />
-                      <uc:OcrTextInfo Region="1170, 562, 19, 30" Text="3" />
-                      <uc:OcrTextInfo Region="1161, 742, 38, 10" Text="Back-" />
-                      <uc:OcrTextInfo Region="1160, 760, 40, 11" Text="space" />
-                      <uc:OcrTextInfo Region="1163, 838, 33, 10" Text="Cash" />
-                      <uc:OcrTextInfo Region="1216, 142, 80, 15" Text="24/08/21" />
-                      <uc:OcrTextInfo Region="1236, 308, 57, 13" Text="Quantity" />
-                      <uc:OcrTextInfo Region="1252, 565, 24, 10" Text="Yes" />
-                      <uc:OcrTextInfo Region="1240, 581, 49, 13" Text="Repeat" />
-                      <uc:OcrTextInfo Region="1255, 662, 17, 10" Text="NO" />
-                      <uc:OcrTextInfo Region="1247, 750, 32, 10" Text="Total" />
-                      <uc:OcrTextInfo Region="1804, 98, 92, 19" Text="Everyone" />
-                      <uc:OcrTextInfo Region="1631, 146, 54, 11" Text="(14:53:34)" />
-                      <uc:OcrTextInfo Region="1690, 146, 42, 9" Text="Michael" />
-                      <uc:OcrTextInfo Region="1736, 146, 55, 9" Text="Dolotallas" />
-                      <uc:OcrTextInfo Region="1795, 146, 18, 9" Text="has" />
-                      <uc:OcrTextInfo Region="1818, 146, 17, 9" Text="left" />
-                      <uc:OcrTextInfo Region="1838, 146, 18, 9" Text="fre" />
-                      <uc:OcrTextInfo Region="1631, 164, 75, 8" Text="conversabon." />
-                      <uc:OcrTextInfo Region="1659, 204, 26, 11" Text="3:51)" />
-                      <uc:OcrTextInfo Region="1690, 204, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1730, 204, 59, 12" Text="Acapuyan]" />
-                      <uc:OcrTextInfo Region="1792, 204, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1817, 204, 26, 9" Text="have" />
-                      <uc:OcrTextInfo Region="1847, 204, 27, 9" Text="been" />
-                      <uc:OcrTextInfo Region="1632, 222, 41, 8" Text="inactive" />
-                      <uc:OcrTextInfo Region="1678, 222, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1691, 221, 19, 9" Text="this" />
-                      <uc:OcrTextInfo Region="1714, 222, 41, 8" Text="session" />
-                      <uc:OcrTextInfo Region="1758, 221, 26, 9" Text="forg" />
-                      <uc:OcrTextInfo Region="1789, 221, 51, 11" Text="minute(s)" />
-                      <uc:OcrTextInfo Region="1844, 221, 21, 9" Text="and" />
-                      <uc:OcrTextInfo Region="1631, 241, 18, 6" Text="are" />
-                      <uc:OcrTextInfo Region="1653, 238, 32, 9" Text="about" />
-                      <uc:OcrTextInfo Region="1689, 240, 11, 7" Text="to" />
-                      <uc:OcrTextInfo Region="1704, 238, 13, 9" Text="be" />
-                      <uc:OcrTextInfo Region="1690, 279, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1860, 279, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1631, 296, 18, 9" Text="will" />
-                      <uc:OcrTextInfo Region="1653, 297, 39, 8" Text="remain" />
-                      <uc:OcrTextInfo Region="1696, 297, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1709, 296, 18, 9" Text="the" />
-                      <uc:OcrTextInfo Region="1731, 297, 44, 8" Text="sæsion." />
-                      <uc:OcrTextInfo Region="1690, 337, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1730, 337, 59, 12" Text="Acapuyan]" />
-                      <uc:OcrTextInfo Region="1792, 337, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1817, 337, 26, 9" Text="have" />
-                      <uc:OcrTextInfo Region="1847, 337, 27, 9" Text="been" />
-                      <uc:OcrTextInfo Region="1632, 355, 41, 8" Text="inactive" />
-                      <uc:OcrTextInfo Region="1678, 355, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1691, 354, 19, 9" Text="this" />
-                      <uc:OcrTextInfo Region="1714, 355, 41, 8" Text="session" />
-                      <uc:OcrTextInfo Region="1758, 354, 26, 9" Text="forg" />
-                      <uc:OcrTextInfo Region="1789, 354, 51, 11" Text="minute(s)" />
-                      <uc:OcrTextInfo Region="1844, 354, 21, 9" Text="and" />
-                      <uc:OcrTextInfo Region="1631, 374, 18, 6" Text="are" />
-                      <uc:OcrTextInfo Region="1653, 371, 32, 9" Text="about" />
-                      <uc:OcrTextInfo Region="1689, 373, 11, 7" Text="to" />
-                      <uc:OcrTextInfo Region="1704, 371, 13, 9" Text="be" />
-                      <uc:OcrTextInfo Region="1631, 412, 54, 11" Text="(15:23:01)" />
-                      <uc:OcrTextInfo Region="1690, 412, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1860, 412, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1631, 429, 18, 9" Text="will" />
-                      <uc:OcrTextInfo Region="1653, 430, 39, 8" Text="remain" />
-                      <uc:OcrTextInfo Region="1696, 430, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1709, 429, 18, 9" Text="the" />
-                      <uc:OcrTextInfo Region="1731, 430, 44, 8" Text="sæsion." />
-                      <uc:OcrTextInfo Region="1631, 470, 8, 11" Text="(1" />
-                      <uc:OcrTextInfo Region="1690, 470, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1730, 470, 59, 12" Text="Acapuyan]" />
-                      <uc:OcrTextInfo Region="1792, 470, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1817, 470, 26, 9" Text="have" />
-                      <uc:OcrTextInfo Region="1847, 470, 27, 9" Text="been" />
-                      <uc:OcrTextInfo Region="1632, 488, 41, 8" Text="inactive" />
-                      <uc:OcrTextInfo Region="1678, 488, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1691, 487, 19, 9" Text="this" />
-                      <uc:OcrTextInfo Region="1714, 488, 41, 8" Text="session" />
-                      <uc:OcrTextInfo Region="1758, 487, 26, 9" Text="forg" />
-                      <uc:OcrTextInfo Region="1789, 487, 51, 11" Text="minute(s)" />
-                      <uc:OcrTextInfo Region="1844, 487, 21, 9" Text="and" />
-                      <uc:OcrTextInfo Region="1631, 507, 18, 6" Text="are" />
-                      <uc:OcrTextInfo Region="1653, 504, 32, 9" Text="about" />
-                      <uc:OcrTextInfo Region="1689, 506, 11, 7" Text="to" />
-                      <uc:OcrTextInfo Region="1704, 504, 13, 9" Text="be" />
-                      <uc:OcrTextInfo Region="1690, 545, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1860, 545, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1631, 562, 18, 9" Text="will" />
-                      <uc:OcrTextInfo Region="1653, 563, 39, 8" Text="remain" />
-                      <uc:OcrTextInfo Region="1696, 563, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1709, 562, 18, 9" Text="the" />
-                      <uc:OcrTextInfo Region="1731, 563, 44, 8" Text="sæsion." />
-                      <uc:OcrTextInfo Region="1690, 603, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1730, 603, 59, 12" Text="Acapuyan]" />
-                      <uc:OcrTextInfo Region="1792, 603, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1817, 603, 26, 9" Text="have" />
-                      <uc:OcrTextInfo Region="1847, 603, 27, 9" Text="been" />
-                      <uc:OcrTextInfo Region="1632, 621, 41, 8" Text="inactive" />
-                      <uc:OcrTextInfo Region="1678, 621, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1691, 620, 19, 9" Text="this" />
-                      <uc:OcrTextInfo Region="1714, 621, 41, 8" Text="session" />
-                      <uc:OcrTextInfo Region="1758, 620, 26, 9" Text="forg" />
-                      <uc:OcrTextInfo Region="1789, 620, 51, 11" Text="minute(s)" />
-                      <uc:OcrTextInfo Region="1844, 620, 21, 9" Text="and" />
-                      <uc:OcrTextInfo Region="1631, 640, 18, 6" Text="are" />
-                      <uc:OcrTextInfo Region="1653, 637, 32, 9" Text="about" />
-                      <uc:OcrTextInfo Region="1689, 639, 11, 7" Text="to" />
-                      <uc:OcrTextInfo Region="1704, 637, 13, 9" Text="be" />
-                      <uc:OcrTextInfo Region="1631, 678, 54, 11" Text="(15:53:51)" />
-                      <uc:OcrTextInfo Region="1690, 678, 37, 11" Text="[Aileen" />
-                      <uc:OcrTextInfo Region="1860, 678, 21, 9" Text="You" />
-                      <uc:OcrTextInfo Region="1631, 695, 18, 9" Text="will" />
-                      <uc:OcrTextInfo Region="1653, 696, 39, 8" Text="remain" />
-                      <uc:OcrTextInfo Region="1696, 696, 9, 8" Text="in" />
-                      <uc:OcrTextInfo Region="1709, 695, 18, 9" Text="the" />
-                      <uc:OcrTextInfo Region="1731, 696, 44, 8" Text="sæsion." />
-                      <uc:OcrTextInfo Region="665, 849, 91, 21" Text="Control" />
-                    </scg:List>
-                  </uc:CVCache.OcrTexts>
-                </uc:CVCache>
-              </p:CVRefresh.DesignTimeCache>
-            </p:CVRefresh>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke UTL_NAMOS_Numpad workflow" sap:VirtualizedContainerService.HintSize="438,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Utilities\UTL_NAMOS_Numpad.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="Numkeys">25</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,333" sap2010:WorkflowViewState.IdRef="TryCatch_22">
-              <TryCatch.Try>
-                <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" Descriptor="[&quot;Target: Text 'Cash' (1163,838,33,10)&quot; +&#xA;&quot;Anchor: Text 'Back-' (1161,742,38,10)&quot;]" DesignTimeScaleFactor="1" DisplayName="CV Click - Text" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_43" InformativeScreenshot="819306a26a9a037c687f97282ece691f" KeyModifiers="None" MouseButton="BTN_LEFT" Version="V1">
-                  <p:CvClickWithDescriptor.CursorPosition>
-                    <ui:CursorPosition Position="Center">
-                      <ui:CursorPosition.OffsetX>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetX>
-                      <ui:CursorPosition.OffsetY>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetY>
-                    </ui:CursorPosition>
-                  </p:CvClickWithDescriptor.CursorPosition>
-                  <p:CvClickWithDescriptor.DesignTimeDescriptor>
-                    <uc:CvDescriptor InformativeScreenshot="819306a26a9a037c687f97282ece691f">
-                      <uc:CvDescriptor.Anchors>
-                        <x:Array Type="uc:CvElementDescriptor">
-                          <uc:CvElementDescriptor DesignTimeArea="1161, 742, 38, 10" ElementType="Text" Text="Back-" />
-                        </x:Array>
-                      </uc:CvDescriptor.Anchors>
-                      <uc:CvDescriptor.Target>
-                        <uc:CvElementDescriptor DesignTimeArea="1163, 838, 33, 10" ElementType="Text" Text="Cash" />
-                      </uc:CvDescriptor.Target>
-                    </uc:CvDescriptor>
-                  </p:CvClickWithDescriptor.DesignTimeDescriptor>
-                  <p:CvClickWithDescriptor.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="2c77d68d-1691-401b-ad15-a37a638f2b42">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                      <ui:Target.WaitForReady>
-                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                      </ui:Target.WaitForReady>
-                    </ui:Target>
-                  </p:CvClickWithDescriptor.Target>
-                </p:CvClickWithDescriptor>
-              </TryCatch.Try>
-              <TryCatch.Catches>
-                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_22">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ActivityAction x:TypeArguments="s:Exception">
-                    <ActivityAction.Argument>
-                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
-                    </ActivityAction.Argument>
-                    <TerminateWorkflow DisplayName="Terminate Workflow" Exception="[exception]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_23" />
                   </ActivityAction>
                 </Catch>
               </TryCatch.Catches>
